@@ -205,7 +205,9 @@ LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to 
 ### 3.3 Perfomance
 cd\
 cd ~aries-cloudagent-python/demo\
-LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count [count] --threads [threads] ... to start performance agent with public ledger. [count] = number of credentials being exchanged, [threads] = number of concurrent process.
+LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count [count] --threads [threads] ... to start performance agent with public ledger.\ 
+[count] = number of credentials being exchanged,\
+[threads] = number of concurrent process.
 
 Note 1: latency = average of credentials per second. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
 
