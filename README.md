@@ -69,7 +69,8 @@ Faber      |\
 Faber      | Listening...\
 Faber      |\
 Startup duration: 11.58s\
-Admin URL is at: http://192.168.65.3:8021\ 
+Admin URL is at: http://192.168.65.3:8021
+
 Endpoint URL is at: http://192.168.65.3:8020
 
 #3/4 Create a new schema/cred def on the ledger\
@@ -196,6 +197,10 @@ ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$
 
 
 #### 3.2.3 Using Public Ledger
+cd\
+cd ~aries-cloudagent-python/demo\
+LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo faber ... to start faber agent with public ledger.\
+LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to start alice agent with public ledger.\
 
 ### 3.3 Perfomance
 
