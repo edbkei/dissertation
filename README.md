@@ -40,9 +40,9 @@ cd aries-cloudagent-python/demo\
 
 OUTPUT (Example of Faber agent, interactive options):
 
-Faber      |\
-Faber      | ::::::::::::::::::::::::::::::::::::::::::::::\
-Faber      | :: faber.agent                              ::\
+Faber      |                                               |\
+Faber      | ::::::::::::::::::::::::::::::::::::::::::::::|\
+Faber      | :: faber.agent                              ::|\
 Faber      | ::                                          ::\
 Faber      | ::                                          ::\
 Faber      | :: Inbound Transports:                      ::\
