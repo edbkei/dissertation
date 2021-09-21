@@ -11,9 +11,16 @@ This github https://github.com/edbkei/dissertation intends to log input material
 
 ### 3.2 Basic Commands for setting up environment
 
-Using Local Ledger
+#### 3.2.1 Discovering IP addresses used in docker agents
 
-Using Public Ledger
+docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+OUTPUT (Example):
+/alice - 172.17.0.2
+/faber - 172.17.0.3
+
+#### 3.2.1 Using Local Ledger
+
+#### 3.2.2 Using Public Ledger
 
 ### 3.3 Perfomance
 
