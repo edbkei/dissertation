@@ -9,6 +9,12 @@ This github https://github.com/edbkei/dissertation intends to log input material
 ## 3. Test
 ### 3.1 Test Environment
 
-### 3.2 Basic Commands for setting up environment.
+### 3.2 Basic Commands for setting up environment
+
+Using Local Ledger
+
+Using Public Ledger
+
+### 3.3 Perfomance
 
 ## 4. Conclusion
