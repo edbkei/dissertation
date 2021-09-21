@@ -20,6 +20,10 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 /alice - 172.17.0.2 \
 /faber - 172.17.0.3
 
+**Tcpdump:**\
+Taking into account that current directory has tcpdump directory, and output will be done in tcpdump.pcap file.\
+docker run --rm --net=host -v $PWD/tcpdump:/tcpdump kaazing/tcpdump
+
 #### 3.2.1 Using Local Ledger
 
 #### 3.2.2 Using Public Ledger
