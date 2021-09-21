@@ -17,7 +17,7 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 
 OUTPUT (Example):
 
-/alice - 172.17.0.2
+/alice - 172.17.0.2 \
 /faber - 172.17.0.3
 
 #### 3.2.1 Using Local Ledger
