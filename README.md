@@ -23,10 +23,13 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 **Tcpdump:**\
 Taking into account that current directory has tcpdump directory, and output will be done in tcpdump.pcap file.\
 docker run --rm --net=host -v $PWD/tcpdump:/tcpdump kaazing/tcpdump
+...\
+Got n ... will appear, that means that tcpdump is listening packets.\
+Ctrl+C ... to break tcpdump.
 
-#### 3.2.1 Using Local Ledger
+#### 3.2.2 Using Local Ledger
 
-#### 3.2.2 Using Public Ledger
+#### 3.2.3 Using Public Ledger
 
 ### 3.3 Perfomance
 
