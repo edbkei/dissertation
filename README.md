@@ -28,6 +28,15 @@ Got n ... will appear, that means that tcpdump is listening packets.\
 Ctrl+C ... to break tcpdump.
 
 #### 3.2.2 Using Local Ledger
+cd\
+cd von-network\
+./manage build     ... to build docker local network for the first time\
+./manage up/start  ... to activate local ledger with 4 nodes.\
+./manage down/stop ... to deactivate local ledger with 4 nodes.\
+
+cd\
+cd aries-cloudagent-python/demo\
+./run_demo faber/alice/bob/acme  ... to activate agent faber or alice or bob or acme
 
 #### 3.2.3 Using Public Ledger
 
