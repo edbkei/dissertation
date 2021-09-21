@@ -11,12 +11,13 @@ This github https://github.com/edbkei/dissertation intends to log input material
 
 ### 3.2 Basic Commands for setting up environment
 
-#### 3.2.1 Discovering IP addresses used in docker agents
+#### 3.2.1 Docker commands
+
+**Discovering IP addresses used in docker agents:** \
 
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 
-OUTPUT (Example):
-
+**OUTPUT (Example):** \
 /alice - 172.17.0.2 \
 /faber - 172.17.0.3
 
