@@ -200,7 +200,7 @@ ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$
 cd\
 cd ~aries-cloudagent-python/demo\
 LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo faber ... to start faber agent with public ledger.\
-LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to start alice agent with public ledger.\
+LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to start alice agent with public ledger.
 
 ### 3.3 Perfomance
 
