@@ -101,7 +101,8 @@ Publish schema/cred def duration: 15.51s
 Generate invitation duration: 0.09s\
 Use the following JSON to accept the invite from another demo agent. Or use the QR code to connect from a mobile agent.\
 Invitation Data:\
-{"@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation", "@id": "716c58e9-80ad-4bf2-898e-6ad09240d4ae", "recipientKeys": ["BMaVNzXx972Y8kkxzmEgDqLDe9MS3qmGMDzBctHXui5E"], "serviceEndpoint": "http://192.168.65.3:8020", "label": "faber.agent"}
+![#f03c15]({"@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation", "@id": "716c58e9-80ad-4bf2-898e-6ad09240d4ae", "recipientKeys": ["BMaVNzXx972Y8kkxzmEgDqLDe9MS3qmGMDzBctHXui5E"], "serviceEndpoint": "http://192.168.65.3:8020", "label": "faber.agent"}) `#f03c15`
+
 █▀▀▀▀▀▀▀█▀▀▀▀█▀▀██▀██▀▀▀▀█▀█▀██▀█████▀███▀███▀██▀▀▀▀█▀▀▀███▀███▀███████▀▀▀▀▀▀▀█
 █ █▀▀▀█ ███▀█▀█▀▄▄ █▀ ▀▀█▄▀█ ▀█▀▀ █  ▀▄▄ ▄██ ▀▀ ▄▀▀▄█▀▀█▀▄█████▄█  ▄█ █ █▀▀▀█ █
 █ █   █ █ ▄█▄   ▀█▀▄█ █▄ ▀  ▀ ▄▀██▄▀  ▀█▄▀█▀▀▄   ▀▀▀▄▄█ ▀█▀▄▀ ▄ ▄▀▄▀▀ █ █   █ █
