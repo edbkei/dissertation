@@ -40,9 +40,10 @@ cd aries-cloudagent-python/demo\
 
 OUTPUT (Example of Faber agent, interactive options):
 
-Faber      |                                               |\
-Faber      | ::::::::::::::::::::::::::::::::::::::::::::::|\
-Faber      | :: faber.agent                              ::|\
+<!-- TABLE_GENERATE_START -->
+Faber      |                                               \
+Faber      | ::::::::::::::::::::::::::::::::::::::::::::::\
+Faber      | :: faber.agent                              ::\
 Faber      | ::                                          ::\
 Faber      | ::                                          ::\
 Faber      | :: Inbound Transports:                      ::\
@@ -67,8 +68,10 @@ Faber      | ::::::::::::::::::::::::::::::::::::::::::::::\
 Faber      |\
 Faber      | Listening...\
 Faber      |\
+<!-- TABLE_GENERATE_END -->
+
 Startup duration: 11.58s\
-Admin URL is at: http://192.168.65.3:8021\
+Admin URL is at: http://192.168.65.3:8021\ 
 Endpoint URL is at: http://192.168.65.3:8020
 
 #3/4 Create a new schema/cred def on the ledger\
