@@ -205,6 +205,6 @@ LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to 
 ### 3.3 Perfomance
 cd\
 cd ~aries-cloudagent-python/demo\
-LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count <count> --threads <threads> ... to start performance agent with public ledger. <count> = number of credentials being exchanged, <threads> = number of concurrent process.
+LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count [count] --threads [threads] ... to start performance agent with public ledger. [count] = number of credentials being exchanged, [threads] = number of concurrent process.
 
 ## 4. Conclusion
