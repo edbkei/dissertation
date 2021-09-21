@@ -69,7 +69,7 @@ Faber      | Listening...\
 Faber      |\
 Startup duration: 11.58s\
 Admin URL is at: http://192.168.65.3:8021\
-Endpoint URL is at: http://192.168.65.3:8020\
+Endpoint URL is at: http://192.168.65.3:8020
 
 #3/4 Create a new schema/cred def on the ledger\
 Schema:\
@@ -91,11 +91,11 @@ Schema:\
         "seqNo": 98340\
       }\
     }\
-  }\
+  }
 
 Schema ID: PJohU8BPNkWqWAipipmVwU:2:degree schema:71.54.57\
 Cred def ID: PJohU8BPNkWqWAipipmVwU:3:CL:98340:faber.agent.degree_schema\
-Publish schema/cred def duration: 15.51s\
+Publish schema/cred def duration: 15.51s
 
 #7 Create a connection to alice and print out the invite details\
 Generate invitation duration: 0.09s\
@@ -151,7 +151,7 @@ Faber      | Received message: Hey Faber, send me a credential!\
     (4) Create New Invitation\
     (T) Toggle tracing on credential/proof exchange\
     (X) Exit?\
-[1/2/3/4/T/X] 1\
+[1/2/3/4/T/X] 1
 
 #13 Issue credential offer to X\
 Faber      | Credential: state = offer-sent, cred_ex_id = b920f9cb-830e-4a4c-a1e6-038cee028546\
@@ -166,13 +166,13 @@ Faber      | Credential: state = done, cred_ex_id = b920f9cb-830e-4a4c-a1e6-038c
     (4) Create New Invitation\
     (T) Toggle tracing on credential/proof exchange\
     (X) Exit?\
-[1/2/3/4/T/X] 2\
+[1/2/3/4/T/X] 2
 
 #20 Request proof of degree from X\
 Faber      | Presentation: state = request-sent, pres_ex_id = a0a3a62f-4b38-4cac-a7e5-3668f8829053\
-Faber      | Presentation: state = presentation-received, pres_ex_id = a0a3a62f-4b38-4cac-a7e5-3668f8829053\
+Faber      | Presentation: state = presentation-received, pres_ex_id = a0a3a62f-4b38-4cac-a7e5-3668f8829053
 
-#27 Process the proof provided by X\
+#27 Process the proof provided by X
 
 #28 Check if proof is valid\
 Faber      | Presentation: state = done, pres_ex_id = a0a3a62f-4b38-4cac-a7e5-3668f8829053\
@@ -188,7 +188,7 @@ Shutting down agent ...\
 Faber      |\
 Faber      | Shutting down\
 Faber      | Exited with return code 0\
-ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$\
+ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$
 
 
 #### 3.2.3 Using Public Ledger
