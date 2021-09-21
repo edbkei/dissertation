@@ -14,7 +14,6 @@ This github https://github.com/edbkei/dissertation intends to log input material
 #### 3.2.1 Docker commands
 
 **Discovering IP addresses used in docker agents:** \
-
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 
 **OUTPUT (Example):** \
