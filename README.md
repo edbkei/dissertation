@@ -103,6 +103,14 @@ Use the following JSON to accept the invite from another demo agent. Or use the 
 Invitation Data:\
 ![#f03c15]({"@type": "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation", "@id": "716c58e9-80ad-4bf2-898e-6ad09240d4ae", "recipientKeys": ["BMaVNzXx972Y8kkxzmEgDqLDe9MS3qmGMDzBctHXui5E"], "serviceEndpoint": "http://192.168.65.3:8020", "label": "faber.agent"}) `#f03c15`
 
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+
 █▀▀▀▀▀▀▀█▀▀▀▀█▀▀██▀██▀▀▀▀█▀█▀██▀█████▀███▀███▀██▀▀▀▀█▀▀▀███▀███▀███████▀▀▀▀▀▀▀█
 █ █▀▀▀█ ███▀█▀█▀▄▄ █▀ ▀▀█▄▀█ ▀█▀▀ █  ▀▄▄ ▄██ ▀▀ ▄▀▀▄█▀▀█▀▄█████▄█  ▄█ █ █▀▀▀█ █
 █ █   █ █ ▄█▄   ▀█▀▄█ █▄ ▀  ▀ ▄▀██▄▀  ▀█▄▀█▀▀▄   ▀▀▀▄▄█ ▀█▀▄▀ ▄ ▄▀▄▀▀ █ █   █ █
