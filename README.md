@@ -68,8 +68,6 @@ Faber      | ::::::::::::::::::::::::::::::::::::::::::::::\
 Faber      |\
 Faber      | Listening...\
 Faber      |\
-<!-- TABLE_GENERATE_END -->
-
 Startup duration: 11.58s\
 Admin URL is at: http://192.168.65.3:8021\ 
 Endpoint URL is at: http://192.168.65.3:8020
