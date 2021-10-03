@@ -1,1 +1,25 @@
 
+# Deploying NFT using Ethereum
+
+## 1. Environment
+
+Windows 10 PRO version 20H2
+
+## 2. References
+### 2.1 Implementation
+https://ethereum.org/en/developers/tutorials/how-to-write-and-deploy-an-nft/
+https://ethereum.org/en/developers/tutorials/how-to-mint-an-nft/
+https://ethereum.org/en/developers/tutorials/how-to-view-nft-in-metamask/
+
+### 2.2 Asset repository for NFT
+https://app.pinata.cloud/pinmanager
+
+Deployed Assets for NFTs: NFT-1, NFT-2, NFT-3
+
+Images of NFTs:
+https://gateway.pinata.cloud/ipfs/QmPJpXqJpi6rxXo5NRFPMPCTmQgP5SMnYuB3RB4EHsNwXM  Hash: QmPJpXqJpi6rxXo5NRFPMPCTmQgP5SMnYuB3RB4EHsNwXM
+https://gateway.pinata.cloud/ipfs/Qmb4JD1Smjyqa1tUNbR3TNfERXxQdU1PT2MLFw2VpQm5EW  Hash: Qmb4JD1Smjyqa1tUNbR3TNfERXxQdU1PT2MLFw2VpQm5EW
+https://gateway.pinata.cloud/ipfs/QmRzuYj6D3qGDH2wWiCTajR5o4F7of7cAkZZ24kK9AcK7w  Hash: QmRzuYj6D3qGDH2wWiCTajR5o4F7of7cAkZZ24kK9AcK7w
+
+
+
