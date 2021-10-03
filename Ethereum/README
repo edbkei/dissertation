@@ -103,6 +103,24 @@ the result of the transaction 0x2d8f268bc8460b9b4a7662cc8a40e1d4b4f72dc56dcb1978
 
 It depicts that for the public key 0x17ed5a19a6a9911e831ac9f5ad1571182429cf41 (that is the address of my account in Metamax in 
 smartphone), the status of transaction is success. It indicates that the NFT is minted (starts to make part of record in Ethereum
-blockchain in the block 11144954 . And, the smart contract is 0x4d4c71a9530f191d9f723236d456633c7bcf777b, 
+blockchain in the block 11144954) . And, the smart contract is 0x4d4c71a9530f191d9f723236d456633c7bcf777b, 
 the token id 6 is transferred to the block 11144954.
 
+# 3. Deployment
+Pre-condition is the installation steps in item 2.1.
+
+Each time an NFT is required to be minted, follow the steps:
+- Add NFT Asset (e.g. "https://gateway.pinata.cloud/ipfs/QmTz85ACADZbU7UZ16pS3QcpBNaE4xN8vDauT2iVj4mDeX") in the function mintNFT
+in the javascript mint-nft.js.
+- Follow the substeps:
+  - cd c:\ ... my-nft 
+  - node scripts/mint-nft.js
+    wait message like:
+    The hash of your transaction is:
+    0x214b1d361abaf084ada1c03f3b2ff21a95ad399014
+  - Check if transaction has been minted at: https://dashboard.alchemyapi.io/mempool
+    or https://ropsten.etherscan.io/tx/<tx id>
+  - In case, it is completed, check apps Metamax in smartphone.
+  - In Metamax, select account, if more than 1, click NFTs
+  - If minted NFT is not there, click Add NFTs. Fill smart contract address and token 1.
+  - Result: NFT is displayed in apps Metamax.
