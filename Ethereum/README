@@ -94,3 +94,15 @@ https://gateway.pinata.cloud/ipfs/QmPTGhqYAvSNZ3qXzmrNWLink63p8q4SGnCNaGALQgDFzw
 https://dashboard.alchemyapi.io/
 
 To see status of Smart Contract deployed on mainnet or Ropsten 
+
+### 2.4 Etherscan 
+It is used to know if the status of certain transaction (tx) in the deployed network.
+
+The url https://ropsten.etherscan.io/tx/0x2d8f268bc8460b9b4a7662cc8a40e1d4b4f72dc56dcb1978b6b501585b8e6459 shows
+the result of the transaction 0x2d8f268bc8460b9b4a7662cc8a40e1d4b4f72dc56dcb1978b6b501585b8e6459.
+
+It depicts that for the public key 0x17ed5a19a6a9911e831ac9f5ad1571182429cf41 (that is the address of my account in Metamax in 
+smartphone), the status of transaction is success. It indicates that the NFT is minted (starts to make part of record in Ethereum
+blockchain in the block 11144954 . And, the smart contract is 0x4d4c71a9530f191d9f723236d456633c7bcf777b, 
+the token id 6 is transferred to the block 11144954.
+
