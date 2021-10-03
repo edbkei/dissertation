@@ -16,10 +16,78 @@ https://app.pinata.cloud/pinmanager
 
 Deployed Assets for NFTs: NFT-1, NFT-2, NFT-3
 
-Images of NFTs:
+Images for NFTs:
 https://gateway.pinata.cloud/ipfs/QmPJpXqJpi6rxXo5NRFPMPCTmQgP5SMnYuB3RB4EHsNwXM  Hash: QmPJpXqJpi6rxXo5NRFPMPCTmQgP5SMnYuB3RB4EHsNwXM
 https://gateway.pinata.cloud/ipfs/Qmb4JD1Smjyqa1tUNbR3TNfERXxQdU1PT2MLFw2VpQm5EW  Hash: Qmb4JD1Smjyqa1tUNbR3TNfERXxQdU1PT2MLFw2VpQm5EW
 https://gateway.pinata.cloud/ipfs/QmRzuYj6D3qGDH2wWiCTajR5o4F7of7cAkZZ24kK9AcK7w  Hash: QmRzuYj6D3qGDH2wWiCTajR5o4F7of7cAkZZ24kK9AcK7w
 
+Json data for NFTs:
 
+NFT-1
+https://gateway.pinata.cloud/ipfs/QmfJLKbANv3LZrtJ2vLMBBfQhiNFymbqNVPiQhEi12m4rA  Hash: QmfJLKbANv3LZrtJ2vLMBBfQhiNFymbqNVPiQhEi12m4rA
 
+{
+    "attributes": [
+      {
+        "trait_type": "instalationid",
+        "value": "123456789"
+      },
+      {
+        "trait_type": "energyKWH",
+        "value": "50"
+      },
+	  {
+        "trait_type": "ts",
+        "value": "2021-09-29T14:16:17"
+      }
+    ],
+    "description": "Example of token 1 obtained from bidirectional meter reading",
+    "image": "https://gateway.pinata.cloud/ipfs/QmPJpXqJpi6rxXo5NRFPMPCTmQgP5SMnYuB3RB4EHsNwXM",
+    "name": "energy token 1"
+}
+
+NFT-2
+https://gateway.pinata.cloud/ipfs/QmPTGhqYAvSNZ3qXzmrNWLink63p8q4SGnCNaGALQgDFzw Hash: QmPTGhqYAvSNZ3qXzmrNWLink63p8q4SGnCNaGALQgDFzw
+{
+    "attributes": [
+      {
+        "trait_type": "instalationid",
+        "value": "123456789"
+      },
+      {
+        "trait_type": "energyKWH",
+        "value": "65"
+      },
+	  {
+        "trait_type": "ts",
+        "value": "2021-10-29T13:15:20"
+      }
+    ],
+    "description": "Example of token 2 obtained from bidirectional meter reading",
+    "image": "https://gateway.pinata.cloud/ipfs/Qmb4JD1Smjyqa1tUNbR3TNfERXxQdU1PT2MLFw2VpQm5EW",
+    "name": "energy token 2"
+ } 
+ 
+ NFT-3
+ https://gateway.pinata.cloud/ipfs/QmTz85ACADZbU7UZ16pS3QcpBNaE4xN8vDauT2iVj4mDeX Hash: QmTz85ACADZbU7UZ16pS3QcpBNaE4xN8vDauT2iVj4mDeX
+  {
+    "attributes": [
+      {
+        "trait_type": "instalationid",
+        "value": "123456789"
+      },
+      {
+        "trait_type": "energyKWH",
+        "value": "71"
+      },
+	  {
+        "trait_type": "ts",
+        "value": "2021-11-29T15:14:16"
+      }
+    ],
+    "description": "Example of token 3 obtained from bidirectional meter reading",
+    "image": "https://gateway.pinata.cloud/ipfs/QmRzuYj6D3qGDH2wWiCTajR5o4F7of7cAkZZ24kK9AcK7w",
+    "name": "energy token 3 "
+}
+  
+  
