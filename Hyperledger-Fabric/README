@@ -14,3 +14,8 @@ Error: error parsing transient string: invalid character '\n' in string literal 
 Reason: The string transformation caused by base64 in the step export... is not well understood in Ubuntu.
 
 Solution: Add -w 0 after base64. See configuration steps in log folder.
+
+========
+
+Instruction to install Hyperledger Fabric binary: https://hyperledger-fabric.readthedocs.io/en/latest/install.html
+
