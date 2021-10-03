@@ -1,0 +1,663 @@
+ubu20w@DESKTOP-CT0HBV1:~/golang$ sudo tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz
+[sudo] password for ubu20w:
+ubu20w@DESKTOP-CT0HBV1:~/golang$ cd /usr/local
+ubu20w@DESKTOP-CT0HBV1:/usr/local$ ls
+bin  etc  games  go  include  lib  man  n  sbin  share  src
+ubu20w@DESKTOP-CT0HBV1:/usr/local$ cd go
+ubu20w@DESKTOP-CT0HBV1:/usr/local/go$ ls
+AUTHORS          CONTRIBUTORS  PATENTS    SECURITY.md  api  codereview.cfg  lib   pkg  test
+CONTRIBUTING.md  LICENSE       README.md  VERSION      bin  doc             misc  src
+ubu20w@DESKTOP-CT0HBV1:/usr/local/go$ cd
+ubu20w@DESKTOP-CT0HBV1:~$ rm golang
+rm: cannot remove 'golang': Is a directory
+ubu20w@DESKTOP-CT0HBV1:~$ rm -r golang
+ubu20w@DESKTOP-CT0HBV1:~$ mkdir ~/.go
+mkdir: cannot create directory ‘/home/ubu20w/.go’: File exists
+ubu20w@DESKTOP-CT0HBV1:~$ cd go
+ubu20w@DESKTOP-CT0HBV1:~/go$ ls
+bin  src
+ubu20w@DESKTOP-CT0HBV1:~/go$ cd ..
+ubu20w@DESKTOP-CT0HBV1:~$ rm -r go
+rm: remove write-protected regular file 'go/src/github.com/golang/example/.git/objects/pack/pack-be9a2f75834d8b79c5e3c38c105eb4fcb73f1962.pack'? y
+rm: remove write-protected regular file 'go/src/github.com/golang/example/.git/objects/pack/pack-be9a2f75834d8b79c5e3c38c105eb4fcb73f1962.idx'? y
+rm: remove write-protected regular file 'go/src/golang.org/x/example/.git/objects/pack/pack-427844e7ebccad1d78cf840855858ca89405bd11.idx'? y
+rm: remove write-protected regular file 'go/src/golang.org/x/example/.git/objects/pack/pack-427844e7ebccad1d78cf840855858ca89405bd11.pack'? y
+ubu20w@DESKTOP-CT0HBV1:~$ ls
+TheOrgBook                 aries_agents_dir              indy-sdk             project
+acapy-alice-bob            caliper                       indy-tails-server    python_dir
+acapy-alice-bob2           caliper-benchmarks            lixo                 ssi.pcap
+aries-acapy-controllers    drandreaskrueger_chainhammer  node_modules         test.py
+aries-agent-test-harness   electron-quick-start          nodesource_setup.sh  tests
+aries-cloudagent-python    env                           package-lock.json    universal-wallet-interop-spec
+aries-cloudagent-python2   fabric                        package.json         von-agent-template
+aries-cloudagent-python3   fabric-samples                packets.cap          von-network
+aries-protocol-test-suite  hello.py                      pcap_files
+ubu20w@DESKTOP-CT0HBV1:~$ mkdir ~/.go
+mkdir: cannot create directory ‘/home/ubu20w/.go’: File exists
+ubu20w@DESKTOP-CT0HBV1:~$ cd go
+-bash: cd: go: No such file or directory
+ubu20w@DESKTOP-CT0HBV1:~$ pwd
+/home/ubu20w
+ubu20w@DESKTOP-CT0HBV1:~$ ls -la
+total 1348
+drwxr-xr-x  43 ubu20w  ubu20w    4096 Oct  1 20:38 .
+drwxr-xr-x   3 root    root      4096 Jan 21  2021 ..
+-rw-------   1 ubu20w  ubu20w      61 Apr  9 10:00 .Xauthority
+lrwxrwxrwx   1 ubu20w  ubu20w      25 Sep 17 15:52 .aws -> /mnt/c/Users/Eduardo/.aws
+lrwxrwxrwx   1 ubu20w  ubu20w      27 Sep 17 15:52 .azure -> /mnt/c/Users/Eduardo/.azure
+-rw-------   1 ubu20w  ubu20w   48946 Sep 27 07:40 .bash_history
+-rw-r--r--   1 ubu20w  ubu20w     220 Jan 21  2021 .bash_logout
+-rw-r--r--   1 ubu20w  ubu20w    4159 Aug 23 07:50 .bashrc
+drwx------   5 ubu20w  ubu20w    4096 Oct  1 18:29 .cache
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Aug 23 08:29 .cargo
+drwx------   5 ubu20w  ubu20w    4096 Sep 26 07:51 .config
+drwx------   3 ubu20w  ubu20w    4096 Apr 10 17:43 .dbus
+drwx------   4 ubu20w  ubu20w    4096 Sep 17 16:14 .docker
+drwx------   4 ubu20w  ubu20w    4096 Aug 21 17:39 .gnupg
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Oct  1 20:21 .go
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Aug 23 16:57 .indy_client
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Jan 21  2021 .landscape
+drwxr-xr-x   5 ubu20w  ubu20w    4096 Feb 23  2021 .local
+-rw-r--r--   1 ubu20w  ubu20w       0 Oct  1 17:34 .motd_shown
+drwxr-xr-x   5 ubu20w  ubu20w    4096 Sep 26 19:54 .npm
+drwxr-xr-x   8 ubu20w  ubu20w    4096 Feb 19  2021 .nvm
+-rw-r--r--   1 ubu20w  ubu20w     828 Aug 23 07:50 .profile
+-rw-------   1 ubu20w  ubu20w    1430 Apr 14 19:49 .python_history
+drwxr-xr-x   6 ubu20w  ubu20w    4096 Aug 23 07:50 .rustup
+-rw-r--r--   1 ubu20w  ubu20w       0 Jan 21  2021 .sudo_as_admin_successful
+-rw-------   1 ubu20w  ubu20w     532 Aug 22 18:22 .viminfo
+-rw-r--r--   1 ubu20w  ubu20w     262 Oct  1 19:01 .wget-hsts
+drwxr-xr-x  14 ubu20w  ubu20w    4096 Feb 25  2021 TheOrgBook
+drwxr-xr-x  10 ubu20w  ubu20w    4096 Apr 18 14:28 acapy-alice-bob
+drwxrwxr-x  11 ubu20w  ubu20w    4096 Jan 22  2021 acapy-alice-bob2
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Apr  5 09:18 aries-acapy-controllers
+drwxr-xr-x  10 ubu20w  ubu20w    4096 Feb 23  2021 aries-agent-test-harness
+drwxr-xr-x  15 ubu20w  ubu20w    4096 Aug 30 13:47 aries-cloudagent-python
+drwxr-xr-x  13 ubu20w  ubu20w    4096 Feb 12  2021 aries-cloudagent-python2
+drwxr-xr-x  13 ubu20w  ubu20w    4096 Feb 12  2021 aries-cloudagent-python3
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Feb 22  2021 aries-protocol-test-suite
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Feb 22  2021 aries_agents_dir
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Aug 29 11:35 caliper
+drwxr-xr-x   8 ubu20w  ubu20w    4096 Sep  1 09:36 caliper-benchmarks
+drwxr-xr-x  11 ubu20w  ubu20w    4096 Sep  1 13:20 drandreaskrueger_chainhammer
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Feb 19  2021 electron-quick-start
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Sep  1 13:57 env
+drwxr-xr-x  26 ubu20w  ubu20w    4096 Oct  1 18:26 fabric
+drwxr-xr-x  29 ubu20w  ubu20w    4096 Oct  1 17:35 fabric-samples
+-rw-r--r--   1 ubu20w  ubu20w     118 Apr  7 14:06 hello.py
+drwxr-xr-x  15 ubu20w  ubu20w    4096 Aug 23 17:50 indy-sdk
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Feb 22  2021 indy-tails-server
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Sep 17 13:38 lixo
+drwxr-xr-x 466 ubu20w  ubu20w   20480 Aug 15 11:35 node_modules
+-rw-r--r--   1 ubu20w  ubu20w   13479 Feb 19  2021 nodesource_setup.sh
+-rw-r--r--   1 ubu20w  ubu20w  661454 Aug 15 11:49 package-lock.json
+-rw-r--r--   1 ubu20w  ubu20w      98 Aug 15 11:49 package.json
+-rw-r--r--   1 tcpdump tcpdump 408448 Feb 13  2021 packets.cap
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Sep 20 10:57 pcap_files
+drwxrwxr-x   3 ubu20w  ubu20w    4096 Sep 26 07:31 project
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Apr 15 09:34 python_dir
+-rw-r--r--   1 tcpdump tcpdump     24 Sep 18 10:02 ssi.pcap
+-rw-rw-r--   1 ubu20w  ubu20w     271 Feb  4  2021 test.py
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Sep  3 14:31 tests
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Aug 15 11:46 universal-wallet-interop-spec
+drwxr-xr-x   6 ubu20w  ubu20w    4096 Feb 25  2021 von-agent-template
+drwxrwxr-x  12 ubu20w  ubu20w    4096 Feb 25  2021 von-network
+ubu20w@DESKTOP-CT0HBV1:~$ mkdir go
+ubu20w@DESKTOP-CT0HBV1:~$ rm -r go
+ubu20w@DESKTOP-CT0HBV1:~$ mkdir ~/.go
+mkdir: cannot create directory ‘/home/ubu20w/.go’: File exists
+ubu20w@DESKTOP-CT0HBV1:~$ rm .go
+rm: cannot remove '.go': Is a directory
+ubu20w@DESKTOP-CT0HBV1:~$ rm -r .go
+ubu20w@DESKTOP-CT0HBV1:~$ mkdir ~/.go
+ubu20w@DESKTOP-CT0HBV1:~$ ls -la
+total 1348
+drwxr-xr-x  43 ubu20w  ubu20w    4096 Oct  2 06:50 .
+drwxr-xr-x   3 root    root      4096 Jan 21  2021 ..
+-rw-------   1 ubu20w  ubu20w      61 Apr  9 10:00 .Xauthority
+lrwxrwxrwx   1 ubu20w  ubu20w      25 Sep 17 15:52 .aws -> /mnt/c/Users/Eduardo/.aws
+lrwxrwxrwx   1 ubu20w  ubu20w      27 Sep 17 15:52 .azure -> /mnt/c/Users/Eduardo/.azure
+-rw-------   1 ubu20w  ubu20w   48946 Sep 27 07:40 .bash_history
+-rw-r--r--   1 ubu20w  ubu20w     220 Jan 21  2021 .bash_logout
+-rw-r--r--   1 ubu20w  ubu20w    4159 Aug 23 07:50 .bashrc
+drwx------   5 ubu20w  ubu20w    4096 Oct  1 18:29 .cache
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Aug 23 08:29 .cargo
+drwx------   5 ubu20w  ubu20w    4096 Sep 26 07:51 .config
+drwx------   3 ubu20w  ubu20w    4096 Apr 10 17:43 .dbus
+drwx------   4 ubu20w  ubu20w    4096 Sep 17 16:14 .docker
+drwx------   4 ubu20w  ubu20w    4096 Aug 21 17:39 .gnupg
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Oct  2 06:50 .go
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Aug 23 16:57 .indy_client
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Jan 21  2021 .landscape
+drwxr-xr-x   5 ubu20w  ubu20w    4096 Feb 23  2021 .local
+-rw-r--r--   1 ubu20w  ubu20w       0 Oct  1 17:34 .motd_shown
+drwxr-xr-x   5 ubu20w  ubu20w    4096 Sep 26 19:54 .npm
+drwxr-xr-x   8 ubu20w  ubu20w    4096 Feb 19  2021 .nvm
+-rw-r--r--   1 ubu20w  ubu20w     828 Aug 23 07:50 .profile
+-rw-------   1 ubu20w  ubu20w    1430 Apr 14 19:49 .python_history
+drwxr-xr-x   6 ubu20w  ubu20w    4096 Aug 23 07:50 .rustup
+-rw-r--r--   1 ubu20w  ubu20w       0 Jan 21  2021 .sudo_as_admin_successful
+-rw-------   1 ubu20w  ubu20w     532 Aug 22 18:22 .viminfo
+-rw-r--r--   1 ubu20w  ubu20w     262 Oct  1 19:01 .wget-hsts
+drwxr-xr-x  14 ubu20w  ubu20w    4096 Feb 25  2021 TheOrgBook
+drwxr-xr-x  10 ubu20w  ubu20w    4096 Apr 18 14:28 acapy-alice-bob
+drwxrwxr-x  11 ubu20w  ubu20w    4096 Jan 22  2021 acapy-alice-bob2
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Apr  5 09:18 aries-acapy-controllers
+drwxr-xr-x  10 ubu20w  ubu20w    4096 Feb 23  2021 aries-agent-test-harness
+drwxr-xr-x  15 ubu20w  ubu20w    4096 Aug 30 13:47 aries-cloudagent-python
+drwxr-xr-x  13 ubu20w  ubu20w    4096 Feb 12  2021 aries-cloudagent-python2
+drwxr-xr-x  13 ubu20w  ubu20w    4096 Feb 12  2021 aries-cloudagent-python3
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Feb 22  2021 aries-protocol-test-suite
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Feb 22  2021 aries_agents_dir
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Aug 29 11:35 caliper
+drwxr-xr-x   8 ubu20w  ubu20w    4096 Sep  1 09:36 caliper-benchmarks
+drwxr-xr-x  11 ubu20w  ubu20w    4096 Sep  1 13:20 drandreaskrueger_chainhammer
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Feb 19  2021 electron-quick-start
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Sep  1 13:57 env
+drwxr-xr-x  26 ubu20w  ubu20w    4096 Oct  1 18:26 fabric
+drwxr-xr-x  29 ubu20w  ubu20w    4096 Oct  1 17:35 fabric-samples
+-rw-r--r--   1 ubu20w  ubu20w     118 Apr  7 14:06 hello.py
+drwxr-xr-x  15 ubu20w  ubu20w    4096 Aug 23 17:50 indy-sdk
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Feb 22  2021 indy-tails-server
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Sep 17 13:38 lixo
+drwxr-xr-x 466 ubu20w  ubu20w   20480 Aug 15 11:35 node_modules
+-rw-r--r--   1 ubu20w  ubu20w   13479 Feb 19  2021 nodesource_setup.sh
+-rw-r--r--   1 ubu20w  ubu20w  661454 Aug 15 11:49 package-lock.json
+-rw-r--r--   1 ubu20w  ubu20w      98 Aug 15 11:49 package.json
+-rw-r--r--   1 tcpdump tcpdump 408448 Feb 13  2021 packets.cap
+drwxr-xr-x   4 ubu20w  ubu20w    4096 Sep 20 10:57 pcap_files
+drwxrwxr-x   3 ubu20w  ubu20w    4096 Sep 26 07:31 project
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Apr 15 09:34 python_dir
+-rw-r--r--   1 tcpdump tcpdump     24 Sep 18 10:02 ssi.pcap
+-rw-rw-r--   1 ubu20w  ubu20w     271 Feb  4  2021 test.py
+drwxr-xr-x   2 ubu20w  ubu20w    4096 Sep  3 14:31 tests
+drwxr-xr-x   7 ubu20w  ubu20w    4096 Aug 15 11:46 universal-wallet-interop-spec
+drwxr-xr-x   6 ubu20w  ubu20w    4096 Feb 25  2021 von-agent-template
+drwxrwxr-x  12 ubu20w  ubu20w    4096 Feb 25  2021 von-network
+ubu20w@DESKTOP-CT0HBV1:~$ sudo -H gedit /etc/environment
+[sudo] password for ubu20w:
+sudo: gedit: command not found
+ubu20w@DESKTOP-CT0HBV1:~$ sudo nano /etc/environment
+ubu20w@DESKTOP-CT0HBV1:~$ source /etc/environment
+ubu20w@DESKTOP-CT0HBV1:~$ sudo update-alternatives --install "usr/bin/go" "go" "/usr/local/go/bin/go" 0
+update-alternatives: error: alternative link is not absolute as it should be: usr/bin/go
+ubu20w@DESKTOP-CT0HBV1:~$ sudo update-alternatives --install "/usr/bin/go" "go" "/usr/local/go/bin/go" 0
+update-alternatives: using /usr/local/go/bin/go to provide /usr/bin/go (go) in auto mode
+ubu20w@DESKTOP-CT0HBV1:~$ sudo update-alternatives --set go /usr/local/go/bin/go
+ubu20w@DESKTOP-CT0HBV1:~$ go version
+go version go1.17.1 linux/amd64
+ubu20w@DESKTOP-CT0HBV1:~$ pwd
+/home/ubu20w
+ubu20w@DESKTOP-CT0HBV1:~$ cd fabric-samples/test-network
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ ./network.sh up createChannel -c mychannel
+Creating channel 'mychannel'.
+If network is not up, starting nodes with CLI timeout of '5' tries and CLI delay of '3' seconds and using database 'leveldb with crypto from 'cryptogen'
+Bringing up network
+Peer binary and configuration files not found..
+
+Follow the instructions in the Fabric docs to install the Fabric Binaries:
+https://hyperledger-fabric.readthedocs.io/en/latest/install.html
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ ls
+README.md  addOrg3  configtx  docker  network.sh  organizations  scripts  setOrgEnv.sh  system-genesis-block
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ cd ..
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples$ ls
+CHANGELOG.md         asset-transfer-basic              ci                   test-network-kind
+CODEOWNERS           asset-transfer-events             commercial-paper     test-network-nano-bash
+CODE_OF_CONDUCT.md   asset-transfer-ledger-queries     fabcar               token-erc-1155
+CONTRIBUTING.md      asset-transfer-private-data       high-throughput      token-erc-20
+LICENSE              asset-transfer-sbe                interest_rate_swaps  token-erc-721
+MAINTAINERS.md       asset-transfer-secured-agreement  off_chain_data       token-utxo
+README.md            auction-dutch                     scripts
+SECURITY.md          auction-simple                    test-application
+asset-transfer-abac  chaincode                         test-network
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples$
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples$ cd first-network
+-bash: cd: first-network: No such file or directory
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples$ ls
+CHANGELOG.md         asset-transfer-basic              ci                   test-network-kind
+CODEOWNERS           asset-transfer-events             commercial-paper     test-network-nano-bash
+CODE_OF_CONDUCT.md   asset-transfer-ledger-queries     fabcar               token-erc-1155
+CONTRIBUTING.md      asset-transfer-private-data       high-throughput      token-erc-20
+LICENSE              asset-transfer-sbe                interest_rate_swaps  token-erc-721
+MAINTAINERS.md       asset-transfer-secured-agreement  off_chain_data       token-utxo
+README.md            auction-dutch                     scripts
+SECURITY.md          auction-simple                    test-application
+asset-transfer-abac  chaincode                         test-network
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples$ cd
+ubu20w@DESKTOP-CT0HBV1:~$ pwd
+/home/ubu20w
+ubu20w@DESKTOP-CT0HBV1:~$ curl -sSL http://bit.ly/2ysbOFE | bash -s
+
+Clone hyperledger/fabric-samples repo
+
+===> Changing directory to fabric-samples
+fabric-samples v2.3.3 does not exist, defaulting to main. fabric-samples main branch is intended to work with recent versions of fabric.
+
+Pull Hyperledger Fabric binaries
+
+===> Downloading version 2.3.3 platform specific fabric binaries
+===> Downloading:  https://github.com/hyperledger/fabric/releases/download/v2.3.3/hyperledger-fabric-linux-amd64-2.3.3.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   649  100   649    0     0   1990      0 --:--:-- --:--:-- --:--:--  1990
+100 69.2M  100 69.2M    0     0  13.9M      0  0:00:04  0:00:04 --:--:-- 16.0M
+==> Done.
+===> Downloading version 1.5.2 platform specific fabric-ca-client binary
+===> Downloading:  https://github.com/hyperledger/fabric-ca/releases/download/v1.5.2/hyperledger-fabric-ca-linux-amd64-1.5.2.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   652  100   652    0     0   2362      0 --:--:-- --:--:-- --:--:--  2362
+100 25.4M  100 25.4M    0     0  14.8M      0  0:00:01  0:00:01 --:--:-- 23.0M
+==> Done.
+
+Pull Hyperledger Fabric docker images
+
+FABRIC_IMAGES: peer orderer ccenv tools baseos
+===> Pulling fabric Images
+====> hyperledger/fabric-peer:2.3.3
+2.3.3: Pulling from hyperledger/fabric-peer
+a0d0a0d46f8b: Pull complete
+48d00a7269f1: Pull complete
+cdc14355e7d6: Pull complete
+56037e787534: Pull complete
+efac144e8b4c: Pull complete
+4655b4117f02: Pull complete
+Digest: sha256:fc9a143aaf528e407817baf658aff3b258f632464ad32bcfd0d17054b352b782
+Status: Downloaded newer image for hyperledger/fabric-peer:2.3.3
+docker.io/hyperledger/fabric-peer:2.3.3
+====> hyperledger/fabric-orderer:2.3.3
+2.3.3: Pulling from hyperledger/fabric-orderer
+a0d0a0d46f8b: Already exists
+48d00a7269f1: Already exists
+d58aaefbb8a4: Pull complete
+4d79536ff546: Pull complete
+0cd49346219e: Pull complete
+e35c5a649c2f: Pull complete
+12144512ae9a: Pull complete
+Digest: sha256:e5192e8619b9b0abd03ec6ce8babe65493d7db7e71faee3c1c8714bddf19b507
+Status: Downloaded newer image for hyperledger/fabric-orderer:2.3.3
+docker.io/hyperledger/fabric-orderer:2.3.3
+====> hyperledger/fabric-ccenv:2.3.3
+2.3.3: Pulling from hyperledger/fabric-ccenv
+a0d0a0d46f8b: Already exists
+31adcdaf11c8: Pull complete
+b8b176561691: Pull complete
+ffa5077b735b: Pull complete
+2e51fde7a4ad: Pull complete
+5cc8e298dd15: Pull complete
+2321141fd763: Pull complete
+fd5823e35fde: Pull complete
+71974160e457: Pull complete
+Digest: sha256:e95a727aed88456b496a4e4b1ddbc77e81c26a0cc7ff234c7d3d085dafd637cd
+Status: Downloaded newer image for hyperledger/fabric-ccenv:2.3.3
+docker.io/hyperledger/fabric-ccenv:2.3.3
+====> hyperledger/fabric-tools:2.3.3
+2.3.3: Pulling from hyperledger/fabric-tools
+a0d0a0d46f8b: Already exists
+31adcdaf11c8: Already exists
+b8b176561691: Already exists
+ffa5077b735b: Already exists
+2e51fde7a4ad: Already exists
+fa96723f2624: Pull complete
+d34ad363c0cf: Pull complete
+ab37c24ec85b: Pull complete
+Digest: sha256:634c66833a264939b9920cfa0a47b028c20b39475d0bc7ca02841137ea2c4e86
+Status: Downloaded newer image for hyperledger/fabric-tools:2.3.3
+docker.io/hyperledger/fabric-tools:2.3.3
+====> hyperledger/fabric-baseos:2.3.3
+2.3.3: Pulling from hyperledger/fabric-baseos
+a0d0a0d46f8b: Already exists
+48d00a7269f1: Already exists
+7fe902e02eda: Pull complete
+Digest: sha256:3af16c343deaa5b837e2581b6b72523643e8572fd2981ed6bfea4a9fbf43bd20
+Status: Downloaded newer image for hyperledger/fabric-baseos:2.3.3
+docker.io/hyperledger/fabric-baseos:2.3.3
+===> Pulling fabric ca Image
+====> hyperledger/fabric-ca:1.5.2
+1.5.2: Pulling from hyperledger/fabric-ca
+a0d0a0d46f8b: Already exists
+ac8258c0aeb1: Pull complete
+6c802cf1fa97: Pull complete
+Digest: sha256:faa3b743d9ed391c30f518a7cc1168160bf335f3bf60ba6aaaf1aa49c1ed023e
+Status: Downloaded newer image for hyperledger/fabric-ca:1.5.2
+docker.io/hyperledger/fabric-ca:1.5.2
+===> List out hyperledger docker images
+hyperledger/fabric-ca        1.5       4ea287b75c63   3 weeks ago    69.8MB
+hyperledger/fabric-ca        1.5.2     4ea287b75c63   3 weeks ago    69.8MB
+hyperledger/fabric-ca        latest    4ea287b75c63   3 weeks ago    69.8MB
+hyperledger/fabric-tools     2.3       98fa0bfb0fd2   3 weeks ago    445MB
+hyperledger/fabric-tools     2.3.3     98fa0bfb0fd2   3 weeks ago    445MB
+hyperledger/fabric-tools     latest    98fa0bfb0fd2   3 weeks ago    445MB
+hyperledger/fabric-peer      2.3       a491b5ab42f6   3 weeks ago    53.3MB
+hyperledger/fabric-peer      2.3.3     a491b5ab42f6   3 weeks ago    53.3MB
+hyperledger/fabric-peer      latest    a491b5ab42f6   3 weeks ago    53.3MB
+hyperledger/fabric-orderer   2.3       9e1952b8840d   3 weeks ago    35.4MB
+hyperledger/fabric-orderer   2.3.3     9e1952b8840d   3 weeks ago    35.4MB
+hyperledger/fabric-orderer   latest    9e1952b8840d   3 weeks ago    35.4MB
+hyperledger/fabric-ccenv     2.3       56fa403e02ee   3 weeks ago    502MB
+hyperledger/fabric-ccenv     2.3.3     56fa403e02ee   3 weeks ago    502MB
+hyperledger/fabric-ccenv     latest    56fa403e02ee   3 weeks ago    502MB
+hyperledger/fabric-baseos    2.3       b35a8ef578c0   3 weeks ago    6.87MB
+hyperledger/fabric-baseos    2.3.3     b35a8ef578c0   3 weeks ago    6.87MB
+hyperledger/fabric-baseos    latest    b35a8ef578c0   3 weeks ago    6.87MB
+ubu20w@DESKTOP-CT0HBV1:~$ ls
+TheOrgBook                 aries_agents_dir              indy-sdk             project
+acapy-alice-bob            caliper                       indy-tails-server    python_dir
+acapy-alice-bob2           caliper-benchmarks            lixo                 ssi.pcap
+aries-acapy-controllers    drandreaskrueger_chainhammer  node_modules         test.py
+aries-agent-test-harness   electron-quick-start          nodesource_setup.sh  tests
+aries-cloudagent-python    env                           package-lock.json    universal-wallet-interop-spec
+aries-cloudagent-python2   fabric                        package.json         von-agent-template
+aries-cloudagent-python3   fabric-samples                packets.cap          von-network
+aries-protocol-test-suite  hello.py                      pcap_files
+ubu20w@DESKTOP-CT0HBV1:~$ cd fabric-samples/test-network
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ ./network.sh up createChannel -c mychannel
+Creating channel 'mychannel'.
+If network is not up, starting nodes with CLI timeout of '5' tries and CLI delay of '3' seconds and using database 'leveldb with crypto from 'cryptogen'
+Bringing up network
+LOCAL_VERSION=2.3.3
+DOCKER_IMAGE_VERSION=2.3.3
+/home/ubu20w/fabric-samples/test-network/../bin/cryptogen
+Generating certificates using cryptogen tool
+Creating Org1 Identities
++ cryptogen generate --config=./organizations/cryptogen/crypto-config-org1.yaml --output=organizations
+org1.example.com
++ res=0
+Creating Org2 Identities
++ cryptogen generate --config=./organizations/cryptogen/crypto-config-org2.yaml --output=organizations
+org2.example.com
++ res=0
+Creating Orderer Org Identities
++ cryptogen generate --config=./organizations/cryptogen/crypto-config-orderer.yaml --output=organizations
++ res=0
+Generating CCP files for Org1 and Org2
+Building with native build. Learn about native build in Compose here: https://docs.docker.com/go/compose-native-build/
+Creating network "fabric_test" with the default driver
+Creating volume "docker_orderer.example.com" with default driver
+Creating volume "docker_peer0.org1.example.com" with default driver
+Creating volume "docker_peer0.org2.example.com" with default driver
+Creating orderer.example.com    ... done
+Creating peer0.org2.example.com ... done
+Creating peer0.org1.example.com ... done
+Creating cli                    ... done
+CONTAINER ID   IMAGE                               COMMAND                  CREATED         STATUS                     PORTS                                                                                                                                 NAMES
+4b3fa4f67725   hyperledger/fabric-tools:latest     "/bin/bash"              2 seconds ago   Up Less than a second                                                                                                                                            cli
+1ca9b000a912   hyperledger/fabric-peer:latest      "peer node start"        6 seconds ago   Up 2 seconds               0.0.0.0:7051->7051/tcp, :::7051->7051/tcp, 0.0.0.0:17051->17051/tcp, :::17051->17051/tcp                                              peer0.org1.example.com
+f8a98c238839   hyperledger/fabric-peer:latest      "peer node start"        6 seconds ago   Up 1 second                0.0.0.0:9051->9051/tcp, :::9051->9051/tcp, 7051/tcp, 0.0.0.0:19051->19051/tcp, :::19051->19051/tcp                                    peer0.org2.example.com
+99275e55bcce   hyperledger/fabric-orderer:latest   "orderer"                6 seconds ago   Up 1 second                0.0.0.0:7050->7050/tcp, :::7050->7050/tcp, 0.0.0.0:7053->7053/tcp, :::7053->7053/tcp, 0.0.0.0:17050->17050/tcp, :::17050->17050/tcp   orderer.example.com
+c24c0fe93f03   tcpdump                             "/bin/sh -c 'tcp -i …"   13 days ago     Created                                                                                                                                                          compassionate_lederberg
+1bcf33c250c2   docker/getting-started              "/docker-entrypoint.…"   2 weeks ago     Exited (255) 13 days ago   0.0.0.0:80->80/tcp, :::80->80/tcp                                                                                                     keen_carver
+Generating channel genesis block 'mychannel.block'
+/home/ubu20w/fabric-samples/test-network/../bin/configtxgen
++ configtxgen -profile TwoOrgsApplicationGenesis -outputBlock ./channel-artifacts/mychannel.block -channelID mychannel
+2021-10-02 08:00:56.371 -03 [common.tools.configtxgen] main -> INFO 001 Loading configuration
+2021-10-02 08:00:56.381 -03 [common.tools.configtxgen.localconfig] completeInitialization -> INFO 002 orderer type: etcdraft
+2021-10-02 08:00:56.381 -03 [common.tools.configtxgen.localconfig] completeInitialization -> INFO 003 Orderer.EtcdRaft.Options unset, setting to tick_interval:"500ms" election_tick:10 heartbeat_tick:1 max_inflight_blocks:5 snapshot_interval_size:16777216
+2021-10-02 08:00:56.381 -03 [common.tools.configtxgen.localconfig] Load -> INFO 004 Loaded configuration: /home/ubu20w/fabric-samples/test-network/configtx/configtx.yaml
+2021-10-02 08:00:56.383 -03 [common.tools.configtxgen] doOutputBlock -> INFO 005 Generating genesis block
+2021-10-02 08:00:56.383 -03 [common.tools.configtxgen] doOutputBlock -> INFO 006 Creating application channel genesis block
+2021-10-02 08:00:56.383 -03 [common.tools.configtxgen] doOutputBlock -> INFO 007 Writing genesis block
++ res=0
+Creating channel mychannel
+Using organization 1
++ osnadmin channel join --channelID mychannel --config-block ./channel-artifacts/mychannel.block -o localhost:7053 --ca-file /home/ubu20w/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --client-cert /home/ubu20w/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt --client-key /home/ubu20w/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
++ res=0
+Status: 201
+{
+        "name": "mychannel",
+        "url": "/participation/v1/channels/mychannel",
+        "consensusRelation": "consenter",
+        "status": "active",
+        "height": 1
+}
+
+Channel 'mychannel' created
+Joining org1 peer to the channel...
+Using organization 1
++ peer channel join -b ./channel-artifacts/mychannel.block
++ res=0
+2021-10-02 08:01:02.795 -03 [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+2021-10-02 08:01:02.864 -03 [channelCmd] executeJoin -> INFO 002 Successfully submitted proposal to join channel
+Joining org2 peer to the channel...
+Using organization 2
++ peer channel join -b ./channel-artifacts/mychannel.block
++ res=0
+2021-10-02 08:01:05.922 -03 [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+2021-10-02 08:01:05.994 -03 [channelCmd] executeJoin -> INFO 002 Successfully submitted proposal to join channel
+Setting anchor peer for org1...
+Using organization 1
+Fetching channel config for channel mychannel
+Using organization 1
+Fetching the most recent configuration block for the channel
++ peer channel fetch config config_block.pb -o orderer.example.com:7050 --ordererTLSHostnameOverride orderer.example.com -c mychannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+2021-10-02 11:01:06.431 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+2021-10-02 11:01:06.434 UTC [cli.common] readBlock -> INFO 002 Received block: 0
+2021-10-02 11:01:06.434 UTC [channelCmd] fetch -> INFO 003 Retrieving last config block: 0
+2021-10-02 11:01:06.435 UTC [cli.common] readBlock -> INFO 004 Received block: 0
+Decoding config block to JSON and isolating config to Org1MSPconfig.json
++ configtxlator proto_decode --input config_block.pb --type common.Block
++ jq '.data.data[0].payload.data.config'
+Generating anchor peer update transaction for Org1 on channel mychannel
++ jq '.channel_group.groups.Application.groups.Org1MSP.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "peer0.org1.example.com","port": 7051}]},"version": "0"}}' Org1MSPconfig.json
++ configtxlator proto_encode --input Org1MSPconfig.json --type common.Config
++ configtxlator proto_encode --input Org1MSPmodified_config.json --type common.Config
++ configtxlator compute_update --channel_id mychannel --original original_config.pb --updated modified_config.pb
++ configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate
++ jq .
+++ cat config_update.json
++ echo '{"payload":{"header":{"channel_header":{"channel_id":"mychannel", "type":2}},"data":{"config_update":{' '"channel_id":' '"mychannel",' '"isolated_data":' '{},' '"read_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org1MSP":' '{' '"groups":' '{},' '"mod_policy":' '"",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '},' '"write_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org1MSP":' '{' '"groups":' '{},' '"mod_policy":' '"Admins",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"AnchorPeers":' '{' '"mod_policy":' '"Admins",' '"value":' '{' '"anchor_peers":' '[' '{' '"host":' '"peer0.org1.example.com",' '"port":' 7051 '}' ']' '},' '"version":' '"0"' '},' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"1"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '}}}}'
++ configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope
+2021-10-02 11:01:06.713 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+2021-10-02 11:01:06.730 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
+Anchor peer set for org 'Org1MSP' on channel 'mychannel'
+Setting anchor peer for org2...
+Using organization 2
+Fetching channel config for channel mychannel
+Using organization 2
+Fetching the most recent configuration block for the channel
++ peer channel fetch config config_block.pb -o orderer.example.com:7050 --ordererTLSHostnameOverride orderer.example.com -c mychannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+2021-10-02 11:01:07.155 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+2021-10-02 11:01:07.158 UTC [cli.common] readBlock -> INFO 002 Received block: 1
+2021-10-02 11:01:07.159 UTC [channelCmd] fetch -> INFO 003 Retrieving last config block: 1
+2021-10-02 11:01:07.161 UTC [cli.common] readBlock -> INFO 004 Received block: 1
+Decoding config block to JSON and isolating config to Org2MSPconfig.json
++ configtxlator proto_decode --input config_block.pb --type common.Block
++ jq '.data.data[0].payload.data.config'
+Generating anchor peer update transaction for Org2 on channel mychannel
++ jq '.channel_group.groups.Application.groups.Org2MSP.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "peer0.org2.example.com","port": 9051}]},"version": "0"}}' Org2MSPconfig.json
++ configtxlator proto_encode --input Org2MSPconfig.json --type common.Config
++ configtxlator proto_encode --input Org2MSPmodified_config.json --type common.Config
++ configtxlator compute_update --channel_id mychannel --original original_config.pb --updated modified_config.pb
++ configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate
++ jq .
+++ cat config_update.json
++ echo '{"payload":{"header":{"channel_header":{"channel_id":"mychannel", "type":2}},"data":{"config_update":{' '"channel_id":' '"mychannel",' '"isolated_data":' '{},' '"read_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org2MSP":' '{' '"groups":' '{},' '"mod_policy":' '"",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '},' '"write_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org2MSP":' '{' '"groups":' '{},' '"mod_policy":' '"Admins",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"AnchorPeers":' '{' '"mod_policy":' '"Admins",' '"value":' '{' '"anchor_peers":' '[' '{' '"host":' '"peer0.org2.example.com",' '"port":' 9051 '}' ']' '},' '"version":' '"0"' '},' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"1"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '}}}}'
++ configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope
+2021-10-02 11:01:07.397 UTC [channelCmd] InitCmdFactory -> INFO 001 Endorser and orderer connections initialized
+2021-10-02 11:01:07.413 UTC [channelCmd] update -> INFO 002 Successfully submitted channel update
+Anchor peer set for org 'Org2MSP' on channel 'mychannel'
+Channel 'mychannel' joined
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ ./network.sh deployCC -ccn secured -ccp ../asset-transfer-secured-agreement/chaincode-go/ -ccl go -ccep "OR('Org1MSP.peer','Org2MSP.peer')"
+deploying chaincode on channel 'mychannel'
+executing with the following
+- CHANNEL_NAME: mychannel
+- CC_NAME: secured
+- CC_SRC_PATH: ../asset-transfer-secured-agreement/chaincode-go/
+- CC_SRC_LANGUAGE: go
+- CC_VERSION: 1.0
+- CC_SEQUENCE: 1
+- CC_END_POLICY: OR('Org1MSP.peer','Org2MSP.peer')
+- CC_COLL_CONFIG: NA
+- CC_INIT_FCN: NA
+- DELAY: 3
+- MAX_RETRY: 5
+- VERBOSE: false
+Vendoring Go dependencies at ../asset-transfer-secured-agreement/chaincode-go/
+~/fabric-samples/asset-transfer-secured-agreement/chaincode-go ~/fabric-samples/test-network
+go: downloading github.com/golang/protobuf v1.3.2
+go: downloading github.com/hyperledger/fabric-chaincode-go v0.0.0-20200128192331-2d899240a7ed
+go: downloading github.com/hyperledger/fabric-contract-api-go v1.0.0
+go: downloading github.com/hyperledger/fabric-protos-go v0.0.0-20200124220212-e9cfc186ba7b
+go: downloading google.golang.org/grpc v1.23.0
+go: downloading google.golang.org/genproto v0.0.0-20180831171423-11092d34479b
+go: downloading golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4
+go: downloading github.com/xeipuuv/gojsonschema v1.2.0
+go: downloading github.com/go-openapi/spec v0.19.4
+go: downloading github.com/gobuffalo/packr v1.30.1
+go: downloading golang.org/x/sys v0.0.0-20210510120138-977fb7262007
+go: downloading github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415
+go: downloading github.com/go-openapi/jsonpointer v0.19.3
+go: downloading github.com/go-openapi/jsonreference v0.19.2
+go: downloading github.com/go-openapi/swag v0.19.5
+go: downloading github.com/gobuffalo/envy v1.7.0
+go: downloading github.com/gobuffalo/packd v0.3.0
+go: downloading github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f
+go: downloading github.com/PuerkitoBio/purell v1.1.1
+go: downloading github.com/mailru/easyjson v0.0.0-20190626092158-b2ccc519800e
+go: downloading gopkg.in/yaml.v2 v2.2.2
+go: downloading golang.org/x/text v0.3.3
+go: downloading github.com/joho/godotenv v1.3.0
+go: downloading github.com/rogpeppe/go-internal v1.3.0
+go: downloading github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
+~/fabric-samples/test-network
+Finished vendoring Go dependencies
++ peer lifecycle chaincode package secured.tar.gz --path ../asset-transfer-secured-agreement/chaincode-go/ --lang golang --label secured_1.0
++ res=0
+Chaincode is packaged
+Installing chaincode on peer0.org1...
+Using organization 1
++ peer lifecycle chaincode install secured.tar.gz
++ res=0
+2021-10-02 08:03:21.754 -03 [cli.lifecycle.chaincode] submitInstallProposal -> INFO 001 Installed remotely: response:<status:200 payload:"\nLsecured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00\022\013secured_1.0" >
+2021-10-02 08:03:21.755 -03 [cli.lifecycle.chaincode] submitInstallProposal -> INFO 002 Chaincode code package identifier: secured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00
+Chaincode is installed on peer0.org1
+Install chaincode on peer0.org2...
+Using organization 2
++ peer lifecycle chaincode install secured.tar.gz
++ res=0
+2021-10-02 08:04:06.777 -03 [cli.lifecycle.chaincode] submitInstallProposal -> INFO 001 Installed remotely: response:<status:200 payload:"\nLsecured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00\022\013secured_1.0" >
+2021-10-02 08:04:06.777 -03 [cli.lifecycle.chaincode] submitInstallProposal -> INFO 002 Chaincode code package identifier: secured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00
+Chaincode is installed on peer0.org2
+Using organization 1
++ peer lifecycle chaincode queryinstalled
++ res=0
+Installed chaincodes on peer:
+Package ID: secured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00, Label: secured_1.0
+Query installed successful on peer0.org1 on channel
+Using organization 1
++ peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile /home/ubu20w/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --channelID mychannel --name secured --version 1.0 --package-id secured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')'
++ res=0
+2021-10-02 08:04:10.398 -03 [chaincodeCmd] ClientWait -> INFO 001 txid [9bbfbafbae7c67ea78588b978ee262aa20161fa7c042cfbfce677e6721664ff1] committed with status (VALID) at localhost:7051
+Chaincode definition approved on peer0.org1 on channel 'mychannel'
+Using organization 1
+Checking the commit readiness of the chaincode definition on peer0.org1 on channel 'mychannel'...
+Attempting to check the commit readiness of the chaincode definition on peer0.org1, Retry after 3 seconds.
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name secured --version 1.0 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')' --output json
++ res=0
+{
+        "approvals": {
+                "Org1MSP": true,
+                "Org2MSP": false
+        }
+}
+Checking the commit readiness of the chaincode definition successful on peer0.org1 on channel 'mychannel'
+Using organization 2
+Checking the commit readiness of the chaincode definition on peer0.org2 on channel 'mychannel'...
+Attempting to check the commit readiness of the chaincode definition on peer0.org2, Retry after 3 seconds.
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name secured --version 1.0 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')' --output json
++ res=0
+{
+        "approvals": {
+                "Org1MSP": true,
+                "Org2MSP": false
+        }
+}
+Checking the commit readiness of the chaincode definition successful on peer0.org2 on channel 'mychannel'
+Using organization 2
++ peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile /home/ubu20w/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --channelID mychannel --name secured --version 1.0 --package-id secured_1.0:c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')'
++ res=0
+2021-10-02 08:04:18.958 -03 [chaincodeCmd] ClientWait -> INFO 001 txid [fe6a6962c8ea9a809d6ef65409ac615d394bb89d934e1cb5c2a58b56c77cef4c] committed with status (VALID) at localhost:9051
+Chaincode definition approved on peer0.org2 on channel 'mychannel'
+Using organization 1
+Checking the commit readiness of the chaincode definition on peer0.org1 on channel 'mychannel'...
+Attempting to check the commit readiness of the chaincode definition on peer0.org1, Retry after 3 seconds.
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name secured --version 1.0 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')' --output json
++ res=0
+{
+        "approvals": {
+                "Org1MSP": true,
+                "Org2MSP": true
+        }
+}
+Checking the commit readiness of the chaincode definition successful on peer0.org1 on channel 'mychannel'
+Using organization 2
+Checking the commit readiness of the chaincode definition on peer0.org2 on channel 'mychannel'...
+Attempting to check the commit readiness of the chaincode definition on peer0.org2, Retry after 3 seconds.
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name secured --version 1.0 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')' --output json
++ res=0
+{
+        "approvals": {
+                "Org1MSP": true,
+                "Org2MSP": true
+        }
+}
+Checking the commit readiness of the chaincode definition successful on peer0.org2 on channel 'mychannel'
+Using organization 1
+Using organization 2
++ peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile /home/ubu20w/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --channelID mychannel --name secured --peerAddresses localhost:7051 --tlsRootCertFiles /home/ubu20w/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles /home/ubu20w/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --version 1.0 --sequence 1 --signature-policy 'OR('\''Org1MSP.peer'\'','\''Org2MSP.peer'\'')'
++ res=0
+2021-10-02 08:04:27.769 -03 [chaincodeCmd] ClientWait -> INFO 001 txid [4b159078892fcb67d55449202ee08e9690e8f98ca0da7bc764ed7a31d7388134] committed with status (VALID) at localhost:9051
+2021-10-02 08:04:27.770 -03 [chaincodeCmd] ClientWait -> INFO 002 txid [4b159078892fcb67d55449202ee08e9690e8f98ca0da7bc764ed7a31d7388134] committed with status (VALID) at localhost:7051
+Chaincode definition committed on channel 'mychannel'
+Using organization 1
+Querying chaincode definition on peer0.org1 on channel 'mychannel'...
+Attempting to Query committed status on peer0.org1, Retry after 3 seconds.
++ peer lifecycle chaincode querycommitted --channelID mychannel --name secured
++ res=0
+Committed chaincode definition for chaincode 'secured' on channel 'mychannel':
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
+Query chaincode definition successful on peer0.org1 on channel 'mychannel'
+Using organization 2
+Querying chaincode definition on peer0.org2 on channel 'mychannel'...
+Attempting to Query committed status on peer0.org2, Retry after 3 seconds.
++ peer lifecycle chaincode querycommitted --channelID mychannel --name secured
++ res=0
+Committed chaincode definition for chaincode 'secured' on channel 'mychannel':
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
+Query chaincode definition successful on peer0.org2 on channel 'mychannel'
+Chaincode initialization is not required
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ # TERMINAL 2
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export PATH=${PWD}/../bin:${PWD}:$PATH
+export Fubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export FABRIC_CFG_PATH=$PWD/../config/
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_TLS_ENABLED=true
+rt CORubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_LOCALMSPID="Org2MSP"
+rt CORubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+ COREubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+port COubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_ADDRESS=localhost:9051
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ReadAsset","Args":["asset1"]}'
+{"objectType":"asset","assetID":"asset1","ownerOrg":"Org1MSP","publicDescription":"This asset is for sale"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ChangePublicDescription","Args":["asset1","the worst asset"]}'
+Error: endorsement failure during invoke. response: status:500 message:"a client from Org2MSP cannot update the description of a asset owned by Org1MSP"
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export ASSET_PROPERTIES=$(echo -n "{\"object_type\":\"asset_properties\",\"asset_id\":\"asset1\",\"color\":\"blue\",\"size\":35,\"salt\":\"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3\"}" | base64 -w 0)
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"VerifyAssetProperties","Args":["asset1"]}' --transient "{\"asset_properties\":\"$ASSET_PROPERTIES\"}"
+true
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export ASSET_PRICE=$(echo -n "{\"asset_id\":\"asset1\",\"trade_id\":\"109f4b3c50d7b0df729d299bc6f8e9ef9066971f\",\"price\":100}" | base64 -w 0)
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ echo $ASSET_PRICE
+eyJhc3NldF9pZCI6ImFzc2V0MSIsInRyYWRlX2lkIjoiMTA5ZjRiM2M1MGQ3YjBkZjcyOWQyOTliYzZmOGU5ZWY5MDY2OTcxZiIsInByaWNlIjoxMDB9
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToBuy","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+2021-10-02 12:01:07.216 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"GetAssetBidPrice","Args":["asset1"]}'
+{"asset_id":"asset1","trade_id":"109f4b3c50d7b0df729d299bc6f8e9ef9066971f","price":100}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"GetAssetPrivateProperties","Args":["asset1"]}'
+{"object_type":"asset_properties","asset_id":"asset1","color":"blue","size":35,"salt":"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ChangePublicDescription","Args":["asset1","This asset is not for sale"]}'
+2021-10-02 12:45:28.944 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"GetAssetPrivateProperties","Args":["asset1"]}'
+{"object_type":"asset_properties","asset_id":"asset1","color":"blue","size":35,"salt":"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ReadAsset","Args":["asset1"]}'
+{"objectType":"asset","assetID":"asset1","ownerOrg":"Org2MSP","publicDescription":"This asset is not for sale"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$

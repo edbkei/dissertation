@@ -1,0 +1,152 @@
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ # teste
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ # TERMINAL 1
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export PATH=${PWD}/../bin:${PWD}:$PATH
+export Fubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export FABRIC_CFG_PATH=$PWD/../config/
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_TLS_ENABLED=true
+rt CORubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_LOCALMSPID="Org1MSP"
+rt CORubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+ COREubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+port CORE_Pubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export CORE_PEER_ADDRESS=localhost:7051
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export ASSET_PROPERTIES=$(echo -n "{\"object_type\":\"asset_properties\",\"asset_id\":\"asset1\",\"color\":\"blue\",\"size\":35,\"salt\":\"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3\"}" | base64 | tr -d \\n)
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"CreateAsset","Args":["asset1", "A new asset for Org1MSP"]}' --transient "{\"asset_properties\":\"$ASSET_PROPERTIES\"}"
+2021-10-02 10:08:38.510 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"GetAssetPrivateProperties","Args":["asset1"]}'
+{"object_type":"asset_properties","asset_id":"asset1","color":"blue","size":35,"salt":"a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ReadAsset","Args":["asset1"]}'
+{"objectType":"asset","assetID":"asset1","ownerOrg":"Org1MSP","publicDescription":"A new asset for Org1MSP"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ChangePublicDescription","Args":["asset1","This asset is for sale"]}'
+2021-10-02 10:10:55.432 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ReadAsset","Args":["asset1"]}'
+{"objectType":"asset","assetID":"asset1","ownerOrg":"Org1MSP","publicDescription":"This asset is for sale"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export ASSET_PRICE=$(echo -n "{\"asset_id\":\"asset1\",\"trade_id\":\"109f4b3c50d7b0df729d299bc6f8e9ef9066971f\",\"price\":110}" | base64)
+r chaincode invoubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient '{\"asset_price\":\"$ASSET_PRICE\"}'
+Error: error parsing transient string: invalid character '\\' looking for beginning of object key string - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}" -w 0
+Error: unknown shorthand flag: 'w' in -w
+Usage:
+  peer chaincode invoke [flags]
+
+Flags:
+  -C, --channelID string               The channel on which this command should be executed
+      --connectionProfile string       Connection profile that provides the necessary connection information for the network. Note: currently only supported for providing peer connection information
+  -c, --ctor string                    Constructor message for the chaincode in JSON format (default "{}")
+  -h, --help                           help for invoke
+  -I, --isInit                         Is this invocation for init (useful for supporting legacy chaincodes in the new lifecycle)
+  -n, --name string                    Name of the chaincode
+      --peerAddresses stringArray      The addresses of the peers to connect to
+      --tlsRootCertFiles stringArray   If TLS is enabled, the paths to the TLS root cert files of the peers to connect to. The order and number of certs specified should match the --peerAddresses flag
+      --waitForEvent                   Whether to wait for the event from each peer's deliver filtered service signifying that the 'invoke' transaction has been committed successfully
+      --waitForEventTimeout duration   Time to wait for the event from each peer's deliver filtered service signifying that the 'invoke' transaction has been committed successfully (default 30s)
+
+Global Flags:
+      --cafile string                       Path to file containing PEM-encoded trusted certificate(s) for the ordering endpoint
+      --certfile string                     Path to file containing PEM-encoded X509 public key to use for mutual TLS communication with the orderer endpoint
+      --clientauth                          Use mutual TLS when communicating with the orderer endpoint
+      --connTimeout duration                Timeout for client to connect (default 3s)
+      --keyfile string                      Path to file containing PEM-encoded private key to use for mutual TLS communication with the orderer endpoint
+  -o, --orderer string                      Ordering service endpoint
+      --ordererTLSHostnameOverride string   The hostname override to use when validating the TLS connection to the orderer
+      --tls                                 Use TLS when communicating with the orderer endpoint
+      --tlsHandshakeTimeShift duration      The amount of time to shift backwards for certificate expiration checks during TLS handshakes with the orderer endpoint
+      --transient string                    Transient map of arguments in JSON encoding
+
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}" | base64 -w 0
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}" | base64 | tr -d \\n
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}" | base64
+Error: error parsing transient string: invalid character '\n' in string literal - proposal response: <nil>
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ echo "{\"asset_price\":\"$ASSET_PRICE\"}"
+{"asset_price":"eyJhc3NldF9pZCI6ImFzc2V0MSIsInRyYWRlX2lkIjoiMTA5ZjRiM2M1MGQ3YjBkZjcyOWQyOTli
+YzZmOGU5ZWY5MDY2OTcxZiIsInByaWNlIjoxMTB9"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ echo $ASSET_PRICE
+eyJhc3NldF9pZCI6ImFzc2V0MSIsInRyYWRlX2lkIjoiMTA5ZjRiM2M1MGQ3YjBkZjcyOWQyOTli YzZmOGU5ZWY5MDY2OTcxZiIsInByaWNlIjoxMTB9
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export ASSET_PRICE=$(echo -n "{\"asset_id\":\"asset1\",\"trade_id\":\"109f4b3c50d7b0df729d299bc6f8e9ef9066971f\",\"price\":110}" | base64 -w 0)
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+2021-10-02 11:55:53.903 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"TransferAsset","Args":["asset1","Org2MSP"]}' --transient "{\"asset_properties\":\"$ASSET_PROPERTIES\",\"asset_price\":\"$ASSET_PRICE\"}" --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+Error: endorsement failure during invoke. response: status:500 message:"failed transfer verification: hash 0fc413250501855af7c9896af00993b973510995fb10d56cddbb85ca47bd5dba for passed price JSON {\"asset_id\":\"asset1\",\"trade_id\":\"109f4b3c50d7b0df729d299bc6f8e9ef9066971f\",\"price\":110} does not match on-chain hash 84b0d57eaa5c77076483ae8f482c96a64912c47df5541451e94fb7698bf37ee9, buyer hasn't agreed to the passed trade id and price"
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ export ASSET_PRICE=$(echo -n "{\"asset_id\":\"asset1\",\"trade_id\":\"109f4b3c50d7b0df729d299bc6f8e9ef9066971f\",\"price\":100}" | base64 -w 0)
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"AgreeToSell","Args":["asset1"]}' --transient "{\"asset_price\":\"$ASSET_PRICE\"}"
+2021-10-02 12:38:56.504 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"TransferAsset","Args":["asset1","Org2MSP"]}' --transient "{\"asset_properties\":\"$ASSET_PROPERTIES\",\"asset_price\":\"$ASSET_PRICE\"}" --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+2021-10-02 12:39:34.919 -03 [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ peer chaincode query -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n secured -c '{"function":"ReadAsset","Args":["asset1"]}'
+{"objectType":"asset","assetID":"asset1","ownerOrg":"Org2MSP","publicDescription":"This asset is for sale"}
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ # shutdown
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ ./network.sh down
+Stopping network
+Stopping cli                    ... done
+Stopping peer0.org1.example.com ... done
+Stopping peer0.org2.example.com ... done
+Stopping orderer.example.com    ... done
+Removing cli                    ... done
+Removing peer0.org1.example.com ... done
+Removing peer0.org2.example.com ... done
+Removing orderer.example.com    ... done
+Removing network fabric_test
+Removing volume docker_orderer.example.com
+Removing volume docker_peer0.org1.example.com
+Removing volume docker_peer0.org2.example.com
+WARNING: The DOCKER_SOCK variable is not set. Defaulting to a blank string.
+Removing network fabric_test
+WARNING: Network fabric_test not found.
+Removing volume docker_peer0.org3.example.com
+WARNING: Volume docker_peer0.org3.example.com not found.
+Removing remaining containers
+Removing generated chaincode docker images
+Untagged: dev-peer0.org2.example.com-secured_1.0-c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00-0cd3f9d37f3cdf2e6fac4439af2fda249b6677c322fdd2db5b5c0a3e53c26a30:latest
+Deleted: sha256:18e91fc935f139110f1c468ca361daa1d5ac3452a2e067c06772b2b0c9335ac6
+Deleted: sha256:ca7483f0664e5d72df7657c2a1b6b69edadf576fd7fe2aa13353f44e11820e7c
+Deleted: sha256:d17807fc355553050d9fcd0de8a198a003288f80e19029861be93d47c6808e71
+Deleted: sha256:f5dce0839f7253493e71253c53783cef0b97be269dd673b02701d18e23654e14
+Untagged: dev-peer0.org1.example.com-secured_1.0-c566bbf93c637242bbc5f27e44e111ac690016bdd1f5b0dfe11410a54f759f00-daf1197aa648a0fb094ef3f3799a2ba6242660edd86734f3d0ecd17bd2862f11:latest
+Deleted: sha256:a38e92b5a937bac5d13901e0c925945199b709060559733e76fbd3e099e375aa
+Deleted: sha256:d00079874d1f6d82502f20d310978300a640fa1c7cb0c89b34698b4282510526
+Deleted: sha256:407148971d89068c1cca9dfecabe6bececfc6ae82e0188a07552055d9b550e53
+Deleted: sha256:18b2191ec25514fbbf66e8bd70dc3c11f31de528f04087a874918c21177f6a48
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED        SIZE
+tcpdump                      latest    b8afd9638c79   2 weeks ago    110MB
+faber-alice-demo             latest    f31b0835781b   2 weeks ago    500MB
+busybox                      latest    16ea53ea7c65   2 weeks ago    1.24MB
+hyperledger/fabric-ca        1.5       4ea287b75c63   3 weeks ago    69.8MB
+hyperledger/fabric-ca        1.5.2     4ea287b75c63   3 weeks ago    69.8MB
+hyperledger/fabric-ca        latest    4ea287b75c63   3 weeks ago    69.8MB
+hyperledger/fabric-tools     2.3       98fa0bfb0fd2   3 weeks ago    445MB
+hyperledger/fabric-tools     2.3.3     98fa0bfb0fd2   3 weeks ago    445MB
+hyperledger/fabric-tools     latest    98fa0bfb0fd2   3 weeks ago    445MB
+hyperledger/fabric-peer      2.3       a491b5ab42f6   3 weeks ago    53.3MB
+hyperledger/fabric-peer      2.3.3     a491b5ab42f6   3 weeks ago    53.3MB
+hyperledger/fabric-peer      latest    a491b5ab42f6   3 weeks ago    53.3MB
+hyperledger/fabric-orderer   2.3       9e1952b8840d   3 weeks ago    35.4MB
+hyperledger/fabric-orderer   2.3.3     9e1952b8840d   3 weeks ago    35.4MB
+hyperledger/fabric-orderer   latest    9e1952b8840d   3 weeks ago    35.4MB
+hyperledger/fabric-ccenv     2.3       56fa403e02ee   3 weeks ago    502MB
+hyperledger/fabric-ccenv     2.3.3     56fa403e02ee   3 weeks ago    502MB
+hyperledger/fabric-ccenv     latest    56fa403e02ee   3 weeks ago    502MB
+hyperledger/fabric-baseos    2.3       b35a8ef578c0   3 weeks ago    6.87MB
+hyperledger/fabric-baseos    2.3.3     b35a8ef578c0   3 weeks ago    6.87MB
+hyperledger/fabric-baseos    latest    b35a8ef578c0   3 weeks ago    6.87MB
+docker/getting-started       latest    083d7564d904   3 months ago   28MB
+eclipse/che-ip               latest    ba0c46d33f01   2 years ago    4.82MB
+kaazing/tcpdump              latest    8eb8566bab02   4 years ago    5.29MB
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ docker ps -a
+CONTAINER ID   IMAGE                    COMMAND                  CREATED       STATUS                     PORTS                               NAMES
+c24c0fe93f03   tcpdump                  "/bin/sh -c 'tcp -i …"   2 weeks ago   Created                                                        compassionate_lederberg
+1bcf33c250c2   docker/getting-started   "/docker-entrypoint.…"   2 weeks ago   Exited (255) 13 days ago   0.0.0.0:80->80/tcp, :::80->80/tcp   keen_carver
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+c35ee3efad67   bridge    bridge    local
+69934a1a7e31   host      host      local
+f99f2b869e8e   none      null      local
+ubu20w@DESKTOP-CT0HBV1:~/fabric-samples/test-network$
