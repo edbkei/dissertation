@@ -219,19 +219,22 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 #### 3.3.1 Hyperledger Fabric - Basic Token Transfer
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
+
+|arg1|arg2|arg3|arg4|Description| 
+|    |arg5|arg6|arg7||
 |---------|--------------|------------------|----------------|----------------------------------------------------------------------|
-|arg1     |arg2          |arg3              |arg4            |Description                                                           | 
-|         |arg5          |arg6              |arg7            |                                                                      |
-|---------|--------------|------------------|----------------|----------------------------------------------------------------------|
-|init     |              |                  |                |provide initial list of tokens in the ledger                          |
+|init     |              |                  |                | Provide initial list of tokens in the ledger                         |
 | all     |              |                  |                | List of tokens from ledger.                                          |
- read      <token>                                            List specific asset token.               
- create    <token>        <InstallationID>  <EnergyKWH>       Create one asset. Token ID, installation ID, energy (KWH)                          <Ts>           <Owner>           <AppraisedValue>  Timestamp, Owner, Appraised value.                                     
- delete    <token>                                            Delete asset token.                                                   
- transfer  <token>        <to>                                Transfer token <asset> to <to>.                                        
- exists    <token>                                            Check if <token> exists                                                
- update    <token>        <InstallationID>  <EnergyKWH>       Update asset token. Token ID, installation ID, energy (KWH)            
-           <Ts>           <Owner>           <AppraisedValue>  Timestamp, Owner, Appraised value                                        *************************************************************************************************************************************
+| read    | <token>      |                  |                | List specific asset token.                                           |
+| create  | <token>      | <InstallationID> |<EnergyKWH>     | Create one asset. Token ID, installation ID, energy (KWH)            |
+|         | <Ts>         |<Owner>           |<AppraisedValue>| Timestamp, Owner, Appraised value.                                   | 
+| delete  | <token>      |                  |                | Delete asset token.                                                  | 
+| transfer| <token>      | <to>             |                | Transfer token <asset> to <to>.                                      | 
+| exists  | <token>      |                  |                | Check if <token> exists                                              |
+| update  | <token>      | <InstallationID> |<EnergyKWH>     | Update asset token. Token ID, installation ID, energy (KWH)          |
+|         | <Ts>         | <Owner>          |<AppraisedValue>| Timestamp, Owner, Appraised value                                    |
+|---------|--------------|------------------|----------------|----------------------------------------------------------------------|
+             
  Examples:                                                                Results:                                    Fabric        
                                                                            -- CRUD --                                 Interface
  node tokenapp.js create assetx 123123123 10 2021-01-01T14:16:17 Tom 1300  assetx token with its attributes, created. CreateAllAssets
