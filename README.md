@@ -235,20 +235,19 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
 
              
  Examples:         
- |                                                                         |Results                                  |Fabric |   
- | Command examples                                                        | CRUD                                    | Interface|
+   
+ | Command examples                                                        |Results                            |Fabric Interface|
  |-------------------------------------------------------------------------|-----------------------------------------|----------|
+ | CRUD group                                                              |                                         |          |
  |node tokenapp.js create assetx 123123123 10 2021-01-01T14:16:17 Tom 1300 |assetx token with its attributes, created.|createAllAssets|
  |node tokenapp.js read assetx                                             |assetx token attributes, read.           |ReadAsset|
  |node tokenapp.js update assetx 123123123 10 2021-01-01T14:16:17 Tom 1300 |assetx token attributes, updated.        |UpdateAsset|
  |node tokenapp.js delete assetx                                           |assetx token, deleted.                   |DeleteAsset|
- |                                                                         |  OTHERS                                 |           |   
+ |Administrative group                                                     |                                  |           |   
  |node tokenapp.js all                                                     |all tokens, listed.                      |GetAllAssets|
  |node tokenapp.js exists assetx                                           |True/False. About token assetx existance.|AssetExists|
- |node tokenapp.js init                                                    |Initiate Ledger with a predefined list of|InitLedger |
- |                                                                         | tokens.| |
- |node tokenapp.js transfer assetx OwnerB                                  |assetx token is transferred from Owner to|TransferAsset|
- |                                                                          |to OwnerB.||
+ |node tokenapp.js init                                              |Initiate Ledger with a predefined list of tokens.|InitLedger |
+ |node tokenapp.js transfer assetx OwnerB                            |assetx token is transferred from OwnerA to OwnerB|TransferAsset|
  
  IMPORTANT:                                                                                                                           
  A. First command of token application is: node tokenapp.js init. Read Preconditions in item B. \                                     
