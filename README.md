@@ -198,7 +198,7 @@ ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$
 
 #### 3.2.3 Using Public Ledger
 cd\
-cd ~aries-cloudagent-python/demo\
+cd ~aries-cloudagent-python/demo
 LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo faber ... to start faber agent with public ledger.\
 LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to start alice agent with public ledger.
 
@@ -219,10 +219,10 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 #### 3.3.1 Hyperledger Fabric - Basic Token Transfer
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
--------------------------------------------------------------------------------------------------------------------------------------
+*************************************************************************************************************************************
  arg1      arg2           arg3               arg4             Description                                                             
            arg5           arg6               arg7     
--------------------------------------------------------------------------------------------------------------------------------------
+*************************************************************************************************************************************
  init                                                         provide initial list of tokens in the ledger                          
  all                                                          List of tokens from ledger.                                             
  read      <token>                                            List specific asset token.               
@@ -231,7 +231,7 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
  transfer  <token>        <to>                                Transfer token <asset> to <to>.                                        
  exists    <token>                                            Check if <token> exists                                                
  update    <token>        <InstallationID>  <EnergyKWH>       Update asset token. Token ID, installation ID, energy (KWH)            
-           <Ts>           <Owner>           <AppraisedValue>  Timestamp, Owner, Appraised value                                        -------------------------------------------------------------------------------------------------------------------------------------
+           <Ts>           <Owner>           <AppraisedValue>  Timestamp, Owner, Appraised value                                        *************************************************************************************************************************************
  Examples:                                                                Results:                                    Fabric        
                                                                            -- CRUD --                                 Interface
  node tokenapp.js create assetx 123123123 10 2021-01-01T14:16:17 Tom 1300  assetx token with its attributes, created. CreateAllAssets
@@ -245,10 +245,10 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
                                                                            tokens.
  node tokenapp.js transfer assetx OwnerB                                   assetx token is transferred from Owner to  TransferAsset 
                                                                            to OwnerB.
- ------------------------------------------------------------------------------------------------------------------------------------
+ 
  IMPORTANT:                                                                                                                           
- 1- First command of token application is: node tokenapp.js init. Read Preconditions in item 2.                                       
- 2- Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html           
+ A. First command of token application is: node tokenapp.js init. Read Preconditions in item B.                                       
+ B. Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html           
     Issue commands as follow:                                                                                                         
                              cd ~fabric-samples/test-network                                                                        
                              ./network.sh down                                                                   
@@ -259,12 +259,11 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
                              cd ~asset-transfer-basic2/application-javascript                                                        
                              npm install                                                                                            
                              node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8                                                
- 3- To shutdown token application, do:                                                                                               
+ C. To shutdown token application, do:                                                                                               
                              cd ~fabric-samples/test-network                                                                         
                              ./network.sh down                                                                                      
                              docker ps -a                                                                                           
-------------------------------------------------------------------------------------------------------------------------------------
-
+*************************************************************************************************************************************
 
 
 
