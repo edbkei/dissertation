@@ -214,4 +214,62 @@ Note 1: latency = average of credentials per second. See: https://stackoverflow.
 
 Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
 
+### 3.3 Basic Commands for setting up Hyperledger Fabric environment
+
+#### 3.3.1 Hyperledger Fabric - Basic Token Transfer
+
+command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
+-------------------------------------------------------------------------------------------------------------------------------------
+ arg1      arg2           arg3               arg4             Description                                                             
+           arg5           arg6               arg7     
+-------------------------------------------------------------------------------------------------------------------------------------
+ init                                                         provide initial list of tokens in the ledger                          
+ all                                                          List of tokens from ledger.                                             
+ read      <token>                                            List specific asset token.               
+ create    <token>        <InstallationID>  <EnergyKWH>       Create one asset. Token ID, installation ID, energy (KWH)                          <Ts>           <Owner>           <AppraisedValue>  Timestamp, Owner, Appraised value.                                     
+ delete    <token>                                            Delete asset token.                                                   
+ transfer  <token>        <to>                                Transfer token <asset> to <to>.                                        
+ exists    <token>                                            Check if <token> exists                                                
+ update    <token>        <InstallationID>  <EnergyKWH>       Update asset token. Token ID, installation ID, energy (KWH)            
+           <Ts>           <Owner>           <AppraisedValue>  Timestamp, Owner, Appraised value                                        -------------------------------------------------------------------------------------------------------------------------------------
+ Examples:                                                                Results:                                    Fabric        
+                                                                           -- CRUD --                                 Interface
+ node tokenapp.js create assetx 123123123 10 2021-01-01T14:16:17 Tom 1300  assetx token with its attributes, created. CreateAllAssets
+ node tokenapp.js read assetx                                              assetx token attributes, read.             ReadAsset
+ node tokenapp.js update assetx 123123123 10 2021-01-01T14:16:17 Tom 1300  assetx token attributes, updated.          UpdateAsset
+ node tokenapp.js delete assetx                                            assetx token, deleted.                     DeleteAsset
+                                                                           -- OTHERS --                                              
+ node tokenapp.js all                                                      all tokens, listed.                        GetAllAssets
+ node tokenapp.js exists assetx                                            True/False. About token assetx existance.  AssetExists
+ node tokenapp.js init                                                     Initiate Ledger with a predefined list of  InitLedger  
+                                                                           tokens.
+ node tokenapp.js transfer assetx OwnerB                                   assetx token is transferred from Owner to  TransferAsset 
+                                                                           to OwnerB.
+ ------------------------------------------------------------------------------------------------------------------------------------
+ IMPORTANT:                                                                                                                           
+ 1- First command of token application is: node tokenapp.js init. Read Preconditions in item 2.                                       
+ 2- Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html           
+    Issue commands as follow:                                                                                                         
+                             cd ~fabric-samples/test-network                                                                        
+                             ./network.sh down                                                                   
+                             docker ps -a                                                                                           
+                             ./network.sh up createChannel -c mychannel -ca                                         
+                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic2/chaincode-javascript/ -ccl javascript     
+    In another terminal do:                                                                                                         
+                             cd ~asset-transfer-basic2/application-javascript                                                        
+                             npm install                                                                                            
+                             node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8                                                
+ 3- To shutdown token application, do:                                                                                               
+                             cd ~fabric-samples/test-network                                                                         
+                             ./network.sh down                                                                                      
+                             docker ps -a                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+#### 3.3.2 Hyperledger Caliper
+
+
+
 ## 4. Conclusion
