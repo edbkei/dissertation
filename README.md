@@ -217,6 +217,7 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 ### 3.3 Basic Commands for setting up Hyperledger Fabric environment
 
 #### 3.3.1 Hyperledger Fabric - Basic Token Transfer
+Based on: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
  
