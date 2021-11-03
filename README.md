@@ -219,15 +219,13 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 #### 3.3.1 Hyperledger Fabric - Basic Token Transfer
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
-
-
-|arg1     |arg2          |arg3              |arg4            |Description                                                           | 
-|         |arg5          |arg6              |arg7            |                                                                      |
+ 
+|arg1     |arg2/5   |arg3/6              |arg4/7            | Description                                                          |
 |---------|--------------|------------------|----------------|----------------------------------------------------------------------|
 |init     |              |                  |                | Provide initial list of tokens in the ledger                         |
 | all     |              |                  |                | List of tokens from ledger.                                          |
 | read    | token      |                  |                | List specific asset token.                                           |
-| create  | token>      | InstallationID> |EnergyKWH     | Create one asset. Token ID, installation ID, energy (KWH)            |
+| create  | token      | InstallationID |EnergyKWH     | Create one asset. Token ID, installation ID, energy (KWH)            |
 |         | Ts         |Owner            |AppraisedValue| Timestamp, Owner, Appraised value.                                   | 
 | delete  | token      |                  |                | Delete asset token.                                                  | 
 | transfer| token      | to another owner |                | Transfer token <asset> to another owner.                             | 
