@@ -250,22 +250,37 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
  |node tokenapp.js transfer assetx OwnerB                            |assetx token is transferred from OwnerA to OwnerB|TransferAsset|
  
  IMPORTANT:                                                                                                                           
- A. First command of token application is: node tokenapp.js init. Read Preconditions in item B. \                                     
- B. Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html \         
-    Issue commands as follow:                                                        \                                                
-                             cd ~fabric-samples/test-network    \                                                                    
-                             ./network.sh down     \                                                              
-                             docker ps -a        \                                                                                   
-                             ./network.sh up createChannel -c mychannel -ca    \                                     
-                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic2/chaincode-javascript/ -ccl javascript\
-    In another terminal do:        \                                                                                                 
-                             cd ~asset-transfer-basic2/application-javascript  \                                                    
-                             npm install  \                                                                                          
-                             node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 \                                               
- C. To shutdown token application, do:              \                                                                                 
-                             cd ~fabric-samples/test-network  \                                                                       
-                             ./network.sh down       \                                                                               
-                             docker ps -a     \                                                                                      
+ A. First command of token application is: node tokenapp.js init. Read Preconditions in item B. 
+  
+ B. Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html 
+  
+    Issue commands as follow:                                                        
+  
+                             cd ~fabric-samples/test-network    
+  
+                             ./network.sh down     
+  
+                             docker ps -a    
+  
+                             ./network.sh up createChannel -c mychannel -ca    
+  
+                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic2/chaincode-javascript/ -ccl javascript
+  
+    In another terminal do:        
+  
+                             cd ~asset-transfer-basic2/application-javascript  
+  
+                             npm install  
+
+                             node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 
+  
+ C. To shutdown token application, do:              
+  
+                             cd ~fabric-samples/test-network  
+  
+                             ./network.sh down       
+  
+                             docker ps -a                                                                                         
 
 
 #### 3.3.2 Hyperledger Caliper
