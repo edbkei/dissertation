@@ -275,6 +275,8 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
 
                              node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 
   
+                             Note 1: In case the command fails, it may be necessary to delete folder wallet or restart from scratch.
+  
  C. To shutdown token application, do:              
   
                              cd ~fabric-samples/test-network  
