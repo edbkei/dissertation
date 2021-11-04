@@ -288,6 +288,10 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
 
 #### 3.3.2 Hyperledger Caliper
 Based on: https://hyperledger.github.io/caliper/v0.4.2/fabric-tutorial/tutorials-fabric-existing/
+         
+          https://hyperledger.github.io/caliper/v0.2/architecture/
+  
+          https://hyperledger.github.io/caliper-benchmarks/fabric/performance/2.1.0/nodeContract/nodeSDK/submit/delete-asset/
 
 Note: Suppose that hyperledger caliper is installed under folder ../projects. The original folder is let at ../projects/caliper-workspace and working folder is let at ../projects/caliper-workspace2, whose design base is caliper-workspace.
   
