@@ -287,7 +287,18 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
 
 
 #### 3.3.2 Hyperledger Caliper
+Based on: https://hyperledger.github.io/caliper/v0.4.2/fabric-tutorial/tutorials-fabric-existing/
 
+Note: Suppose that hyperledger caliper is installed under folder ../projects. The original folder is let at ../projects/caliper-workspace and working folder is let at ../projects/caliper-workspace2, whose design base is caliper-workspace.
+  
+From terminal 1: (there will be 2 for admin purpose)
+
+Step 1: 
+cd
+cd ~/projects/fabric-samples/test-network
+./network.sh up createChannel
+./network.sh deployCC -ccn basic -ccl javascript
+  
 
 
 ## 4. Conclusion
