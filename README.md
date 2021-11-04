@@ -314,7 +314,14 @@ Result:
 |-----------|------|------|-----------------|-----------------|-----------------|-----------------|------------------|
 | readAsset | 3202 | 0    | 108.2           | 0.09            | 0.01            | 0.02            | 108.1            |
 
+From terminal 1:
+  
+Step 3: Shutdown\
+./network.sh down\
+docker ps -a
 
+Result: No docker containers.
+  
 
 
 ## 4. Conclusion
