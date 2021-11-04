@@ -293,11 +293,11 @@ Note: Suppose that hyperledger caliper is installed under folder ../projects. Th
   
 From terminal 1: (there will be 2 for admin purpose)
 
-Step 1: 
-cd
-cd ~/projects/fabric-samples/test-network
-./network.sh up createChannel
-./network.sh deployCC -ccn basic -ccl javascript
+Step 1: \
+cd\
+cd ~/projects/fabric-samples/test-network\
+./network.sh up createChannel\
+./network.sh deployCC -ccn basic -ccl javascript\
   
 
 
