@@ -308,8 +308,10 @@ From terminal 2:
 Step 2: \
 cd\
 cd ~projects/caliper-workspace2\
+nano benchmarks/myAssetmark.yaml # update input data
 npx caliper launch manager --caliper-workspace ./ --caliper-networkconfig networks/networkConfig.yaml --caliper-benchconfig benchmarks/myAssetBenchmark.yaml --caliper-flow-only-test --caliper-fabric-gateway-enabled
-![image](https://user-images.githubusercontent.com/14096726/140312978-ec25dc4e-501a-4b99-890b-ca50df15cd1f.png)
+
+  ![image](https://user-images.githubusercontent.com/14096726/140312978-ec25dc4e-501a-4b99-890b-ca50df15cd1f.png)
 
 Result:
 
