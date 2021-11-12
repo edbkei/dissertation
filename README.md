@@ -197,14 +197,12 @@ ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$
 
 
 #### 3.2.3 Using Public Ledger
-cd\
-cd ~aries-cloudagent-python/demo
+cd ~/aries-cloudagent-python/demo\
 LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo faber ... to start faber agent with public ledger.\
 LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo alice ... to start alice agent with public ledger.
 
 #### 3.2.4 Perfomance
-cd\
-cd ~aries-cloudagent-python/demo\
+cd ~/aries-cloudagent-python/demo\
 LEDGER_URL=http://http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count [count] --threads [threads] ... to start performance agent with public ledger.
 
 [count] = number of credentials being exchanged,\
