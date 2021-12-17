@@ -8,6 +8,19 @@ This github https://github.com/edbkei/dissertation intends to log input material
 
 ## 3. Test
 ### 3.1 Test Environment
+#### 3.1.1 Nodes
+VM1. IC (Instituto de Computação) Cloud - 2 vCPU - disk 79GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
+VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal. https://console.cloud.google.com/
+
+#### 3.1.2 SW/APPS Install
+1. Local Ledger VON-NETWORK. git clone https://github.com/bcgov/von-network.git
+2. Aries Cloud Agent Python. git clone https://github.com/hyperledger/aries-cloudagent-python.git
+3. Docker v2.2.2. Install instruction: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-pt
+4. Docker-compose v2.2.2. Install Instruction: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt
+5. Python v3.8. Install instruction: https://python.org.br/instalacao-linux/
+6. DIF DID Universal Registrar. Install instruction: https://github.com/decentralized-identity/universal-registrar/blob/main/README.md
+7. DIF DID Universal Resolver: Install instruction. https://github.com/decentralized-identity/universal-resolver
+
 
 ### 3.2 Basic Commands for setting up environment
 
