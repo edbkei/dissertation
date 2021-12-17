@@ -20,7 +20,7 @@ VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 5. Python v3.8. Install instruction: https://python.org.br/instalacao-linux/
 6. DIF DID Universal Registrar. Install instruction: https://github.com/decentralized-identity/universal-registrar/blob/main/README.md
 7. DIF DID Universal Resolver: Install instruction: https://github.com/decentralized-identity/universal-resolver
-8. npm v6.14.4 and node v10.19.0. Install instruction for Nodejs: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04-pt
+8. npm v8.3.0 and node v10.19.0. Install instruction for Nodejs: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04-pt
 9. GHDID. Install instruction: https://github-did.com/
 10. Hyperledger Fabric v1.4.7. Install Instruction: https://medium.com/coinmonks/install-and-configure-hyperledger-fabric-v1-4-on-ubuntu-18-04-3-lts-2ccbc7176887
 11. Caliper v0.4.2 for measuring Hyperledger Fabric performance (TPS and Latency). Install instruction: https://hyperledger.github.io/caliper/v0.4.2/installing-caliper/
