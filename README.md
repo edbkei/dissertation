@@ -19,7 +19,9 @@ VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 4. Docker-compose v2.2.2. Install Instruction: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt
 5. Python v3.8. Install instruction: https://python.org.br/instalacao-linux/
 6. DIF DID Universal Registrar. Install instruction: https://github.com/decentralized-identity/universal-registrar/blob/main/README.md
-7. DIF DID Universal Resolver: Install instruction. https://github.com/decentralized-identity/universal-resolver
+7. DIF DID Universal Resolver: Install instruction: https://github.com/decentralized-identity/universal-resolver
+8. npm v6.14.4 and node v10.19.0. Install instruction for Nodejs: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04-pt
+9. GHDID. Install instruction: https://github-did.com/
 
 
 ### 3.2 Basic Commands for setting up environment
