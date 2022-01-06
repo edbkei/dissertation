@@ -235,7 +235,7 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 ### 3.3 Basic Commands for setting up Hyperledger Fabric environment
 
 #### 3.3.1 Environment 
-Install at ~/go/src/github.com/<user>/fabric-samples
+Install at ~/go/src/github.com/youruser/fabric-samples
 
 pip install Naked # http://sweetme.at/2014/02/17/a-simple-approach-to-execute-a-node.js-script-from-python/
   
