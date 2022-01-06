@@ -236,12 +236,14 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 
 #### 3.3.1 Environment 
 Install at ~/go/src/github.com/<user>/fabric-samples
+
 pip install Naked # http://sweetme.at/2014/02/17/a-simple-approach-to-execute-a-node.js-script-from-python/
   
-#### 3.3.1 Hyperledger Fabric - Basic Token Transfer
+#### 3.3.2 Hyperledger Fabric - Basic Token Transfer
 Based on: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html and https://hyperledger-fabric.readthedocs.io/en/latest/install.html
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
+  
 folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  
 |arg1     |arg2/5   |arg3/6              |arg4/7            | Description                                                          |
