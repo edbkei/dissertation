@@ -273,7 +273,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  IMPORTANT:                                                                                                                           
  A. First command of token application is: node tokenapp.js init. Read Preconditions in item B. 
   
- B. Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html 
+ B. Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html and https://hyperledger-fabric.readthedocs.io/en/latest/install.html
   
     Issue commands as follow:                                                        
   
@@ -285,11 +285,13 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              ./network.sh up createChannel -c mychannel -ca    
   
-                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic2/chaincode-javascript/ -ccl javascript
+                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript
+  
+                             make sure that tokenapp.js is at ~asset-transfer-basic/application-javascript
   
     In another terminal do:        
   
-                             cd ~asset-transfer-basic2/application-javascript  
+                             cd ~asset-transfer-basic/application-javascript  
   
                              npm install  
 
