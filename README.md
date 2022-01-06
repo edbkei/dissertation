@@ -238,6 +238,7 @@ Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/540678
 Based on: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
+folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  
 |arg1     |arg2/5   |arg3/6              |arg4/7            | Description                                                          |
 |---------|--------------|------------------|----------------|----------------------------------------------------------------------|
