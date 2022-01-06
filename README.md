@@ -294,7 +294,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 
                              node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 
   
-                             Note 1: In case the command fails, it may be necessary to delete folder wallet or restart from scratch.
+                             Note 1: In case the command fails, it may be necessary to delete folder wallet or restart from scratch (https://github.com/hyperledger/fabric-samples).
   
  C. To shutdown token application, do:              
   
