@@ -233,7 +233,7 @@ Note 1: latency = average of credentials per second. See: https://stackoverflow.
 Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
 
 ### 3.3 Basic Commands for setting up Hyperledger Fabric environment
-cd ~/go/src/github.com/edbkei/fabric-samples
+cd ~/go/src/github.com/<user>/fabric-samples
 
 #### 3.3.1 Hyperledger Fabric - Basic Token Transfer
 Based on: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html and https://hyperledger-fabric.readthedocs.io/en/latest/install.html
@@ -285,9 +285,10 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              ./network.sh up createChannel -c mychannel -ca    
   
+                             make sure that tokenapp.js (in this github project) is at ~asset-transfer-basic/application-javascript
+  
                              ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript
   
-                             make sure that tokenapp.js is at ~asset-transfer-basic/application-javascript
   
     In another terminal do:        
   
