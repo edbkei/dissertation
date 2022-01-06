@@ -233,6 +233,7 @@ Note 1: latency = average of credentials per second. See: https://stackoverflow.
 Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
 
 ### 3.3 Basic Commands for setting up Hyperledger Fabric environment
+cd ~/go/src/github.com/edbkei/fabric-samples
 
 #### 3.3.1 Hyperledger Fabric - Basic Token Transfer
 Based on: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html and https://hyperledger-fabric.readthedocs.io/en/latest/install.html
