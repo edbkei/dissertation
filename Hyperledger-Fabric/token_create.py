@@ -1,0 +1,14 @@
+#!/usr/bin/python
+import json
+from subprocess import check_output
+p = check_output(['node', 'tokenapp.js', 'create','asset33','installid33','33','2021-01-01T14:20:33','person 33','3300'])
+my_json=p.decode('utf8').replace("'", '"') # decode  from bytes to string
+print(my_json)
+#start = my_json.find("Result: ") + len("Result: ")
+#end = my_json.rfind("]")
+#substring = my_json[start:end]
+#substring=substring+"]"
+#data = json.loads(substring)
+#s=json.dumps(data, indent=4, sort_keys=True)
+#print(s)
+
