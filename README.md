@@ -280,9 +280,13 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
  B. Preconditions: According to instruction: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html and https://hyperledger-fabric.readthedocs.io/en/latest/install.html
   
-    Issue commands as follow:                                                        
+    Issue commands as follow:                
   
-                             cd ~fabric-samples/test-network    
+                             cd fabric-samples/asset-transfer-basic/application-javascript
+  
+                             rm -r wallet
+  
+                             cd fabric-samples/test-network    
   
                              ./network.sh down     
   
@@ -304,7 +308,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
  C. To shutdown token application, do:              
   
-                             cd ~fabric-samples/test-network  
+                             cd fabric-samples/test-network  
   
                              ./network.sh down       
   
