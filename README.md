@@ -293,14 +293,14 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
                              docker ps -a    
   
                              ./network.sh up createChannel -c mychannel -ca    
-  
-                             make sure that tokenapp.js (in this github project) is at ~asset-transfer-basic/application-javascript
-  
+
                              ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript  
   
                              cd ../asset-transfer-basic/application-javascript  
   
                              npm install  
+  
+                             *** make sure that tokenapp.js (in this github project) is at ~asset-transfer-basic/application-javascript
 
                              node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8 
   
