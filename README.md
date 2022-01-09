@@ -292,12 +292,9 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              make sure that tokenapp.js (in this github project) is at ~asset-transfer-basic/application-javascript
   
-                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript
+                             ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-javascript/ -ccl javascript  
   
-  
-    In another terminal do:        
-  
-                             cd ~asset-transfer-basic/application-javascript  
+                             cd ../asset-transfer-basic/application-javascript  
   
                              npm install  
 
