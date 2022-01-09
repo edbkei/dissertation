@@ -318,7 +318,13 @@ D. Python scripts of Node.js scripts
 
 token_create.py that uses Node.js script tokenapp.js interface CreateAsset\
 token_read.py that uses Node.js script tokenapp.js interface ReadAsset\
+token_update.py that uses Node.js script tokenapp.js interface UpdateAsset\
+token_delete.py that uses Node.js script tokenapp.js interface DeleteAsset\
+token_transfer.py that uses Node.js script tokenapp.js interface TransferAsset\
+token_readall.py that uses Node.js script tokenapp.js interface GetAllAssets\
+token_exists.py that uses Node.js script tokenapp.js interface AssetExists
   
+To execute: python3 token_<tasks>
   
   
 #### 3.3.2 Hyperledger Caliper
