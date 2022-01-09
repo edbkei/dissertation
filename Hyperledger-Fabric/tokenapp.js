@@ -193,8 +193,8 @@ async function main() {
 			          let result = await contract.evaluateTransaction('ReadAsset', args[1]);
 			          console.log(`*** Result: ${prettyJSONString(result.toString())}`);
                         } else if (args[0] === 'delete') {
-   			          console.log('\n--> Evaluate Transaction: ReadAsset, function returns args attributes');
-			          let result = await contract.evaluateTransaction('DeleteAsset', args[1]);
+   			          console.log('\n--> Evaluate Transaction: DeleteAsset, function returns args attributes');
+			          let result = await contract.submitTransaction('DeleteAsset', args[1]);
 			          console.log(`*** Result: ${prettyJSONString(result.toString())}`);
                         } else if (args[0] === 'transfer') {
 			          console.log('\n--> Submit Transaction: TransferAsset asset from A to B');
@@ -208,11 +208,11 @@ async function main() {
 			          // This will be sent to both peers and if both peers endorse the transaction, the endorsed proposal will be sent
 			          // to the orderer to be committed by each of the peer's to the channel ledger.
 			          console.log('\n--> Submit Transaction: CreateAsset, creates new asset with ID, InstallationID, EnergyKWH, Ts, Owner, and appraisedValue arguments');
-			          await contract.submitTransaction('CreateAsset', args[1], args[2], parseInt(args[3]),args[4], args[5], parseInt(args[6]));
+			          await contract.submitTransaction('CreateAsset', args[1], args[2], args[3],args[4], args[5], args[6]);
 			          console.log('*** Result: committed');
                         } else if (args[0] === 'update') {
 			          console.log('\n--> Submit Transaction: UpdateAsset asset1, change the appraisedValue to 350');
-			          await contract.submitTransaction('UpdateAsset', args[1], args[2], parseInt(args[3]),args[4], args[5], parseInt(args[6]));
+			          await contract.submitTransaction('UpdateAsset', args[1], args[2], args[3],args[4], args[5], args[6]);
 			          console.log('*** Result: committed');
                         }
 
