@@ -314,7 +314,13 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              docker ps -a                                                                                         
 
+D. Python scripts of Node.js scripts
 
+token_create.py that uses Node.js script tokenapp.js interface CreateAsset\
+token_read.py that uses Node.js script tokenapp.js interface ReadAsset\
+  
+  
+  
 #### 3.3.2 Hyperledger Caliper
 Based on: https://hyperledger.github.io/caliper/v0.4.2/fabric-tutorial/tutorials-fabric-existing/
          
