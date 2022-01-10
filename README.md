@@ -282,7 +282,8 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
     Issue commands as follow:                
   
-                             cd fabric-samples/asset-transfer-basic/application-javascript
+                             cd fabric-samples/asset-transfer-basic/application-javascript\
+                             *** following recommendation: it is under directory ~/go/src/github.com/user
   
                              rm -r wallet
   
