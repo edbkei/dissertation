@@ -317,6 +317,16 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 
 D. Python scripts of Node.js scripts for operational tasks
 
+The asset manager is composed by scripts: do.py, token_manager.py, tokenapp.js, any input file .txt (example is file1.txt).
+  
+The files tokenapp.js and token_manager.py requires to be together at directory ~/go/src/github.com/user/fabric-samples\
+  /asset-transfer-basic/application-javascript/. The file do.py can be put in any place to execute. assetTransfer.js is\
+  part of chaincode (smart contract) asset-transfer-basic and is located at ~/go/src/github.com/user/fabric-samples\
+  /asset-transfer-basic/chaincode-javascript/lib/.
+  
+The executable file do.py has the following syntax: ./do.py arg1 arg2 arg3.
+  
+  
 token_create.py that uses Node.js script tokenapp.js interface CreateAsset\
 token_read.py that uses Node.js script tokenapp.js interface ReadAsset\
 token_update.py that uses Node.js script tokenapp.js interface UpdateAsset\
