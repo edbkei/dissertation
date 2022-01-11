@@ -326,6 +326,8 @@ The files tokenapp.js and token_manager.py requires to be together at directory 
   
 The executable file do.py has the following syntax: ./do.py arg1 arg2 arg3.
   
+./do.py h. This command displays help with all parameter combinations.\
+./do.py c arg2. This command (c)reate new asset containing in file pointed by arg2. It runs interface CreateAsset\
   
 token_create.py that uses Node.js script tokenapp.js interface CreateAsset\
 token_read.py that uses Node.js script tokenapp.js interface ReadAsset\
