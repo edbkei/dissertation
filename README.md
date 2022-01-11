@@ -318,6 +318,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 D. Python scripts of Node.js scripts for operational tasks
 
 The asset manager is composed by scripts: do.py, token_manager.py, tokenapp.js, any input file .txt (example is file1.txt).
+do.py and token_mnager.py are python scripts, and tokenapp.js is node.js script.
   
 The files tokenapp.js and token_manager.py requires to be together at directory ~/go/src/github.com/user/fabric-samples\
   /asset-transfer-basic/application-javascript/. The file do.py can be put in any place to execute. assetTransfer.js is\
@@ -327,17 +328,15 @@ The files tokenapp.js and token_manager.py requires to be together at directory 
 The executable file do.py has the following syntax: ./do.py arg1 arg2 arg3.
   
 ./do.py h. This command displays help with all parameter combinations.\
-./do.py c arg2. This command (c)reate new asset containing in file pointed by arg2. It runs interface CreateAsset\
+./do.py c arg2. This command (c)reates new asset containing in file pointed by arg2. It runs interface CreateAsset.\
+./do.py r arg2. This command (r)eads the asset pointed by arg2. It runs interface ReadAsset.\
+./do.py u arg2. This command (u)pdates the asset pointed by file in arg2. It runs interface UpdateAsset.\
+./do.py d arg2. This command (d)eletes the asset pointed by arg2. It runs interface DeleteAsset.\
+./do.py e arg2. This command checks if asset pointed by arg2 (e)xists. It runs interface AssetExists.\
+./do.py a. This command reads all assets existing in the ledger. It runs interface GetAllAssets.\
+./do.py t arg2 arg3. This command (t)ransfer asset pointed by arg2 to new owner pointed by arg3. It runs interface TransferAsset.
   
-token_create.py that uses Node.js script tokenapp.js interface CreateAsset\
-token_read.py that uses Node.js script tokenapp.js interface ReadAsset\
-token_update.py that uses Node.js script tokenapp.js interface UpdateAsset\
-token_delete.py that uses Node.js script tokenapp.js interface DeleteAsset\
-token_transfer.py that uses Node.js script tokenapp.js interface TransferAsset\
-token_readall.py that uses Node.js script tokenapp.js interface GetAllAssets\
-token_exists.py that uses Node.js script tokenapp.js interface AssetExists
-  
-To execute: python3 token_tasks
+
   
   
 #### 3.3.2 Hyperledger Caliper
