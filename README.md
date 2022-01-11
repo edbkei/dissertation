@@ -318,11 +318,11 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 D. Python scripts of Node.js scripts for operational tasks
 
 The asset manager is composed by scripts: do.py, token_manager.py, tokenapp.js, any input file .txt (example is file1.txt).
-do.py and token_mnager.py are python scripts, and tokenapp.js is node.js script.
+do.py and token_manager.py are python scripts, and tokenapp.js is node.js script.
   
-The files tokenapp.js and token_manager.py requires to be together at directory ~/go/src/github.com/user/fabric-samples\
-  /asset-transfer-basic/application-javascript/. The file do.py can be put in any place to execute. assetTransfer.js is\
-  part of chaincode (smart contract) asset-transfer-basic and is located at ~/go/src/github.com/user/fabric-samples\
+The files tokenapp.js and token_manager.py requires to be together at directory ~/go/src/github.com/user/fabric-samples
+  /asset-transfer-basic/application-javascript/. The file do.py can be put in any place to execute. assetTransfer.js is
+  part of chaincode (smart contract) asset-transfer-basic and is located at ~/go/src/github.com/user/fabric-samples
   /asset-transfer-basic/chaincode-javascript/lib/.
   
 The executable file do.py has the following syntax: ./do.py arg1 arg2 arg3.
@@ -336,7 +336,8 @@ The executable file do.py has the following syntax: ./do.py arg1 arg2 arg3.
 ./do.py a. This command reads all assets existing in the ledger. It runs interface GetAllAssets.\
 ./do.py t arg2 arg3. This command (t)ransfer asset pointed by arg2 to new owner pointed by arg3. It runs interface TransferAsset.
   
-
+Note: the script do.py will be used to control asset in the ledger of hyperledger fabric, and its behaviour will be used by
+  hyperledger aries agents to complete the business case.
   
   
 #### 3.3.2 Hyperledger Caliper
