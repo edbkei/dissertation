@@ -12,9 +12,9 @@ a web design. Flask library is installed (pip install Flask) for running on Pyth
 For execution of Flask apps:\
 export FLASK_RUN_PORT=port (e.g. 8080) \
 export FLASK_APP=apps.py \
-flask run
+flask run --host=0.0.0.0
 
-apps.py contains execution command module of Hyperledger Fabric.
+apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.0.0 is necessary to external IP be visible.
 
 ## 3. Test
 ### 3.1 Test Environment
