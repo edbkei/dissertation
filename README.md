@@ -14,7 +14,7 @@ export FLASK_RUN_PORT=port (e.g. 8080) \
 export FLASK_APP=apps.py \
 flask run --host=0.0.0.0
 
-apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.0.0 is necessary to external IP be visible.
+apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.0.0 is necessary to external IP be visible. Command netstat -antp or ss -lntp can be used to check ports are up and running.
 
 ## 3. Test
 ### 3.1 Test Environment
