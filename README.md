@@ -5,6 +5,16 @@ This github https://github.com/edbkei/dissertation intends to log input material
 ## 1. General
 
 ## 2. Design
+### 2.1 Web Design
+As the execution of hyperledger Aries agent is based docker container, i.e. it is like a new virtual machine running ubuntu on a "host" virtual machine, and the necessary line command for execution of Hyperledger Fabric that is in "host" virtual machine requires
+a web design. Flask library is installed (pip install Flask) for running on Python application. In this way, Flask apps can run curl command to make http request to execute fabric command on "host" virtual machine.
+
+For execution of Flask apps:\
+export FLASK_RUN_PORT=port (e.g. 8080) \
+export FLASK_APP=apps.py \
+flask run
+
+apps.py contains execution command module of Hyperledger Fabric.
 
 ## 3. Test
 ### 3.1 Test Environment
