@@ -38,6 +38,7 @@ VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 13. Attribute Based Access Control: https://github.com/hyperledger/fabric-samples/blob/main/asset-transfer-abac/README.md
 14. Fabric Contract API: https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode4ade.html#fabric-contract-api
 
+Note: Specific authorization per user requires flexibility in the choice of ledger technology, for instance getQueryResult(query), that performs a rich query in ledger, only works with CouchDB, accordingly to reference [12].
 
 ### 3.2 Basic Commands for setting up environment
 
