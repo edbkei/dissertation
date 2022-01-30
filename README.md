@@ -34,6 +34,9 @@ VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 9. GHDID. Install instruction: https://github-did.com/
 10. Hyperledger Fabric v1.4.7. Install Instruction: https://medium.com/coinmonks/install-and-configure-hyperledger-fabric-v1-4-on-ubuntu-18-04-3-lts-2ccbc7176887
 11. Caliper v0.4.2 for measuring Hyperledger Fabric performance (TPS and Latency). Install instruction: https://hyperledger.github.io/caliper/v0.4.2/installing-caliper/
+12. Class: ChaincodeStub  : https://hyperledger.github.io/fabric-chaincode-node/release-2.2/api/fabric-shim.ChaincodeStub.html#getStateByRange__anchor
+13. Attribute Based Access Control: https://github.com/hyperledger/fabric-samples/blob/main/asset-transfer-abac/README.md
+14. Fabric Contract API: https://hyperledger-fabric.readthedocs.io/en/release-2.2/chaincode4ade.html#fabric-contract-api
 
 
 ### 3.2 Basic Commands for setting up environment
