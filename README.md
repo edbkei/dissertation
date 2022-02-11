@@ -240,9 +240,9 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  | Command examples                                                        |Results                            |Fabric Interface|
  |-------------------------------------------------------------------------|-----------------------------------------|----------|
  | CRUD group:                                                             |                                         |          |
- |node tokenapp.js create assetx 123123123 10 2021-01-01T14:16:17 Tom 1300 |assetx token with its attributes, created.|createAssets|
+ |node tokenapp.js create assetx none 10 onchain Tom 1300                  |assetx token with its attributes, created.|createAssets|
  |node tokenapp.js read assetx                                             |assetx token attributes, read.           |ReadAsset|
- |node tokenapp.js update assetx 123123123 10 2021-01-01T14:16:17 Tom 1300 |assetx token attributes, updated.        |UpdateAsset|
+ |node tokenapp.js update assetx none 10 onchain Tom 1300                  |assetx token attributes, updated.        |UpdateAsset|
  |node tokenapp.js delete assetx                                           |assetx token, deleted.                   |DeleteAsset|
  |Administrative group:                                                    |                                  |           |   
  |node tokenapp.js all                                                     |all tokens, listed.                      |GetAllAssets|
