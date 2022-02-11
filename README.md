@@ -262,7 +262,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              rm -r wallet
   
-                             cd fabric-samples/test-network    
+                             cd ../../fabric-samples/test-network    
   
                              ./network.sh down     
   
