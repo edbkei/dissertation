@@ -226,13 +226,13 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 |init     |              |                  |                | Provide initial list of tokens in the ledger                         |
 | all     |              |                  |                | List of tokens from ledger.                                          |
 | read    | token      |                  |                | List specific asset token.                                           |
-| create  | token      | FinalConsumer |EnergyKWH     | Create one asset. Token ID, installation ID, energy (KWH)            |
-|         | Status         |Owner            |AppraisedValue| Timestamp, Owner, Appraised value.                                   | 
+| create  | token      | FinalConsumer |EnergyKWH     | Create one asset. Token ID, FinalConsumer, energy (KWH)              |
+|         | Status         |Owner            |AppraisedValue| Status, Owner, Appraised value.                                     | 
 | delete  | token      |                  |                | Delete asset token.                                                  | 
 | transfer| token      | to another owner |                | Transfer token <asset> to another owner.                             | 
 | exists  | token      |                  |                | Check if <token> exists                                              |
-| update  | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, installation ID, energy (KWH)          |
-|         | Status         | Owner          |AppraisedValue| Timestamp, Owner, Appraised value                                    |
+| update  | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
+|         | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value                                       |
 
              
  Examples:         
