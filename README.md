@@ -315,7 +315,7 @@ Note: the script do.py will be used to control asset in the ledger of hyperledge
   hyperledger aries agents to complete the business case.
   
   
-#### 3.3.2 Hyperledger Caliper
+#### 3.3.3 Hyperledger Caliper
 Based on: https://hyperledger.github.io/caliper/v0.4.2/fabric-tutorial/tutorials-fabric-existing/
          
           https://hyperledger.github.io/caliper/v0.2/architecture/
