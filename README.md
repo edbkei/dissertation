@@ -226,13 +226,13 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 |init     |              |                  |                | Provide initial list of tokens in the ledger                         |
 | all     |              |                  |                | List of tokens from ledger.                                          |
 | read    | token      |                  |                | List specific asset token.                                           |
-| create  | token      | InstallationID |EnergyKWH     | Create one asset. Token ID, installation ID, energy (KWH)            |
-|         | Ts         |Owner            |AppraisedValue| Timestamp, Owner, Appraised value.                                   | 
+| create  | token      | FinalConsumer |EnergyKWH     | Create one asset. Token ID, FinalConsumer, energy (KWH)              |
+|         | Status         |Owner            |AppraisedValue| Status, Owner, Appraised value.                                     | 
 | delete  | token      |                  |                | Delete asset token.                                                  | 
 | transfer| token      | to another owner |                | Transfer token <asset> to another owner.                             | 
 | exists  | token      |                  |                | Check if <token> exists                                              |
-| update  | token      | InstallationID |EnergyKWH     | Update asset token. Token ID, installation ID, energy (KWH)          |
-|         | Ts         | Owner          |AppraisedValue| Timestamp, Owner, Appraised value                                    |
+| update  | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
+|         | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value                                       |
 
              
  Examples:         
@@ -240,9 +240,9 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  | Command examples                                                        |Results                            |Fabric Interface|
  |-------------------------------------------------------------------------|-----------------------------------------|----------|
  | CRUD group:                                                             |                                         |          |
- |node tokenapp.js create assetx 123123123 10 2021-01-01T14:16:17 Tom 1300 |assetx token with its attributes, created.|createAssets|
+ |node tokenapp.js create assetx none 10 onchain Tom 1300                  |assetx token with its attributes, created.|createAssets|
  |node tokenapp.js read assetx                                             |assetx token attributes, read.           |ReadAsset|
- |node tokenapp.js update assetx 123123123 10 2021-01-01T14:16:17 Tom 1300 |assetx token attributes, updated.        |UpdateAsset|
+ |node tokenapp.js update assetx none 10 onchain Tom 1300                  |assetx token attributes, updated.        |UpdateAsset|
  |node tokenapp.js delete assetx                                           |assetx token, deleted.                   |DeleteAsset|
  |Administrative group:                                                    |                                  |           |   
  |node tokenapp.js all                                                     |all tokens, listed.                      |GetAllAssets|
@@ -262,7 +262,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              rm -r wallet
   
-                             cd fabric-samples/test-network    
+                             cd ../../test-network    
   
                              ./network.sh down     
   
@@ -315,7 +315,7 @@ Note: the script do.py will be used to control asset in the ledger of hyperledge
   hyperledger aries agents to complete the business case.
   
   
-#### 3.3.2 Hyperledger Caliper
+#### 3.3.3 Hyperledger Caliper
 Based on: https://hyperledger.github.io/caliper/v0.4.2/fabric-tutorial/tutorials-fabric-existing/
          
           https://hyperledger.github.io/caliper/v0.2/architecture/
