@@ -11,7 +11,7 @@ flask run --host=0.0.0.0
 
 
 In another terminal do:
-curl localhost:5000/a,b,c,d,f,g,h. The first argument (a) is the command symbol. The rest (b-j) is the parameters.
+curl xxx.xxx.xxx.xxx:5000/a,b,c,d,f,g,h. The first argument (a) is the command symbol. The rest (b-j) is the parameters.
 a  = read all. No other parameter is needed.
 c  = create an token accordingly b, that is the file name. No other parameter is needed.
 cc = create an token with b=asset, c=finalConsumer, d=energyKWH, e=status, f=owner, g=appraisedValue, h=docType
