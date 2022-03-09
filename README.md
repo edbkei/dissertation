@@ -1,4 +1,4 @@
-# Dissertation: Modelling of Infrastructure to Support Energy Tokens from Energy Distributed Generation, An Approach using Blockchain Technologies, And Performance Verification.
+# Dissertation: Accessibility by means of Self-Sovereign Identity to the Energy Tokens received from Distributed Generation, An Approach with Multiple Blockchain Platform for treatment of Non Fungible Tokens Data.
 
 This github https://github.com/edbkei/dissertation intends to log input material obtained during design and test of SSI. The design is updated in the github https://github.com/edbkei/aries-cloudagent-python, that is forked from Hyperledger Aries Cloudagent https://github.com/aries-cloudagent-python. Both githubs give support to the dissertation writing. Dissertation is being prepared in overleaf.com and also stored in google drive, only available for master orientor professors.
 
