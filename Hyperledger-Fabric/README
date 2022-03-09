@@ -19,3 +19,24 @@ Solution: Add -w 0 after base64. See configuration steps in log folder.
 
 Instruction to install Hyperledger Fabric binary: https://hyperledger-fabric.readthedocs.io/en/latest/install.html
 
+=======
+
+Important scripts:
+
+Script startfabric.sh starts up Hyperledger Fabric since the beginning.
+
+Script stopfabric.sh stops Hyperledger Fabric.
+ 
+Script startweb.sh starts web server AAA, that runs ~/ledgerserver/server.py
+
+Http request runs server.py that runs do.py.
+
+Script do.py runs token_manager.py
+
+/home/user/go/src/github.com/user/fabric-samples/asset-transfer-basic/application-javascript/token_manager.py runs tokenapp.js.
+
+/home/user/go/src/github.com/user/fabric-samples/asset-transfer-basic/application-javascript/tokenapp.js # scripts that runs chaincode at
+~/asset-transfer-basic/chaincode-javascript/lib/assetTransfer.js
+
+
+
