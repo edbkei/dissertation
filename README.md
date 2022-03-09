@@ -15,6 +15,8 @@ export FLASK_RUN_PORT=port (e.g. 8080) \
 export FLASK_APP=server.py \
 flask run --host=0.0.0.0
 
+Note: This is replaced by https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM1_Faber/startweb.sh
+
 apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.0.0 is necessary to external IP be visible. Command netstat -antp or ss -lntp can be used to check ports are up and running.
 
 ## 3. Test
