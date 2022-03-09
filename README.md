@@ -198,6 +198,10 @@ LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber\
 LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo alice\
 ... to start alice agent with public ledger.
 
+Note: This is replaced by https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM1_Faber/startaries.sh, at VM1 to run agent Faber.
+                          https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM2_Alice/startaries.sh, at VM2 to run agent Alice.
+                          https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM3_Bob/startaries.sh, at VM3 to run agent Bob.
+
 #### 3.2.4 Perfomance
 cd ~/aries-cloudagent-python/demo\
 LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count [count] --threads [threads]\
