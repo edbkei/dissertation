@@ -290,7 +290,9 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
   
                              ./network.sh down       
   
-                             docker ps -a                                                                                         
+                             docker ps -a   
+  
+                             Note: This part is replaced by https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM1_Faber/stopfabric.sh
 
 D. Python scripts of Node.js scripts for operational tasks
 
