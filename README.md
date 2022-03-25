@@ -56,8 +56,7 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 
 **Tcpdump:**\
 Taking into account that current directory has tcpdump directory, and output will be done in tcpdump.pcap file.\
-docker run --rm --net=host -v $PWD/tcpdump:/tcpdump kaazing/tcpdump
-...\
+docker run --rm --net=host -v $PWD/tcpdump:/tcpdump kaazing/tcpdump\
 Got n ... will appear, that means that tcpdump is listening packets.\
 Ctrl+C ... to break tcpdump.
 
