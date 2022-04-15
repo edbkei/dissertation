@@ -1,0 +1,60 @@
+ubuntu@eduardoito:~$ ./startweb.sh
+ * Serving Flask app 'server' (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.0.125:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 108-088-020
+Hello, operator!
+['a']
+143.106.73.51 - - [15/Apr/2022 13:05:11] "GET //a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+143.106.73.51 - - [15/Apr/2022 13:50:54] "GET //a HTTP/1.1" 200 -
+Hello, operator!
+['cc', 'a3730', 'none', '100', 'ONCHAIN', 'Alice_id', '1000', 'asset']
+creating ...
+143.106.73.51 - - [15/Apr/2022 13:51:37] "GET //cc,a3730,none,100,ONCHAIN,Alice_id,1000,asset HTTP/1.1" 200 -
+Hello, operator!
+['a']
+143.106.73.51 - - [15/Apr/2022 13:51:53] "GET //a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+104.198.179.213 - - [15/Apr/2022 13:52:28] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+34.134.152.190 - - [15/Apr/2022 13:52:54] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['t', 'a3730', 'Bob_id']
+transferring ...
+Bob_id
+./do.py t a3730 Bob_id
+104.198.179.213 - - [15/Apr/2022 13:54:17] "GET /t,a3730,Bob_id HTTP/1.1" 200 -
+Hello, operator!
+['a']
+104.198.179.213 - - [15/Apr/2022 13:54:31] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+34.134.152.190 - - [15/Apr/2022 13:54:46] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['e', 'a3730']
+checking if exists ...
+34.134.152.190 - - [15/Apr/2022 13:55:18] "GET /e,a3730 HTTP/1.1" 200 -
+Hello, operator!
+['r', 'a3730']
+reading ...
+34.134.152.190 - - [15/Apr/2022 13:55:20] "GET /r,a3730 HTTP/1.1" 200 -
+Hello, operator!
+['uu', 'a3730', 'Bob_id', '100', 'CHARGE', 'Faber_id', '1000', 'asset']
+updating...
+34.134.152.190 - - [15/Apr/2022 13:55:25] "GET /uu,a3730,Bob_id,100,CHARGE,Faber_id,1000,asset HTTP/1.1" 200 -
+Hello, operator!
+['a']
+34.134.152.190 - - [15/Apr/2022 13:55:40] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+143.106.73.51 - - [15/Apr/2022 13:55:57] "GET //a HTTP/1.1" 200 -
+
