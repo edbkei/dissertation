@@ -1,0 +1,170 @@
+Using username "e159086".
+Authenticating with public key "imported-openssh-key"
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.11.0-1029-gcp x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Apr 15 16:14:12 UTC 2022
+
+  System load:  0.14               Users logged in:                  1
+  Usage of /:   79.1% of 38.60GB   IPv4 address for br-676f467b5d9f: 172.20.0.1
+  Memory usage: 20%                IPv4 address for docker0:         172.17.0.1
+  Swap usage:   0%                 IPv4 address for ens4:            10.128.0.3
+  Processes:    176
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+42 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+*** System restart required ***
+Last login: Fri Apr 15 13:39:38 2022 from 177.63.196.130
+e159086@instance-2unicampvm:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.3 LTS
+Release:        20.04
+Codename:       focal
+e159086@instance-2unicampvm:~$ vmstat
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 1  0      0 2337812  71084 865084    0    0     1    89    1    3  2  1 97  0  0
+e159086@instance-2unicampvm:~$ cat /proc/cpuinfo
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 79
+model name      : Intel(R) Xeon(R) CPU @ 2.20GHz
+stepping        : 0
+microcode       : 0x1
+cpu MHz         : 2199.998
+cache size      : 56320 KB
+physical id     : 0
+siblings        : 2
+core id         : 0
+cpu cores       : 1
+apicid          : 0
+initial apicid  : 0
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt arat md_clear arch_capabilities
+bugs            : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs taa
+bogomips        : 4399.99
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 46 bits physical, 48 bits virtual
+power management:
+
+processor       : 1
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 79
+model name      : Intel(R) Xeon(R) CPU @ 2.20GHz
+stepping        : 0
+microcode       : 0x1
+cpu MHz         : 2199.998
+cache size      : 56320 KB
+physical id     : 0
+siblings        : 2
+core id         : 0
+cpu cores       : 1
+apicid          : 1
+initial apicid  : 1
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm rdseed adx smap xsaveopt arat md_clear arch_capabilities
+bugs            : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs taa
+bogomips        : 4399.99
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 46 bits physical, 48 bits virtual
+power management:
+
+e159086@instance-2unicampvm:~$ sudo netstat -lntp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:8037            0.0.0.0:*               LISTEN      725364/docker-proxy
+tcp        0      0 0.0.0.0:8038            0.0.0.0:*               LISTEN      725351/docker-proxy
+tcp        0      0 0.0.0.0:8039            0.0.0.0:*               LISTEN      725338/docker-proxy
+tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      3254719/mongod
+tcp        0      0 0.0.0.0:7050            0.0.0.0:*               LISTEN      2176188/docker-prox
+tcp        0      0 0.0.0.0:19051           0.0.0.0:*               LISTEN      2176591/docker-prox
+tcp        0      0 0.0.0.0:7051            0.0.0.0:*               LISTEN      2176490/docker-prox
+tcp        0      0 0.0.0.0:7984            0.0.0.0:*               LISTEN      2176087/docker-prox
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      443/systemd-resolve
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      703/sshd: /usr/sbin
+tcp        0      0 0.0.0.0:17050           0.0.0.0:*               LISTEN      2176125/docker-prox
+tcp        0      0 0.0.0.0:9051            0.0.0.0:*               LISTEN      2176616/docker-prox
+tcp        0      0 0.0.0.0:17051           0.0.0.0:*               LISTEN      2176431/docker-prox
+tcp        0      0 0.0.0.0:8030            0.0.0.0:*               LISTEN      725455/docker-proxy
+tcp        0      0 0.0.0.0:8031            0.0.0.0:*               LISTEN      725442/docker-proxy
+tcp        0      0 0.0.0.0:8032            0.0.0.0:*               LISTEN      725429/docker-proxy
+tcp        0      0 0.0.0.0:5984            0.0.0.0:*               LISTEN      2176068/docker-prox
+tcp        0      0 0.0.0.0:8033            0.0.0.0:*               LISTEN      725416/docker-proxy
+tcp        0      0 0.0.0.0:8034            0.0.0.0:*               LISTEN      725404/docker-proxy
+tcp        0      0 0.0.0.0:8035            0.0.0.0:*               LISTEN      725392/docker-proxy
+tcp        0      0 0.0.0.0:8036            0.0.0.0:*               LISTEN      725380/docker-proxy
+tcp6       0      0 :::7050                 :::*                    LISTEN      2176193/docker-prox
+tcp6       0      0 :::19051                :::*                    LISTEN      2176597/docker-prox
+tcp6       0      0 :::7051                 :::*                    LISTEN      2176499/docker-prox
+tcp6       0      0 :::7984                 :::*                    LISTEN      2176103/docker-prox
+tcp6       0      0 :::22                   :::*                    LISTEN      703/sshd: /usr/sbin
+tcp6       0      0 :::17050                :::*                    LISTEN      2176137/docker-prox
+tcp6       0      0 :::9051                 :::*                    LISTEN      2176622/docker-prox
+tcp6       0      0 :::17051                :::*                    LISTEN      2176438/docker-prox
+tcp6       0      0 :::5984                 :::*                    LISTEN      2176073/docker-prox
+e159086@instance-2unicampvm:~$ ss -lntp
+State            Recv-Q           Send-Q                     Local Address:Port                      Peer Address:Port           Process
+LISTEN           0                4096                             0.0.0.0:8037                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8038                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8039                           0.0.0.0:*
+LISTEN           0                4096                           127.0.0.1:27017                          0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:7050                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:19051                          0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:7051                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:7984                           0.0.0.0:*
+LISTEN           0                4096                       127.0.0.53%lo:53                             0.0.0.0:*
+LISTEN           0                128                              0.0.0.0:22                             0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:17050                          0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:9051                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:17051                          0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8030                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8031                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8032                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:5984                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8033                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8034                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8035                           0.0.0.0:*
+LISTEN           0                4096                             0.0.0.0:8036                           0.0.0.0:*
+LISTEN           0                4096                                [::]:7050                              [::]:*
+LISTEN           0                4096                                [::]:19051                             [::]:*
+LISTEN           0                4096                                [::]:7051                              [::]:*
+LISTEN           0                4096                                [::]:7984                              [::]:*
+LISTEN           0                128                                 [::]:22                                [::]:*
+LISTEN           0                4096                                [::]:17050                             [::]:*
+LISTEN           0                4096                                [::]:9051                              [::]:*
+LISTEN           0                4096                                [::]:17051                             [::]:*
+LISTEN           0                4096                                [::]:5984                              [::]:*
+e159086@instance-2unicampvm:~$ docker ps -a
+CONTAINER ID   IMAGE                                                                                                                                                                     COMMAND                  CREATED          STATUS                   PORTS                                                                                                NAMES
+6abd0170e660   faber-alice-demo                                                                                                                                                          "bash -c 'demo/ngrok…"   14 minutes ago   Up 14 minutes            0.0.0.0:8030-8039->8030-8039/tcp                                                                     bob
+f19fd63e2d11   dev-peer0.org1.example.com-ledger_1.0-5a5ee346b7a1cf1d6162db092c10815272a64a87ec043d4548d74b3f052154c2-1e2cdce0b066cf8533acd63d890b4d0ee5140e09f553e85a032ae8a52430af6c   "chaincode -peer.add…"   4 weeks ago      Up 4 weeks                                                                                                                    dev-peer0.org1.example.com-ledger_1.0-5a5ee346b7a1cf1d6162db092c10815272a64a87ec043d4548d74b3f052154c2
+adae20254b90   dev-peer0.org2.example.com-ledger_1.0-5a5ee346b7a1cf1d6162db092c10815272a64a87ec043d4548d74b3f052154c2-d1a3a02322d2d6affd751ab11d39d79579f5e61b1c62c594d652d19a80fd11fe   "chaincode -peer.add…"   4 weeks ago      Up 4 weeks                                                                                                                    dev-peer0.org2.example.com-ledger_1.0-5a5ee346b7a1cf1d6162db092c10815272a64a87ec043d4548d74b3f052154c2
+4189e7d8eef0   hyperledger/fabric-tools:latest                                                                                                                                           "/bin/bash"              4 weeks ago      Up 4 weeks                                                                                                                    cli
+f6b0a695441b   hyperledger/fabric-peer:latest                                                                                                                                            "peer node start"        4 weeks ago      Up 4 weeks               0.0.0.0:9051->9051/tcp, :::9051->9051/tcp, 7051/tcp, 0.0.0.0:19051->19051/tcp, :::19051->19051/tcp   peer0.org2.example.com
+a204c04d2989   hyperledger/fabric-peer:latest                                                                                                                                            "peer node start"        4 weeks ago      Up 4 weeks               0.0.0.0:7051->7051/tcp, :::7051->7051/tcp, 0.0.0.0:17051->17051/tcp, :::17051->17051/tcp             peer0.org1.example.com
+6c709f42504d   hyperledger/fabric-orderer:latest                                                                                                                                         "orderer"                4 weeks ago      Up 4 weeks               0.0.0.0:7050->7050/tcp, :::7050->7050/tcp, 0.0.0.0:17050->17050/tcp, :::17050->17050/tcp             orderer.example.com
+edc9f5abefea   couchdb:3.1.1                                                                                                                                                             "tini -- /docker-ent…"   4 weeks ago      Up 4 weeks               4369/tcp, 9100/tcp, 0.0.0.0:5984->5984/tcp, :::5984->5984/tcp                                        couchdb0
+eeda76e98339   couchdb:3.1.1                                                                                                                                                             "tini -- /docker-ent…"   4 weeks ago      Up 4 weeks               4369/tcp, 9100/tcp, 0.0.0.0:7984->5984/tcp, :::7984->5984/tcp                                        couchdb1
+a66db34c5135   hello-world                                                                                                                                                               "/hello"                 4 weeks ago      Exited (0) 4 weeks ago                                                                                                        blissful_swartz
+e159086@instance-2unicampvm:~$ ifconfig

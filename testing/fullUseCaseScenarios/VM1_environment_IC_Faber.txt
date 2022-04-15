@@ -1,0 +1,305 @@
+ubuntu@eduardoito:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.4 LTS
+Release:        20.04
+Codename:       focal
+ubuntu@eduardoito:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            2.0G     0  2.0G   0% /dev
+tmpfs           394M  1.7M  392M   1% /run
+/dev/vda1        25G   20G  4.5G  82% /
+tmpfs           2.0G     0  2.0G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           2.0G     0  2.0G   0% /sys/fs/cgroup
+/dev/loop2       56M   56M     0 100% /snap/core18/2284
+/dev/loop0       56M   56M     0 100% /snap/core18/2344
+/dev/loop1      112M  112M     0 100% /snap/core/12941
+/dev/loop4       62M   62M     0 100% /snap/core20/1376
+/dev/loop8       44M   44M     0 100% /snap/snapd/15177
+/dev/loop3      111M  111M     0 100% /snap/core/12834
+/dev/loop5       62M   62M     0 100% /snap/core20/1405
+/dev/loop6       68M   68M     0 100% /snap/lxd/22526
+/dev/loop10      36M   36M     0 100% /snap/solc/6746
+/dev/loop7       68M   68M     0 100% /snap/lxd/22753
+/dev/loop9       45M   45M     0 100% /snap/snapd/15314
+/dev/vda15      105M  5.2M  100M   5% /boot/efi
+tmpfs           394M     0  394M   0% /run/user/1000
+ubuntu@eduardoito:~$
+ubuntu@eduardoito:~$ vmstat
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0      0 257380 513304 2525712    0    0     7    22   15   84  2  1 95  2  0
+ubuntu@eduardoito:~$ cat /proc/cpuinfo
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 15
+model           : 6
+model name      : Common KVM processor
+stepping        : 1
+microcode       : 0x1
+cpu MHz         : 2099.998
+cache size      : 16384 KB
+physical id     : 0
+siblings        : 1
+core id         : 0
+cpu cores       : 1
+apicid          : 0
+initial apicid  : 0
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx lm constant_tsc nopl xtopology cpuid tsc_known_freq pni cx16 x2apic hypervisor pti
+bugs            : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips        : 4199.99
+clflush size    : 64
+cache_alignment : 128
+address sizes   : 46 bits physical, 48 bits virtual
+power management:
+
+processor       : 1
+vendor_id       : GenuineIntel
+cpu family      : 15
+model           : 6
+model name      : Common KVM processor
+stepping        : 1
+microcode       : 0x1
+cpu MHz         : 2099.998
+cache size      : 16384 KB
+physical id     : 1
+siblings        : 1
+core id         : 0
+cpu cores       : 1
+apicid          : 1
+initial apicid  : 1
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 13
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx lm constant_tsc nopl xtopology cpuid tsc_known_freq pni cx16 x2apic hypervisor pti
+bugs            : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips        : 4199.99
+clflush size    : 64
+cache_alignment : 128
+address sizes   : 46 bits physical, 48 bits virtual
+power management:
+
+ubuntu@eduardoito:~$
+ubuntu@eduardoito:~$ sudo netstat -lntp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:19054           0.0.0.0:*               LISTEN      24974/docker-proxy
+tcp        0      0 0.0.0.0:7054            0.0.0.0:*               LISTEN      24866/docker-proxy
+tcp        0      0 0.0.0.0:8020            0.0.0.0:*               LISTEN      51748/docker-proxy
+tcp        0      0 0.0.0.0:8021            0.0.0.0:*               LISTEN      51734/docker-proxy
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      607/systemd-resolve
+tcp        0      0 0.0.0.0:8022            0.0.0.0:*               LISTEN      51720/docker-proxy
+tcp        0      0 0.0.0.0:8054            0.0.0.0:*               LISTEN      24915/docker-proxy
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      718/sshd: /usr/sbin
+tcp        0      0 0.0.0.0:8023            0.0.0.0:*               LISTEN      51706/docker-proxy
+tcp        0      0 0.0.0.0:8024            0.0.0.0:*               LISTEN      51692/docker-proxy
+tcp        0      0 0.0.0.0:8025            0.0.0.0:*               LISTEN      51679/docker-proxy
+tcp        0      0 0.0.0.0:8026            0.0.0.0:*               LISTEN      51666/docker-proxy
+tcp        0      0 0.0.0.0:8027            0.0.0.0:*               LISTEN      51653/docker-proxy
+tcp        0      0 0.0.0.0:9051            0.0.0.0:*               LISTEN      25499/docker-proxy
+tcp        0      0 0.0.0.0:9054            0.0.0.0:*               LISTEN      24996/docker-proxy
+tcp        0      0 0.0.0.0:17054           0.0.0.0:*               LISTEN      24848/docker-proxy
+tcp        0      0 0.0.0.0:9443            0.0.0.0:*               LISTEN      25591/docker-proxy
+tcp        0      0 0.0.0.0:9444            0.0.0.0:*               LISTEN      25528/docker-proxy
+tcp        0      0 0.0.0.0:9445            0.0.0.0:*               LISTEN      25479/docker-proxy
+tcp        0      0 0.0.0.0:18054           0.0.0.0:*               LISTEN      24895/docker-proxy
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      46857/python3
+tcp        0      0 0.0.0.0:7050            0.0.0.0:*               LISTEN      25652/docker-proxy
+tcp        0      0 0.0.0.0:7051            0.0.0.0:*               LISTEN      25546/docker-proxy
+tcp        0      0 0.0.0.0:7053            0.0.0.0:*               LISTEN      25632/docker-proxy
+tcp6       0      0 :::19054                :::*                    LISTEN      24983/docker-proxy
+tcp6       0      0 :::7054                 :::*                    LISTEN      24872/docker-proxy
+tcp6       0      0 :::8054                 :::*                    LISTEN      24921/docker-proxy
+tcp6       0      0 :::22                   :::*                    LISTEN      718/sshd: /usr/sbin
+tcp6       0      0 :::9051                 :::*                    LISTEN      25505/docker-proxy
+tcp6       0      0 :::9054                 :::*                    LISTEN      25002/docker-proxy
+tcp6       0      0 :::17054                :::*                    LISTEN      24853/docker-proxy
+tcp6       0      0 :::9443                 :::*                    LISTEN      25598/docker-proxy
+tcp6       0      0 :::9444                 :::*                    LISTEN      25533/docker-proxy
+tcp6       0      0 :::9445                 :::*                    LISTEN      25485/docker-proxy
+tcp6       0      0 :::18054                :::*                    LISTEN      24900/docker-proxy
+tcp6       0      0 :::7050                 :::*                    LISTEN      25658/docker-proxy
+tcp6       0      0 :::7051                 :::*                    LISTEN      25551/docker-proxy
+tcp6       0      0 :::7053                 :::*                    LISTEN      25637/docker-proxy
+ubuntu@eduardoito:~$
+
+ubuntu@eduardoito:~$ docker ps -a
+CONTAINER ID   IMAGE                                                                                                                                                                    COMMAND                  CREATED         STATUS         PORTS                                                                                                                             NAMES
+a4f59469f17a   faber-alice-demo                                                                                                                                                         "bash -c 'demo/ngrok…"   8 minutes ago   Up 8 minutes   0.0.0.0:8020-8027->8020-8027/tcp                                                                                                  faber
+ee82c78adc57   dev-peer0.org2.example.com-basic_1.0-a30a0be9c52e36f5a2e9652768eb981cc177b1034b2b66ef8ddb95d5a4831f58-8f8ed1734f874fb0f1e680fd7dad05092f340ad552f67a22035d75dfe2f340d9   "docker-entrypoint.s…"   26 hours ago    Up 26 hours                                                                                                                                      dev-peer0.org2.example.com-basic_1.0-a30a0be9c52e36f5a2e9652768eb981cc177b1034b2b66ef8ddb95d5a4831f58
+56c5d4c26ec6   dev-peer0.org1.example.com-basic_1.0-a30a0be9c52e36f5a2e9652768eb981cc177b1034b2b66ef8ddb95d5a4831f58-3adf47c1a4e5114ac66b00e7f26706b44f4d1f94730a12a92c714251e07d9fbd   "docker-entrypoint.s…"   26 hours ago    Up 26 hours                                                                                                                                      dev-peer0.org1.example.com-basic_1.0-a30a0be9c52e36f5a2e9652768eb981cc177b1034b2b66ef8ddb95d5a4831f58
+96d2b388fcd0   hyperledger/fabric-tools:latest                                                                                                                                          "/bin/bash"              26 hours ago    Up 26 hours                                                                                                                                      cli
+bdb2f5a9f7b9   hyperledger/fabric-peer:latest                                                                                                                                           "peer node start"        26 hours ago    Up 26 hours    0.0.0.0:7051->7051/tcp, :::7051->7051/tcp, 0.0.0.0:9444->9444/tcp, :::9444->9444/tcp                                              peer0.org1.example.com
+750381ad957f   hyperledger/fabric-peer:latest                                                                                                                                           "peer node start"        26 hours ago    Up 26 hours    0.0.0.0:9051->9051/tcp, :::9051->9051/tcp, 7051/tcp, 0.0.0.0:9445->9445/tcp, :::9445->9445/tcp                                    peer0.org2.example.com
+c07c28b86302   hyperledger/fabric-orderer:latest                                                                                                                                        "orderer"                26 hours ago    Up 26 hours    0.0.0.0:7050->7050/tcp, :::7050->7050/tcp, 0.0.0.0:7053->7053/tcp, :::7053->7053/tcp, 0.0.0.0:9443->9443/tcp, :::9443->9443/tcp   orderer.example.com
+67532b687b96   hyperledger/fabric-ca:latest                                                                                                                                             "sh -c 'fabric-ca-se…"   26 hours ago    Up 26 hours    0.0.0.0:8054->8054/tcp, :::8054->8054/tcp, 7054/tcp, 0.0.0.0:18054->18054/tcp, :::18054->18054/tcp                                ca_org2
+ef7bedb45516   hyperledger/fabric-ca:latest                                                                                                                                             "sh -c 'fabric-ca-se…"   26 hours ago    Up 26 hours    0.0.0.0:7054->7054/tcp, :::7054->7054/tcp, 0.0.0.0:17054->17054/tcp, :::17054->17054/tcp                                          ca_org1
+0398c52d9e4a   hyperledger/fabric-ca:latest                                                                                                                                             "sh -c 'fabric-ca-se…"   26 hours ago    Up 26 hours    0.0.0.0:9054->9054/tcp, :::9054->9054/tcp, 7054/tcp, 0.0.0.0:19054->19054/tcp, :::19054->19054/tcp 
+
+ubuntu@eduardoito:~$ ss -lntp
+State  Recv-Q Send-Q Local Address:Port  Peer Address:Port Process
+LISTEN 0      4096         0.0.0.0:19054      0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:7054       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8020       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8021       0.0.0.0:*
+LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8022       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8054       0.0.0.0:*
+LISTEN 0      128          0.0.0.0:22         0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8023       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8024       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8025       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8026       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:8027       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:9051       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:9054       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:17054      0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:9443       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:9444       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:9445       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:18054      0.0.0.0:*
+LISTEN 0      128          0.0.0.0:5000       0.0.0.0:*     users:(("python3",pid=46863,fd=4),("python3",pid=46863,fd=3),("flask",pid=46857,fd=3))
+LISTEN 0      4096         0.0.0.0:7050       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:7051       0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:7053       0.0.0.0:*
+LISTEN 0      4096            [::]:19054         [::]:*
+LISTEN 0      4096            [::]:7054          [::]:*
+LISTEN 0      4096            [::]:8054          [::]:*
+LISTEN 0      128             [::]:22            [::]:*
+LISTEN 0      4096            [::]:9051          [::]:*
+LISTEN 0      4096            [::]:9054          [::]:*
+LISTEN 0      4096            [::]:17054         [::]:*
+LISTEN 0      4096            [::]:9443          [::]:*
+LISTEN 0      4096            [::]:9444          [::]:*
+LISTEN 0      4096            [::]:9445          [::]:*
+LISTEN 0      4096            [::]:18054         [::]:*
+LISTEN 0      4096            [::]:7050          [::]:*
+LISTEN 0      4096            [::]:7051          [::]:*
+LISTEN 0      4096            [::]:7053          [::]:*
+ubuntu@eduardoito:~$
+
+
+ubuntu@eduardoito:~$ ifconfig
+br-69adda8299a7: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.1  netmask 255.255.0.0  broadcast 172.20.255.255
+        inet6 fe80::42:bcff:fea3:94c5  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:bc:a3:94:c5  txqueuelen 0  (Ethernet)
+        RX packets 2002  bytes 768540 (768.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2166  bytes 456955 (456.9 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:73ff:fe82:32cb  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:73:82:32:cb  txqueuelen 0  (Ethernet)
+        RX packets 34398  bytes 3601869 (3.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 49080  bytes 180599826 (180.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
+        inet 192.168.0.125  netmask 255.255.240.0  broadcast 192.168.15.255
+        inet6 fe80::f816:3eff:feb7:dda  prefixlen 64  scopeid 0x20<link>
+        ether fa:16:3e:b7:0d:da  txqueuelen 1000  (Ethernet)
+        RX packets 617805  bytes 660390696 (660.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 288415  bytes 45042771 (45.0 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 6107  bytes 1633422 (1.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6107  bytes 1633422 (1.6 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth6655319: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
+        inet6 fe80::c435:2cff:fea3:906e  prefixlen 64  scopeid 0x20<link>
+        ether c6:35:2c:a3:90:6e  txqueuelen 0  (Ethernet)
+        RX packets 404  bytes 80318 (80.3 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 339  bytes 126799 (126.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth10efd2b: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::4850:44ff:fee9:2fcb  prefixlen 64  scopeid 0x20<link>
+        ether 4a:50:44:e9:2f:cb  txqueuelen 0  (Ethernet)
+        RX packets 207  bytes 62534 (62.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 297  bytes 38797 (38.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth3bb2b58: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::8a4:d1ff:feb7:2279  prefixlen 64  scopeid 0x20<link>
+        ether 0a:a4:d1:b7:22:79  txqueuelen 0  (Ethernet)
+        RX packets 66  bytes 27630 (27.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 134  bytes 17498 (17.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth50cd1c8: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::b420:c2ff:fed1:6abb  prefixlen 64  scopeid 0x20<link>
+        ether b6:20:c2:d1:6a:bb  txqueuelen 0  (Ethernet)
+        RX packets 636662  bytes 87228638 (87.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 629218  bytes 86484645 (86.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth630738e: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::4cfc:b9ff:fec4:66c3  prefixlen 64  scopeid 0x20<link>
+        ether 4e:fc:b9:c4:66:c3  txqueuelen 0  (Ethernet)
+        RX packets 30261  bytes 2229495 (2.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 33476  bytes 2236857 (2.2 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth7c0738d: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::149c:2ff:fe60:d  prefixlen 64  scopeid 0x20<link>
+        ether 16:9c:02:60:00:0d  txqueuelen 0  (Ethernet)
+        RX packets 11566  bytes 717060 (717.0 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10763  bytes 667855 (667.8 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethb001834: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::8413:dcff:fe05:5323  prefixlen 64  scopeid 0x20<link>
+        ether 86:13:dc:05:53:23  txqueuelen 0  (Ethernet)
+        RX packets 87  bytes 18274 (18.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 131  bytes 90712 (90.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethb857bb6: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::50a5:11ff:feac:7a0d  prefixlen 64  scopeid 0x20<link>
+        ether 52:a5:11:ac:7a:0d  txqueuelen 0  (Ethernet)
+        RX packets 629297  bytes 86316053 (86.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 635460  bytes 86798880 (86.7 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethd44abfc: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::74a5:12ff:fed1:4b49  prefixlen 64  scopeid 0x20<link>
+        ether 76:a5:12:d1:4b:49  txqueuelen 0  (Ethernet)
+        RX packets 11636  bytes 734968 (734.9 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10857  bytes 704452 (704.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethe47bef1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::f0a8:8bff:fe32:675  prefixlen 64  scopeid 0x20<link>
+        ether f2:a8:8b:32:06:75  txqueuelen 0  (Ethernet)
+        RX packets 108  bytes 37211 (37.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 173  bytes 23292 (23.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ubuntu@eduardoito:~$
