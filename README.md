@@ -33,6 +33,7 @@ VM1_Faber has the following scripts:
 * agent.py. Same as existing in Hyperledger Aries design base with only change in external IP address, and timer.
 * agent_container.py. Same as agent.py.
 * faber.py. Same as agent.py
+* editcouchdb.sh. Used to change stateDatabase to LevelDB (default) or CouchDB (that is based on SQL).
 * start2nodes.sh. Start Hyperledger Fabric with 2 nodes (default);
 * start3nodes.sh. Start Hyperledger Fabric with 3 nodes. 3rd node is mounted with new cryptographic material (private key, certificates).
 * startaries.sh. Start Hyperledger Aries agent Faber.
