@@ -30,18 +30,18 @@ VM Node configurations and scripts are stored at directory ../dissertation/tree/
 The most important is VM1_Faber that represents the Faber Energy Operator, and VM2_Alice is the energy prossumer, and VM3_Bob is the energy consumer. Each one has specific ways to perform tests. These are:
 
 VM1_Faber has the following scripts:
-* agent.py.
-* agent_container.py
-* faber.py.
-* start2nodes.sh
-* start3nodes.sh
-* startaries.sh
-* startcaliper.sh
-* startfabric.sh
-* startweb.sh
-* stop2nodes.sh
-* stop3nodes.sh
-* stopfabric.sh
+* agent.py. Same as existing in Hyperledger Aries by only changing external IP address, and timer.
+* agent_container.py. Same as agent.py.
+* faber.py. Same as agent.py
+* start2nodes.sh. Start Hyperledger Fabric with 2 nodes (default);
+* start3nodes.sh. Start Hyperledger Fabric with 3 nodes. 3rd node is mounted with new cryptographic material (private key, certificates).
+* startaries.sh. Start Hyperledger Aries agent Faber.
+* startcaliper.sh.  Start Hyperledger Fabric performance test.
+* startfabric.sh. Same as start2nodes.sh
+* startweb.sh. Start AAA Web Service.
+* stop2nodes.sh. Stop Hyperledger Fabric that uses 2 nodes.
+* stop3nodes.sh. Stop Hyperledger Fabric that uses 3 nodes.
+* stopfabric.sh. Same as stop2nodes.sh.
 
 VM2_Alice has the following scripts:
 
