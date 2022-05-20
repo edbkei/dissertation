@@ -30,7 +30,7 @@ VM Node configurations and scripts are stored at directory ../dissertation/tree/
 The most important is VM1_Faber that represents the Faber Energy Operator, and VM2_Alice is the energy prossumer, and VM3_Bob is the energy consumer. Each one has specific ways to perform tests. These are:
 
 VM1_Faber has the following scripts:
-* agent.py. Same as existing in Hyperledger Aries by only changing external IP address, and timer.
+* agent.py. Same as existing in Hyperledger Aries design base with only change in external IP address, and timer.
 * agent_container.py. Same as agent.py.
 * faber.py. Same as agent.py
 * start2nodes.sh. Start Hyperledger Fabric with 2 nodes (default);
@@ -44,11 +44,16 @@ VM1_Faber has the following scripts:
 * stopfabric.sh. Same as stop2nodes.sh.
 
 VM2_Alice has the following scripts:
-
+* agent.py. Same as existing in Hyperledger Aries design base with only change in external IP address, and timer.
+* agent_container.py. Same as agent.py
+* alice.py. Same as agent.py
+* startaries.sh. Start Hyperledger Aries agent Alice.
 
 VM3_Bob has the following scripts:
-
-
+* agent.py. Same as existing in Hyperledger Aries design base with only change in external IP address, and timer.
+* agent_container.py. Same as agent.py
+* bob.py. Same as agent Alice, change in the name convention to Bob.
+* startaries.sh. Start Hyperledger Aries agent Bob
 
 #### 3.1.2 SW/APPS Install
 1. Local Ledger VON-NETWORK. git clone https://github.com/bcgov/von-network.git
@@ -90,11 +95,11 @@ cd\
 cd von-network\
 ./manage build     ... to build docker local network for the first time\
 ./manage up/start  ... to activate local ledger with 4 nodes (default).\
-./manage down/stop ... to deactivate local ledger with 4 nodes (default).\
+./manage down/stop ... to deactivate local ledger with 4 nodes (default).
 
 Note: 4 nodes can be observed at http://xx.xx.xx.xx:9000, where is x..x is the IP of VM.
 
-### 3.2.3 Hyperledger Indy using 7 nodes (the number of nodes must follow the rule: N=3n+1, where n is 1,2,3...)\
+### 3.2.3 Hyperledger Indy using 7 nodes (the number of nodes must follow the rule: N=3n+1, where n is 1,2,3...)
 Note 1: Follow instruction to add New Nodes in 
 https://github.com/bcgov/von-network/blob/main/docs/AddNewNode.md
 
