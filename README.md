@@ -234,8 +234,7 @@ Note 1: latency = average of credentials per second. See: https://stackoverflow.
 
 Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
 
-Note 3: Timer is always issue for different problems: Parameter START_TIMEOUT at AGENT.PY, faber.detect_connection() and agent.update_creds() at PERFORMANCE.PY.\
-        Adjust as necessary. \
+Note 3: Timer is always issue for different problems: Adjust as necessary the Parameter START_TIMEOUT at AGENT.PY, faber.detect_connection() and agent.update_creds() at PERFORMANCE.PY.\
         The fault: Exception: Error: 400: Credential definition xxxx is in wallet faber999 but not on ledger default can be solved at agent.update_creds()
         
 
