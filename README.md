@@ -23,7 +23,8 @@ apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.
 ### 3.1 Test Environment
 #### 3.1.1 Nodes
 VM1. IC (Instituto de Computação) Cloud - 2 vCPU - disk 79GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
-VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal. https://console.cloud.google.com/
+VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal. 
+VM3. Google Cloud - 2 vCPU - disk 39GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 
 #### 3.1.2 SW/APPS Install
 1. Local Ledger VON-NETWORK. git clone https://github.com/bcgov/von-network.git
@@ -60,12 +61,29 @@ docker run --rm --net=host -v $PWD/tcpdump:/tcpdump kaazing/tcpdump\
 Got n ... will appear, that means that tcpdump is listening packets.\
 Ctrl+C ... to break tcpdump.
 
-#### 3.2.2 Using Local Ledger
+#### 3.2.2 Using Local Ledger, using Hyperledger indy (von-network) for Hyperledger Aries agents
 cd\
 cd von-network\
 ./manage build     ... to build docker local network for the first time\
-./manage up/start  ... to activate local ledger with 4 nodes.\
-./manage down/stop ... to deactivate local ledger with 4 nodes.\
+./manage up/start  ... to activate local ledger with 4 nodes (default).\
+./manage down/stop ... to deactivate local ledger with 4 nodes (default).\
+
+Note: 4 nodes can be observed at http://xx.xx.xx.xx:9000, where is x..x is the IP of VM.
+
+### 3.2.3 Hyperledger Indy using 7 nodes (the number of nodes must follow the rule: N=3n+1, where n is 1,2,3...)
+Note 1: Follow instruction to add New Nodes in 
+https://github.com/bcgov/von-network/blob/main/docs/AddNewNode.md
+
+Afected files in von-network:
+~/von-network/docker-compose.yml. Add new ports for new nodes.
+~/von-network/scripts/start_nodes.sh. Assign ports to new nodes.
+~/von-network/bin/von_generate_transactions. Assign new ports for new nodes.
+
+Note 2: 7 nodes can be observed at http://xx.xx.xx.xx:9000, where is x..x is the IP of VM.
+
+Note 3: Make sure to allow ports 8050-8059 in firewall.
+
+### 3.2.4 Starting Hyperledger Aries Agents
 
 cd\
 cd aries-cloudagent-python/demo\
