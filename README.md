@@ -70,18 +70,21 @@ cd von-network\
 
 Note: 4 nodes can be observed at http://xx.xx.xx.xx:9000, where is x..x is the IP of VM.
 
-### 3.2.3 Hyperledger Indy using 7 nodes (the number of nodes must follow the rule: N=3n+1, where n is 1,2,3...)
+### 3.2.3 Hyperledger Indy using 7 nodes (the number of nodes must follow the rule: N=3n+1, where n is 1,2,3...)\
 Note 1: Follow instruction to add New Nodes in 
 https://github.com/bcgov/von-network/blob/main/docs/AddNewNode.md
 
-Afected files in von-network:
-~/von-network/docker-compose.yml. Add new ports for new nodes.
-~/von-network/scripts/start_nodes.sh. Assign ports to new nodes.
+Afected files in von-network:\
+~/von-network/docker-compose.yml. Add new ports for new nodes.\
+~/von-network/scripts/start_nodes.sh. Assign ports to new nodes.\
 ~/von-network/bin/von_generate_transactions. Assign new ports for new nodes.
 
 Note 2: 7 nodes can be observed at http://xx.xx.xx.xx:9000, where is x..x is the IP of VM.
 
 Note 3: Make sure to allow ports 8050-8059 in firewall.
+
+Note 4: Make sure that web (i.e. port 9000) will start only after all nodes are started. \
+        Adjust if necessary the sleep time at ~/von-network/docker-compose.yml.
 
 ### 3.2.4 Starting Hyperledger Aries Agents
 
@@ -208,7 +211,7 @@ Faber      | Exited with return code 0\
 ubu20w@DESKTOP-CT0HBV1:~/aries-cloudagent-python/demo$
 
 
-#### 3.2.3 Using Public Ledger
+#### 3.2.5 Using Public Ledger
 cd ~/aries-cloudagent-python/demo\
 LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber\
 ... to start faber agent with public ledger.\
@@ -219,7 +222,7 @@ Note: This is replaced by https://github.com/edbkei/dissertation/blob/main/TestE
                           https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM2_Alice/startaries.sh, at VM2 to run agent Alice.
                           https://github.com/edbkei/dissertation/blob/main/TestEnvironment/VM3_Bob/startaries.sh, at VM3 to run agent Bob.
 
-#### 3.2.4 Perfomance
+#### 3.2.6 Perfomance Hyperledger Aries
 cd ~/aries-cloudagent-python/demo\
 LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count [count] --threads [threads]\
 ... to start performance agent with public ledger.
@@ -230,6 +233,11 @@ LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo performance --count 
 Note 1: latency = average of credentials per second. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
 
 Note 2: TPS = threads / latency. See: https://stackoverflow.com/questions/54067812/the-way-to-count-tps-in-jmeter
+
+Note 3: Timer is always issue for different problems: Parameter START_TIMEOUT at AGENT.PY, faber.detect_connection() and agent.update_creds() at PERFORMANCE.PY.\
+        Adjust as necessary. \
+        The fault: Exception: Error: 400: Credential definition xxxx is in wallet faber999 but not on ledger default can be solved at agent.update_creds()
+        
 
 ### 3.3 Basic Commands for setting up Hyperledger Fabric environment
 
