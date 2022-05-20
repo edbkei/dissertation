@@ -26,6 +26,12 @@ VM1. IC (Instituto de Computação) Cloud - 2 vCPU - disk 79GB - OS Ubuntu 20.04
 VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal. 
 VM3. Google Cloud - 2 vCPU - disk 39GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 
+VM Node configurations and scripts are stored at directory ../dissertation/tree/main/TestEnvironment, where there are subdirectories VM1_Faber, VM2_Alice, and VM3_Bob.
+The most important is VM1_Faber that represents the Faber Energy Operator, and VM2_Alice is the energy prossumer, and VM3_Bob is the energy consumer. Each one has specific ways to perform tests. These are:
+
+
+
+
 #### 3.1.2 SW/APPS Install
 1. Local Ledger VON-NETWORK. git clone https://github.com/bcgov/von-network.git
 2. Aries Cloud Agent Python. git clone https://github.com/hyperledger/aries-cloudagent-python.git
