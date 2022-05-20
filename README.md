@@ -110,6 +110,7 @@ Afected files in von-network:\
 ~/von-network/bin/von_generate_transactions. Assign new ports for new nodes.
 
 Note 2: 7 nodes can be observed at http://xx.xx.xx.xx:9000, where is x..x is the IP of VM, like figure below.
+
 ![Screenshot](https://github.com/edbkei/dissertation/blob/main/Images/7nodes.JPG)
 
 Note 3: Make sure to allow ports 8050-8059 in firewall.
