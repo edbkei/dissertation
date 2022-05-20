@@ -117,6 +117,11 @@ Note 3: Make sure to allow ports 8050-8059 in firewall.
 
 Note 4: Make sure that web (i.e. port 9000) will start only after all nodes are started. \
         Adjust if necessary the sleep time at ~/von-network/docker-compose.yml.
+        
+Note 5: There are others ways to add extra nodes onto default 4 nodes. INDY-SDK should be installed\
+        https://github.com/hyperledger/indy-sdk\
+        Nevertheless, libraries (libindy, libnullpay, libvcx or indy-cli). installation is not stable depending on OS used. 
+        Therefore, the usage of reference mentioned in Note 1 is what was possible to worked out.
 
 ### 3.2.4 Starting Hyperledger Aries Agents
 
