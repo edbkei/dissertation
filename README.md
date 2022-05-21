@@ -38,7 +38,7 @@ VM1_Faber has the following scripts:
 * start3nodes.sh. Start Hyperledger Fabric with 3 nodes. 3rd node is mounted with new cryptographic material (private key, certificates). It is used in performance test.
 * startaries.sh. Start Hyperledger Aries agent Faber.
 * startcaliper.sh.  Start Hyperledger Fabric performance test.
-* startfabric.sh. Same as start2nodes.sh, but with different wallet. It is used before running, startweb.sh.
+* startfabric.sh. Similar to start2nodes.sh, but with different wallet. It is used before running, startweb.sh.
 * startweb.sh. Start AAA Web Service.
 * stop2nodes.sh. Stop Hyperledger Fabric that uses 2 nodes.
 * stop3nodes.sh. Stop Hyperledger Fabric that uses 3 nodes.
