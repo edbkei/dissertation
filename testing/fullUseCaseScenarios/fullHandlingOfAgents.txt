@@ -1,0 +1,252 @@
+Faber
+created token: a3241,none,100,ONCHAIN,Alice_id,100,asset
+
+#13 Issue credential offer to X
+Type customer name (e.g. Alice Smith): Alice Smith
+Type customer id (e.g. Alice_id): Alice_id
+Type evaluation value (e.g. 123): 123
+
+Invitation Data:
+{"@type": "https://didcomm.org/connections/1.0/invitation", "@id": "2330b00f-4a2e-4a38-ac91-14e9d8f711d6", "label": "faber.agent", "recipientKeys": ["J9kN3ufgRzX4onU6TQQnJ6mz287JvagXVcBB7q6x3jN5"], "serviceEndpoint": "http://143.106.73.51:8020"}
+
+
+Invitation Data:
+{"@type": "https://didcomm.org/connections/1.0/invitation", "@id": "94a0d15f-74a6-4346-828f-6fef425e0ebb", "label": "faber.agent", "recipientKeys": ["2RCkWk4fDVrasaAfQbzaLQw6sUnaem25ScJgT7Kd4tzo"], "serviceEndpoint": "http://143.106.73.51:8020"}
+
+
+#13 Issue credential offer to X
+Type customer name (e.g. Alice Smith): Bob Marley
+Type customer id (e.g. Alice_id): Bob_id
+Type evaluation value (e.g. 123): 123
+
+
+Alice
+Input new invitation details
+Invite details: {"@type": "https://didcomm.org/connections/1.0/invitation", "@id": "2330b00f-4a2e-4a38-ac91-14e9d8f711d6", "label": "faber.agent", "r
+ecipientKeys": ["J9kN3ufgRzX4onU6TQQnJ6mz287JvagXVcBB7q6x3jN5"], "serviceEndpoint": "http://143.106.73.51:8020"}
+
+Invitation response:
+  {
+    "connection_protocol": "connections/1.0",
+    "state": "request",
+    "my_did": "5LM8tss4XUAkqnyabf1BWz",
+    "connection_id": "bc9229f7-8b5a-4679-9755-8d388f7c5691",
+    "accept": "auto",
+    "invitation_mode": "once",
+    "invitation_key": "J9kN3ufgRzX4onU6TQQnJ6mz287JvagXVcBB7q6x3jN5",
+    "routing_state": "none",
+    "updated_at": "2022-05-21T20:35:22.651675Z",
+    "created_at": "2022-05-21T20:35:22.616042Z",
+    "request_id": "4acc0476-609a-4817-8eec-a76fb071b7d9",
+    "rfc23_state": "request-sent",
+    "their_label": "faber.agent",
+    "their_role": "inviter",
+    "invitation_msg_id": "2330b00f-4a2e-4a38-ac91-14e9d8f711d6"
+  }
+
+
+Credential details:
+  {
+    "referent": "62d11e96-38fd-4297-8715-87255bbeccfe",
+    "attrs": {
+      "operator": "Faber_id",
+      "customerid": "Alice_id",
+      "accesstoken": "secret-token-1",
+      "serviceurl": "143.106.73.51:5000",
+      "customer": "Alice Smith",
+      "timestamp": "1653165385",
+      "eval": "123"
+    },
+    "schema_id": "6vqJx2H8zTRe4trwW9aJF6:2:energy schema:43.19.87",
+    "cred_def_id": "6vqJx2H8zTRe4trwW9aJF6:3:CL:132505:faber.agent.energy_schema",
+    "rev_reg_id": null,
+    "cred_rev_id": null
+  }
+
+
+
+[{'AppraisedValue': '100', 'DocType': 'asset', 'EnergyKWH': '100', 'FinalConsumer': 'none', 'ID': 'a3241', 'Owner': 'Alice_id', 'Status': 'ONCHAIN'}]
+
+
+    (3) Send Message
+    (4) Input New Invitation
+    (5) Create New Invitation
+    (6) Energy Token Management
+    (X) Exit?
+[3/4/5/6/X] 6
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit:
+
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: 2
+Type your asset (e.g. asset1): a3241
+Type to whom you want to transfer your asset (e.g. Tom_id)Bob_id
+
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: 2
+Type your asset (e.g. asset1): a3241
+Type to whom you want to transfer your asset (e.g. Tom_id)Bob_id
+True
+
+token a3241 has successfully transferred to Bob_id
+    (3) Send Message
+    (4) Input New Invitation
+    (5) Create New Invitation
+    (6) Energy Token Management
+    (X) Exit?
+[3/4/5/6/X] 6
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: 1
+[]
+
+
+Bob
+Invite details: {"@type": "https://didcomm.org/connections/1.0/invitation", "@id": "94a0d15f-74a6-4346-828f-6fef425e0ebb", "label": "faber.agent", "r
+ecipientKeys": ["2RCkWk4fDVrasaAfQbzaLQw6sUnaem25ScJgT7Kd4tzo"], "serviceEndpoint": "http://143.106.73.51:8020"}
+
+Invitation response:
+  {
+    "their_label": "faber.agent",
+    "their_role": "inviter",
+    "state": "request",
+    "updated_at": "2022-05-21T20:46:56.670364Z",
+    "my_did": "2LEsNQL2ASzCnEqdPGJip1",
+    "routing_state": "none",
+    "connection_id": "4b15ce23-ad28-4342-a453-c38c5b0a715c",
+    "invitation_key": "2RCkWk4fDVrasaAfQbzaLQw6sUnaem25ScJgT7Kd4tzo",
+    "invitation_msg_id": "94a0d15f-74a6-4346-828f-6fef425e0ebb",
+    "created_at": "2022-05-21T20:46:56.421329Z",
+    "connection_protocol": "connections/1.0",
+    "invitation_mode": "once",
+    "accept": "auto",
+    "rfc23_state": "request-sent",
+    "request_id": "65f6f74d-8ece-4658-b409-2fd3672c98f4"
+  }
+
+#18.1 Stored credential a109934b-609f-45f6-8bcb-384eb1cccfd6 in wallet
+Credential details:
+  {
+    "referent": "a109934b-609f-45f6-8bcb-384eb1cccfd6",
+    "attrs": {
+      "serviceurl": "143.106.73.51:5000",
+      "accesstoken": "secret-token-1",
+      "operator": "Faber_id",
+      "timestamp": "1653166555",
+      "customer": "Bob Marley",
+      "customerid": "Bob_id",
+      "eval": "123"
+    },
+    "schema_id": "6vqJx2H8zTRe4trwW9aJF6:2:energy schema:43.19.87",
+    "cred_def_id": "6vqJx2H8zTRe4trwW9aJF6:3:CL:132505:faber.agent.energy_schema",
+    "rev_reg_id": null,
+    "cred_rev_id": null
+  }
+
+    (3) Send Message
+    (4) Input New Invitation
+    (5) Generate New Invitation
+    (6) Energy Token Management
+    (X) Exit?
+[3/4/5/6X] 6
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: 1
+[{'AppraisedValue': '100', 'DocType': 'asset', 'EnergyKWH': '100', 'FinalConsumer': 'none', 'ID': 'a3241', 'Owner': 'Bob_id', 'Status': 'ONCHAIN'}]
+ 
+
+
+    (3) Send Message
+    (4) Input New Invitation
+    (5) Generate New Invitation
+    (6) Energy Token Management
+    (X) Exit?
+[3/4/5/6X] 6
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: 3
+Type your asset (e.g. asset1): a3241
+token updated: a3241,Bob_id,100,CHARGE,Faber_id,100,asset
+True
+
+    (3) Send Message
+    (4) Input New Invitation
+    (5) Generate New Invitation
+    (6) Energy Token Management
+    (X) Exit?
+[3/4/5/6X] 6
+Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: 1
+[]
+
+
+Faber
+
+    (1) Issue Credential
+    (2) Send Proof Request
+    (2a) Send *Connectionless* Proof Request (requires a Mobile client)
+    (3) Send Message
+    (4) Create New Invitation
+    (7) Energy Token Management
+    (T) Toggle tracing on credential/proof exchange
+    (X) Exit?
+[1/2/3/4/7/T/X] 7
+Select option: 1-list all, 2-transfer, 3-create token, 4-quit 1
+
+[
+    {
+        "AppraisedValue": "100",
+        "DocType": "asset",
+        "EnergyKWH": "100",
+        "FinalConsumer": "Bob_id",
+        "ID": "a3241",
+        "Owner": "Faber_id",
+        "Status": "CHARGE"
+    },
+:::::::::::
+
+
+AAA WEB
+ubuntu@eduardoito:~$ ./startweb.sh
+ * Serving Flask app 'server' (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.0.125:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 138-852-289
+Hello, operator!
+['a']
+143.106.73.51 - - [21/May/2022 20:29:12] "GET //a HTTP/1.1" 200 -
+Hello, operator!
+['cc', 'a3241', 'none', '100', 'ONCHAIN', 'Alice_id', '100', 'asset']
+creating ...
+143.106.73.51 - - [21/May/2022 20:38:01] "GET //cc,a3241,none,100,ONCHAIN,Alice_id,100,asset HTTP/1.1" 200 -
+Hello, operator!
+['a']
+104.198.179.213 - - [21/May/2022 20:38:21] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['t', 'a3241', 'Bob_id']
+transferring ...
+Bob_id
+./do.py t a3241 Bob_id
+104.198.179.213 - - [21/May/2022 20:59:27] "GET /t,a3241,Bob_id HTTP/1.1" 200 -
+Hello, operator!
+['a']
+104.198.179.213 - - [21/May/2022 20:59:55] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+34.134.152.190 - - [21/May/2022 21:01:11] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['e', 'a3241']
+checking if exists ...
+34.134.152.190 - - [21/May/2022 21:02:25] "GET /e,a3241 HTTP/1.1" 200 -
+Hello, operator!
+['r', 'a3241']
+reading ...
+34.134.152.190 - - [21/May/2022 21:02:28] "GET /r,a3241 HTTP/1.1" 200 -
+Hello, operator!
+['uu', 'a3241', 'Bob_id', '100', 'CHARGE', 'Faber_id', '100', 'asset']
+updating...
+34.134.152.190 - - [21/May/2022 21:02:33] "GET /uu,a3241,Bob_id,100,CHARGE,Faber_id,100,asset HTTP/1.1" 200 -
+Hello, operator!
+['a']
+34.134.152.190 - - [21/May/2022 21:03:23] "GET /a HTTP/1.1" 200 -
+Hello, operator!
+['a']
+143.106.73.51 - - [21/May/2022 21:04:04] "GET //a HTTP/1.1" 200 -
+
+
+
