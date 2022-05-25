@@ -430,7 +430,7 @@ Result: No docker containers.
 # 3.4 Environment faults
 Fault 1: [comm.tls] ClientHandshake -> ERRO 003 Client TLS handshake failed after 1.908956ms with error: EOF remoteaddress=127.0.0.1:7051
 Error: error getting endorser client for channel: endorser client failed to connect to localhost:7051: failed to create new connection: context deadline exceeded
-After 5 attempts, peer0.org1 has failed to join channel 'mychannel'
+After 5 attempts, peer0.org1 has failed to join channel 'mychannel'\
 Solution: Reinstall docker, acc to https://hyperledger-fabric.readthedocs.io/fa/latest/test_network.html
 
 ## 4. Conclusion
