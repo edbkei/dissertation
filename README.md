@@ -432,5 +432,18 @@ Fault 1: [comm.tls] ClientHandshake -> ERRO 003 Client TLS handshake failed afte
 Error: error getting endorser client for channel: endorser client failed to connect to localhost:7051: failed to create new connection: context deadline exceeded
 After 5 attempts, peer0.org1 has failed to join channel 'mychannel'\
 Solution: Reinstall docker, acc to https://hyperledger-fabric.readthedocs.io/fa/latest/test_network.html
+        
+Fault 2: SSL_ERROR_SYSCALL openssl\
+From VM_IC, when executing ./startaries.sh, error SSL_ERROR_SYSCALL is issued.\
+Root cause: IC Cloud Datacenter policy establish MTU size to 1450 bytes, but interface docker0 shows that 1500 bytes is set in ifconfig.\
+Final Solution:\
+sudo nano /etc/docker/daemon.json\
+{\
+        "mtu": 1450\
+}
+        
+Redo ./startaries.sh       
+        
+        
 
 ## 4. Conclusion
