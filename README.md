@@ -440,7 +440,8 @@ Final Solution:\
 sudo nano /etc/docker/daemon.json\
 {\
         "mtu": 1450\
-}
+}\
+systemctl restart docker
         
 Redo ./startaries.sh       
         
