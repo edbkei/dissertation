@@ -1,0 +1,66 @@
+Token state at Alice:
+
+{
+    "Key": "a5419",
+    "Record": {
+        "AppraisedValue": "100",
+        "DocType": "asset",
+        "EnergyKWH": "100",
+        "FinalConsumer": "None",
+        "ID": "a5419",
+        "Owner": "Alice_id",
+        "Status": "ONCHAIN"
+    }
+}
+
+
+or Bob:
+
+{
+    "Key": "a5419",
+    "Record": {
+        "AppraisedValue": "100",
+        "DocType": "asset",
+        "EnergyKWH": "100",
+        "FinalConsumer": "None",
+        "ID": "a5419",
+        "Owner": "Bob_id",
+        "Status": "ONCHAIN"
+    }
+}
+
+
+CHARGE at Faber
+
+    {
+        "Key": "a5419",
+        "Record": {
+            "AppraisedValue": "100",
+            "DocType": "asset",
+            "EnergyKWH": "100",
+            "FinalConsumer": "Alice_id",
+            "ID": "a5419",
+            "Owner": "Faber_id",
+            "Status": "CHARGE"
+    }
+
+Proof of Credential (Return to Alice) - Send Proof Request
+Credential OK
+
+
+Owner does not owns any token!
+OR
+{
+    "Key": "a5419",
+    "Record": {
+        "AppraisedValue": "100",
+        "DocType": "asset",
+        "EnergyKWH": "100",
+        "FinalConsumer": "None",
+        "ID": "a5419",
+        "Owner": "Alice_id",
+        "Status": "ONCHAIN"
+    }
+}
+
+

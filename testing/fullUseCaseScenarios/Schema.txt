@@ -1,0 +1,22 @@
+Schema:
+  {
+    "schema_id": "Fh6WCvaBAVQzQrn3NXsGPY:2:energy schema:27.95.34",
+    "schema": {
+      "ver": "1.0",
+      "id": "Fh6WCvaBAVQzQrn3NXsGPY:2:energy schema:27.95.34",
+      "name": "energy schema",
+      "version": "27.95.34",
+      "attrNames": [
+        "eval",
+        "timestamp",
+        "operator",
+        "customer",
+        "accesstoken",
+        "serviceurl",
+        "customerid"
+      ],
+      "seqNo": 134978
+    }
+  }
+
+Schema ID: Fh6WCvaBAVQzQrn3NXsGPY:2:energy schema:27.95.34

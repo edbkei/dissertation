@@ -218,62 +218,78 @@ async def main(args):
                    serviceurl= alice_credential['attrs']['serviceurl']
                    accesstoken=alice_credential['attrs']['accesstoken']
                    customerid=alice_credential['attrs']['customerid'] 
-                   operator=alice_credential['attrs']['operator']          
+                   operator=alice_credential['attrs']['operator']  
+                   credentialid=alice_credential['referent']
+                   URL2='http://104.198.179.213:8031/credential/revoked/'+credentialid
+                   r2=requests.get(URL2)
+                   response_dict=json.loads(r2.text) # HERE HERE Revoked True or False
+                   revoked=response_dict['revoked']
+                   print('revoked=',revoked,' type(revoked)=',type(revoked))
+                   if(not revoked):
+                     #url = "http://"+serviceurl+"/r,asset1"
+                     url = "http://"+serviceurl
 
-                   #url = "http://"+serviceurl+"/r,asset1"
-                   url = "http://"+serviceurl
+                     headers = CaseInsensitiveDict()
+                     headers["Accept"] = "application/json"
+                     headers["Authorization"] = "Bearer "+accesstoken
 
-                   headers = CaseInsensitiveDict()
-                   headers["Accept"] = "application/json"
-                   headers["Authorization"] = "Bearer "+accesstoken
+                     option = input('Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: ')
+                     if option=="1":
+                        url=url+"/a"
+                        resp = requests.get(url, headers=headers)
+                        input_dict=json.loads(resp.text)
+                        indic=0
+                        for i in input_dict:
+                            if(i['Record']['Owner']==customerid):
+                               print(json.dumps(i, indent=4, sort_keys=True))
+                               indic=1
+                        if(indic==0):
+                           log_msg("Owner does not owns any token!")
 
-                   option = input('Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: ')
-                   if option=="1":
-                      url=url+"/a"
-                      resp = requests.get(url, headers=headers)
-                      input_dict=json.loads(resp.text)
-                      x=list(filter(lambda x:x["Owner"]==customerid,input_dict))
-                      log_msg(x)
+                        #x=list(filter(lambda x:x["Owner"]==customerid,input_dict))
+                        #log_msg(x)
 
-                   elif option=="2":
-                      asset=input('Type your asset (e.g. asset1): ')
-                      towhom=input('Type to whom you want to transfer your asset (e.g. Tom_id)')
-                      url=url+"/t,"+asset+","+towhom
-                      resp = requests.get(url, headers=headers)
-                      log_msg(resp.text)
-                      text="token "+asset+" has successfully transferred to "+towhom
-                      log_msg(text)
-                   elif option=="3":
-                      asset=input('Type your asset (e.g. asset1): ')
-                      url1=url+"/e,"+asset
-                      resp = requests.get(url1, headers=headers)
-                      if "True" in resp.text:
-                         url2=url+"/r,"+asset
-                         resp = requests.get(url2, headers=headers)
-                         attributes=json.loads(resp.text)
-                         appraisedValue=attributes['AppraisedValue']
-                         energyKWH=attributes['EnergyKWH']
-                         id=attributes['ID']
-                         finalConsumer=attributes['Owner']
-                         owner=operator
-                         status="CHARGE"
-                         docType=attributes['DocType']
-                         updated=asset+","+finalConsumer+","+energyKWH+","+status+","+owner+","+appraisedValue+","+docType
-                         url3=url+"/uu,"+updated
-                         updating="token updated: "+updated
-                         log_msg(updating)
-                         resp = requests.get(url3, headers=headers)
-                         answer="False"
-                         if "True" in resp.text:
-                            answer="True"
-                         log_msg(answer)
-                      else:
-                         x="Token "+asset+" not exists!"
-                         log_msg(x)
-                   elif option=="4":
-                      log_msg("quitting...")
+                     elif option=="2":
+                        asset=input('Type your asset (e.g. asset1): ')
+                        towhom=input('Type to whom you want to transfer your asset (e.g. Tom_id)')
+                        url=url+"/t,"+asset+","+towhom
+                        resp = requests.get(url, headers=headers)
+                        log_msg(resp.text)
+                        text="token "+asset+" has successfully transferred to "+towhom
+                        log_msg(text)
+                     elif option=="3":
+                        asset=input('Type your asset (e.g. asset1): ')
+                        url1=url+"/e,"+asset
+                        resp = requests.get(url1, headers=headers)
+                        if "True" in resp.text:
+                           url2=url+"/r,"+asset
+                           resp = requests.get(url2, headers=headers)
+                           attributes=json.loads(resp.text)
+                           appraisedValue=attributes['AppraisedValue']
+                           energyKWH=attributes['EnergyKWH']
+                           id=attributes['ID']
+                           finalConsumer=attributes['Owner']
+                           owner=operator
+                           status="CHARGE"
+                           docType=attributes['DocType']
+                           updated=asset+","+finalConsumer+","+energyKWH+","+status+","+owner+","+appraisedValue+","+docType
+                           url3=url+"/uu,"+updated
+                           updating="token updated: "+updated
+                           log_msg(updating)
+                           resp = requests.get(url3, headers=headers)
+                           answer="False"
+                           if "True" in resp.text:
+                              answer="True"
+                           log_msg(answer)
+                        else:
+                           x="Token "+asset+" not exists!"
+                           log_msg(x)
+                     elif option=="4":
+                        log_msg("quitting...")
+                     else:
+                        log_msg("wrong option!")
                    else:
-                      log_msg("wrong option!")
+                     log_msg("credential revoked!")
                 else:
                    log_msg("credential not provided!")
            

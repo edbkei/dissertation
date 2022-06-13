@@ -7,7 +7,7 @@ PATHCORE=~/go/src/github.com/edbkei/fabric-samples/config/core.yaml
 grep stateDatabase $PATHCORE
 echo $PATHCORE
 cd ~/go/src/github.com/edbkei/fabric-samples/test-network
-./network.sh down
+#./network.sh down
 ./network.sh up createChannel 
 
 cd ../asset-transfer-basic/chaincode-javascript
