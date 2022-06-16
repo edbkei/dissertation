@@ -96,11 +96,35 @@ In terminal 2: ./stop3nodes.sh
 In terminal 1: If local ledger: \
                cd von-network\
                manage build\
-               manage start
-               
+               manage start \
+               \
                If remote ledger: edit startaries.sh
                
 In terminal 1: ./startaries.sh\
+
+* To stop full Use Case
+
+In terminal 1 Type option X in user UI.
+
+Note 1: in VM2_Alice performance test only executed with 4 nodes for local ledger.
+
+#### 3.1.2.3 VM3_Bob
+* To Start full Use Case
+
+In terminal 1: If local ledger: \
+               cd von-network\
+               manage build\
+               manage start \
+               \
+               If remote ledger: edit startaries.sh
+               
+In terminal 1: ./startaries.sh\
+
+* To stop full Use Case
+
+In terminal 1 Type option X in user UI.
+
+Note 1: in VM3_Bob performance test only executed with 7 nodes for local ledger.
 
 
 ### 3.1.3 SW/APPS Install
