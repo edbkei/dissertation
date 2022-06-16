@@ -66,7 +66,7 @@ VM3_Bob has the following scripts:
 In terminal 1: ./startfabric.sh\
 In terminal 2: ./startweb.sh\
 In terminal 3: ./startaries.sh\
-In terminal 3, with ledger with supports revocation: ./startariesrevoke.sh
+In terminal 3, with ledger that supports revocation: ./startariesrevoke.sh
 
 * To Stop full Use Case
 
@@ -93,6 +93,10 @@ In terminal 2: ./startcaliper.sh\
 * To stop test performance with 2 nodes
 
 In terminal 2: ./stop3nodes.sh
+
+* To start tcpdump
+
+In any terminal: ./starttcpdump.sh
 
 #### 3.1.2.2 VM2_Alice
 * To Start full Use Case
