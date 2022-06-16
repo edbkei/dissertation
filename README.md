@@ -2,10 +2,10 @@
 
 This github https://github.com/edbkei/dissertation intends to log input material obtained during design and test of SSI. The design is updated in the github https://github.com/edbkei/aries-cloudagent-python, that is forked from Hyperledger Aries Cloudagent https://github.com/aries-cloudagent-python. Both githubs give support to the dissertation writing. Dissertation is being prepared in overleaf.com and also stored in google drive, only available for master orientor professors.
 
-## 1. General
+# 1. General
 
-## 2. Design
-### 2.1 Web Design
+# 2. Design
+## 2.1 Web Design
 As the execution of hyperledger Aries agent is based docker container, i.e. it is like a new virtual machine running ubuntu on a "host" virtual machine, and the necessary line command for execution of Hyperledger Fabric that is in "host" virtual machine requires
 a web design. Flask library is installed (pip install Flask) for running on Python application. In this way, Flask apps can run curl command to make http request to execute fabric command on "host" virtual machine.
 
@@ -19,9 +19,9 @@ Note: This is replaced by https://github.com/edbkei/dissertation/blob/main/TestE
 
 apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.0.0 is necessary to external IP be visible. Command netstat -antp or ss -lntp can be used to check ports are up and running.
 
-## 3. Test
-### 3.1 Test Environment
-#### 3.1.1 Nodes
+# 3. Test
+## 3.1 Test Environment
+### 3.1.1 Nodes
 VM1. IC (Instituto de Computação) Cloud - 2 vCPU - disk 79GB - OS Ubuntu 20.04.3 LTS - Codename Focal.\
 VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal. \
 VM3. Google Cloud - 2 vCPU - disk 39GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
@@ -56,7 +56,15 @@ VM3_Bob has the following scripts:
 * bob.py. Same as agent Alice, change in the name convention to Bob.
 * startaries.sh. Start Hyperledger Aries agent Bob
 
-#### 3.1.2 SW/APPS Install
+### 3.1.2 How to use scripts
+#### 3.1.2.1 VM1_Faber
+* To Start full Use Case
+./startfabric.sh
+
+* To Stop full Use Case
+./stopfabric.sh
+
+### 3.1.3 SW/APPS Install
 1. Local Ledger VON-NETWORK. git clone https://github.com/bcgov/von-network.git
 2. Aries Cloud Agent Python. git clone https://github.com/hyperledger/aries-cloudagent-python.git
 3. Docker v2.2.2. Install instruction: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-pt
@@ -74,9 +82,9 @@ VM3_Bob has the following scripts:
 
 Note: Specific authorization per user requires flexibility in the choice of ledger technology, for instance getQueryResult(query), that performs a rich query in ledger, only works with CouchDB, accordingly to reference [12].
 
-### 3.2 Basic Commands for setting up environment
+## 3.2 Basic Commands for setting up environment
 
-#### 3.2.1 Docker commands
+### 3.2.1 Docker commands
 
 **Discovering IP addresses used in docker agents:** \
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
@@ -91,7 +99,7 @@ docker run --rm --net=host -v $PWD/tcpdump:/tcpdump kaazing/tcpdump\
 Got n ... will appear, that means that tcpdump is listening packets.\
 Ctrl+C ... to break tcpdump.
 
-#### 3.2.2 Using Local Ledger, using Hyperledger indy (von-network) for Hyperledger Aries agents
+### 3.2.2 Using Local Ledger, using Hyperledger indy (von-network) for Hyperledger Aries agents
 cd\
 cd von-network\
 ./manage build     ... to build docker local network for the first time\
@@ -282,7 +290,7 @@ Install at ~/go/src/github.com/youruser/fabric-samples
 
 pip install Naked # http://sweetme.at/2014/02/17/a-simple-approach-to-execute-a-node.js-script-from-python/
   
-#### 3.3.2 Hyperledger Fabric - Basic Token Transfer
+### 3.3.2 Hyperledger Fabric - Basic Token Transfer
 Based on: https://hyperledger-fabric.readthedocs.io/en/release-2.2/write_first_app.html and https://hyperledger-fabric.readthedocs.io/en/latest/install.html
 
 command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8  
@@ -386,7 +394,7 @@ Note: the script do.py will be used to control asset in the ledger of hyperledge
   hyperledger aries agents to complete the business case.
   
   
-#### 3.3.3 Hyperledger Caliper
+### 3.3.3 Hyperledger Caliper
 Based on: https://hyperledger.github.io/caliper/v0.4.2/fabric-tutorial/tutorials-fabric-existing/
          
           https://hyperledger.github.io/caliper/v0.2/architecture/
@@ -427,7 +435,7 @@ docker ps -a
 
 Result: No docker containers.
   
-# 3.4 Environment faults
+## 3.4 Environment faults
 Fault 1: [comm.tls] ClientHandshake -> ERRO 003 Client TLS handshake failed after 1.908956ms with error: EOF remoteaddress=127.0.0.1:7051
 Error: error getting endorser client for channel: endorser client failed to connect to localhost:7051: failed to create new connection: context deadline exceeded
 After 5 attempts, peer0.org1 has failed to join channel 'mychannel'\
@@ -447,4 +455,4 @@ Redo ./startaries.sh
         
         
 
-## 4. Conclusion
+# 4. Conclusion
