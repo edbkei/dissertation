@@ -68,7 +68,39 @@ In terminal 3: ./startaries.sh
 
 In terminal 3: X option in user UI.\
 In terminal 2: CTRL+C\
-In terminal 3: ./stopfabric.sh
+In terminal 1: ./stopfabric.sh
+
+* To start test performance with 2 nodes
+
+In terminal 1: edit database LevelDB/couchDB: ./editcouchdb.sh \
+In terminal 1: ./start2nodes.sh\
+In terminal 2: ./startcaliper.sh\
+
+* To stop test performance with 2 nodes
+
+In terminal 2: ./stop2nodes.sh
+
+* To start test performance with 3 nodes
+
+In terminal 1: edit database LevelDB/couchDB: ./editcouchdb.sh \
+In terminal 1: ./start3nodes.sh\
+In terminal 2: ./startcaliper.sh\
+
+* To stop test performance with 2 nodes
+
+In terminal 2: ./stop3nodes.sh
+
+#### 3.1.2.2 VM2_Alice
+* To Start full Use Case
+
+In terminal 1: If local ledger: \
+               cd von-network\
+               manage build\
+               manage start
+               
+               If remote ledger: edit startaries.sh
+               
+In terminal 1: ./startaries.sh\
 
 
 ### 3.1.3 SW/APPS Install
