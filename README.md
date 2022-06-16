@@ -65,7 +65,8 @@ VM3_Bob has the following scripts:
 
 In terminal 1: ./startfabric.sh\
 In terminal 2: ./startweb.sh\
-In terminal 3: ./startaries.sh
+In terminal 3: ./startaries.sh\
+In terminal 3, with ledger with supports revocation: ./startariesrevoke.sh
 
 * To Stop full Use Case
 
