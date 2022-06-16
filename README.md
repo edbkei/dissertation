@@ -59,10 +59,17 @@ VM3_Bob has the following scripts:
 ### 3.1.2 How to use scripts
 #### 3.1.2.1 VM1_Faber
 * To Start full Use Case
-./startfabric.sh
+
+In terminal 1: ./startfabric.sh\
+In terminal 2: ./startweb.sh\
+In terminal 3: ./startaries.sh
 
 * To Stop full Use Case
-./stopfabric.sh
+
+In terminal 3: X option in user UI.\
+In terminal 2: CTRL+C\
+In terminal 3: ./stopfabric.sh
+
 
 ### 3.1.3 SW/APPS Install
 1. Local Ledger VON-NETWORK. git clone https://github.com/bcgov/von-network.git
