@@ -55,6 +55,9 @@ VM3_Bob has the following scripts:
 * agent_container.py. Same as agent.py
 * bob.py. Same as agent Alice, change in the name convention to Bob.
 * startaries.sh. Start Hyperledger Aries agent Bob
+* startperformance.sh. Run performance.py with parameters threads and count.
+* starttcpdump.sh. Run tcpdump to log traffic data.
+* startariesrevoke.sh. Run hyperledger aries to register into ledger that supports revocation.
 
 ### 3.1.2 How to use scripts
 #### 3.1.2.1 VM1_Faber
@@ -120,11 +123,22 @@ In terminal 1: If local ledger: \
                
 In terminal 1: ./startaries.sh\
 
+Support revogation, in terminal 1: ./startariesrevoke.sh
+
 * To stop full Use Case
 
 In terminal 1 Type option X in user UI.
 
 Note 1: in VM3_Bob performance test only executed with 7 nodes for local ledger.
+
+* To run performance
+
+In terminal 1: ./startperformance.sh
+
+* To run tcpdump
+
+In terminal 1: ./starttcpdump.sh
+
 
 
 ### 3.1.3 SW/APPS Install
