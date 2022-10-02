@@ -391,11 +391,11 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 | delete   | token      |                  |                | Delete asset token.                                                  | 
 | transfer | token      | to another owner |                | Transfer token <asset> to another owner.                             | 
 | transfero| token      | to another owner | owner          | Transfer token <asset> to another owner, only performed by owner     | 
+| transferp| token      | to operator      | owner          | Transfer token <asset> to operator, only performed by owner          | 
 | exists   | token      |                  |                | Check if <token> exists                                              |
 | update   | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
 |          | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value                                       |
-| updateo  | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
-|          | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value, only performed by owner              |
+
              
  Examples:         
    
@@ -406,8 +406,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  |node tokenapp.js read assetx                                             |assetx token attributes, read.           |ReadAsset|
  |node tokenapp.js reado owner                                             |assetx token attributes, read.           |ReadAssetForOwner|
  |node tokenapp.js update assetx none 10 onchain Tom 1300                  |assetx token attributes, updated.        |UpdateAsset|
- |node tokenapp.js updateo assetx none 10 onchain Tom 1300                 |assetx token attributes, updated.        |UpdateAssetForOwner|
- |                                                                         |performed by owner                       |                   |
+
  |node tokenapp.js delete assetx                                           |assetx token, deleted.                   |DeleteAsset|
  |Administrative group:                                                    |                                  |           |   
  |node tokenapp.js all                                                     |all tokens, listed.                      |GetAllAssets|
@@ -416,7 +415,9 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  |node tokenapp.js transfer assetx OwnerB                            |assetx token is transferred from OwnerA to OwnerB|TransferAsset|
  |node tokenapp.js transfero assetx OwnerB Owner                     |assetx token is transferred from OwnerA to OwnerB|TransferAssetForOwner|
  |                                                                         | if performed by the owner                 |                     |
- 
+ | node tokenapp.js transferp assetx operator Owner                        |assetx token is transferred from OwnerA to operator|TransferAssetToOperator|
+ |                                                                         | if performed by the owner                 |                     |
+  
  IMPORTANT:                                                                                                                           
  A. First command of token application is: node tokenapp.js init. Read Preconditions in item B. 
   
