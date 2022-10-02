@@ -406,7 +406,6 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  |node tokenapp.js read assetx                                             |assetx token attributes, read.           |ReadAsset|
  |node tokenapp.js reado owner                                             |assetx token attributes, read.           |ReadAssetForOwner|
  |node tokenapp.js update assetx none 10 onchain Tom 1300                  |assetx token attributes, updated.        |UpdateAsset|
-
  |node tokenapp.js delete assetx                                           |assetx token, deleted.                   |DeleteAsset|
  |Administrative group:                                                    |                                  |           |   
  |node tokenapp.js all                                                     |all tokens, listed.                      |GetAllAssets|
@@ -415,7 +414,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  |node tokenapp.js transfer assetx OwnerB                            |assetx token is transferred from OwnerA to OwnerB|TransferAsset|
  |node tokenapp.js transfero assetx OwnerB Owner                     |assetx token is transferred from OwnerA to OwnerB|TransferAssetForOwner|
  |                                                                         | if performed by the owner                 |                     |
- | node tokenapp.js transferp assetx operator Owner                        |assetx token is transferred from OwnerA to operator|TransferAssetToOperator|
+ |node tokenapp.js transferp assetx operator Owner                         |assetx token is transferred from OwnerA to operator|TransferAssetToOperator|
  |                                                                         | if performed by the owner                 |                     |
   
  IMPORTANT:                                                                                                                           
