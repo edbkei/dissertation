@@ -38,7 +38,8 @@ VM1_Faber has the following scripts:
 * start3nodes.sh. Start Hyperledger Fabric with 3 nodes. 3rd node is mounted with new cryptographic material (private key, certificates). It is used in performance test.
 * startaries.sh. Start Hyperledger Aries agent Faber.
 * startcaliper.sh.  Start Hyperledger Fabric performance test.
-* startfabric.sh. Similar to start2nodes.sh, but with different wallet. It is used before running, startweb.sh.
+* startfabric.sh. Similar to start2nodes.sh, but with different wallet. It is used before running, startweb.sh. Superseeded by HL version 2.2
+* startfabricnew.sh. Similar to startfabric.sh and start2nodes.sh, but valid for HL version 2.2
 * startweb.sh. Start AAA Web Service.
 * stop2nodes.sh. Stop Hyperledger Fabric that uses 2 nodes.
 * stop3nodes.sh. Stop Hyperledger Fabric that uses 3 nodes.
@@ -379,19 +380,22 @@ command line: node tokenapp.js arg1 arg2 arg3 arg4 arg5 arg6 arg7 arg8
   
 folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  
-|arg1     |arg2/5   |arg3/6              |arg4/7            | Description                                                          |
-|---------|--------------|------------------|----------------|----------------------------------------------------------------------|
-|init     |              |                  |                | Provide initial list of tokens in the ledger                         |
-| all     |              |                  |                | List of tokens from ledger.                                          |
-| read    | token      |                  |                | List specific asset token.                                           |
-| create  | token      | FinalConsumer |EnergyKWH     | Create one asset. Token ID, FinalConsumer, energy (KWH)              |
-|         | Status         |Owner            |AppraisedValue| Status, Owner, Appraised value.                                     | 
-| delete  | token      |                  |                | Delete asset token.                                                  | 
-| transfer| token      | to another owner |                | Transfer token <asset> to another owner.                             | 
-| exists  | token      |                  |                | Check if <token> exists                                              |
-| update  | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
-|         | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value                                       |
-
+|arg1      |arg2/5   |arg3/6              |arg4/7            | Description                                                          |
+|----------|--------------|------------------|----------------|----------------------------------------------------------------------|
+|init      |              |                  |                | Provide initial list of tokens in the ledger                         |
+| all      |              |                  |                | List of tokens from ledger.                                          |
+| read     | token      |                  |                | List specific asset token.                                           |
+| reado    | owner      |                  |                | List asserts of owned by owner                                       |
+| create   | token      | FinalConsumer |EnergyKWH     | Create one asset. Token ID, FinalConsumer, energy (KWH)              |
+|          | Status         |Owner            |AppraisedValue| Status, Owner, Appraised value.                                     | 
+| delete   | token      |                  |                | Delete asset token.                                                  | 
+| transfer | token      | to another owner |                | Transfer token <asset> to another owner.                             | 
+| transfero| token      | to another owner | owner          | Transfer token <asset> to another owner, only performed by owner     | 
+| exists   | token      |                  |                | Check if <token> exists                                              |
+| update   | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
+|          | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value                                       |
+| updateo  | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
+|          | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value, only performed by owner              |
              
  Examples:         
    
@@ -400,13 +404,18 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  | CRUD group:                                                             |                                         |          |
  |node tokenapp.js create assetx none 10 onchain Tom 1300                  |assetx token with its attributes, created.|createAssets|
  |node tokenapp.js read assetx                                             |assetx token attributes, read.           |ReadAsset|
+ |node tokenapp.js reado owner                                             |assetx token attributes, read.           |ReadAssetForOwner|
  |node tokenapp.js update assetx none 10 onchain Tom 1300                  |assetx token attributes, updated.        |UpdateAsset|
+ |node tokenapp.js updateo assetx none 10 onchain Tom 1300                 |assetx token attributes, updated.        |UpdateAssetForOwner|
+ |                                                                         |performed by owner                       |                   |
  |node tokenapp.js delete assetx                                           |assetx token, deleted.                   |DeleteAsset|
  |Administrative group:                                                    |                                  |           |   
  |node tokenapp.js all                                                     |all tokens, listed.                      |GetAllAssets|
  |node tokenapp.js exists assetx                                           |True/False. About token assetx existance.|AssetExists|
  |node tokenapp.js init                                              |Initiate Ledger with a predefined list of tokens.|InitLedger |
  |node tokenapp.js transfer assetx OwnerB                            |assetx token is transferred from OwnerA to OwnerB|TransferAsset|
+ |node tokenapp.js transfero assetx OwnerB Owner                     |assetx token is transferred from OwnerA to OwnerB|TransferAssetForOwner|
+ |                                                                         | if performed by the owner                 |                     |
  
  IMPORTANT:                                                                                                                           
  A. First command of token application is: node tokenapp.js init. Read Preconditions in item B. 
