@@ -392,6 +392,7 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
 | transfer | token      | to another owner |                | Transfer token <asset> to another owner.                             | 
 | transfero| token      | to another owner | owner          | Transfer token <asset> to another owner, only performed by owner     | 
 | transferp| token      | to operator      | owner          | Transfer token <asset> to operator, only performed by owner          | 
+| transferb| token      | owner            |                | Transfer token <asset> back to owner, only performed by owner          | 
 | exists   | token      |                  |                | Check if <token> exists                                              |
 | update   | token      | FinalConsumer |EnergyKWH     | Update asset token. Token ID, FinalConsumer, energy (KWH)           |
 |          | Status         | Owner          |AppraisedValue| Status, Owner, Appraised value                                       |
@@ -415,6 +416,8 @@ folder: ~/fabric-samples/asset-transfer-basic/application-javascript
  |node tokenapp.js transfero assetx OwnerB Owner                     |assetx token is transferred from OwnerA to OwnerB|TransferAssetForOwner|
  |                                                                         | if performed by the owner                 |                     |
  |node tokenapp.js transferp assetx operator Owner                         |assetx token is transferred from OwnerA to operator|TransferAssetToOperator|
+ |                                                                         | if performed by the owner                 |                     |
+ |node tokenapp.js transferb assetx Owner                                  |assetx token is transferred back to Owner  |TransferBackToOperator|
  |                                                                         | if performed by the owner                 |                     |
   
  IMPORTANT:                                                                                                                           
