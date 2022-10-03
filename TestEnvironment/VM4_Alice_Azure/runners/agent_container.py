@@ -20,14 +20,10 @@ from runners.support.agent import (  # noqa:E402
     start_mediator_agent,
     connect_wallet_to_mediator,
     start_endorser_agent,
-    connect_wallet_to_endorser,
     CRED_FORMAT_INDY,
     CRED_FORMAT_JSON_LD,
-    DID_METHOD_SOV,
     DID_METHOD_KEY,
-    KEY_TYPE_ED255,
     KEY_TYPE_BLS,
-    SIG_TYPE_BLS,
 )
 from runners.support.utils import (  # noqa:E402
     check_requires,
@@ -96,7 +92,26 @@ class AriesAgent(DemoAgent):
         return self._connection_ready.done() and self._connection_ready.result()
 
     async def handle_oob_invitation(self, message):
+        print("handle_oob_invitation()")
         pass
+
+    async def handle_out_of_band(self, message):
+        print("handle_out_of_band()")
+        pass
+
+    async def handle_connection_reuse(self, message):
+        # we are reusing an existing connection, set our status to the existing connection
+        if not self._connection_ready.done():
+            self.connection_id = message["connection_id"]
+            self.log("Connected")
+            self._connection_ready.set_result(True)
+
+    async def handle_connection_reuse_accepted(self, message):
+        # we are reusing an existing connection, set our status to the existing connection
+        if not self._connection_ready.done():
+            self.connection_id = message["connection_id"]
+            self.log("Connected")
+            self._connection_ready.set_result(True)
 
     async def handle_connections(self, message):
         # a bit of a hack, but for the mediator connection self._connection_ready
@@ -106,7 +121,7 @@ class AriesAgent(DemoAgent):
         conn_id = message["connection_id"]
 
         # inviter:
-        if message["state"] == "invitation":
+        if message.get("state") == "invitation":
             self.connection_id = conn_id
 
         # invitee:
@@ -143,7 +158,7 @@ class AriesAgent(DemoAgent):
                     )
 
     async def handle_issue_credential(self, message):
-        state = message["state"]
+        state = message.get("state")
         credential_exchange_id = message["credential_exchange_id"]
         prev_state = self.cred_state.get(credential_exchange_id)
         if prev_state == state:
@@ -206,8 +221,12 @@ class AriesAgent(DemoAgent):
             except ClientError:
                 pass
 
+        elif state == "abandoned":
+            log_status("Credential exchange abandoned")
+            self.log("Problem report message:", message.get("error_msg"))
+
     async def handle_issue_credential_v2_0(self, message):
-        state = message["state"]
+        state = message.get("state")
         cred_ex_id = message["cred_ex_id"]
         prev_state = self.cred_state.get(cred_ex_id)
         if prev_state == state:
@@ -223,6 +242,7 @@ class AriesAgent(DemoAgent):
                 f"/issue-credential-2.0/records/{cred_ex_id}/issue",
                 {"comment": f"Issuing credential, exchange {cred_ex_id}"},
             )
+
         elif state == "offer-received":
             log_status("#15 After receiving credential offer, send credential request")
             if message["by_format"]["cred_offer"].get("indy"):
@@ -238,9 +258,14 @@ class AriesAgent(DemoAgent):
                 await self.admin_POST(
                     f"/issue-credential-2.0/records/{cred_ex_id}/send-request", data
                 )
+
         elif state == "done":
             pass
             # Logic moved to detail record specific handler
+
+        elif state == "abandoned":
+            log_status("Credential exchange abandoned")
+            self.log("Problem report message:", message.get("error_msg"))
 
     async def handle_issue_credential_v2_0_indy(self, message):
         rev_reg_id = message.get("rev_reg_id")
@@ -269,7 +294,7 @@ class AriesAgent(DemoAgent):
         pass
 
     async def handle_present_proof(self, message):
-        state = message["state"]
+        state = message.get("state")
 
         presentation_exchange_id = message["presentation_exchange_id"]
         presentation_request = message["presentation_request"]
@@ -306,14 +331,17 @@ class AriesAgent(DemoAgent):
                             if referent not in credentials_by_reft:
                                 credentials_by_reft[referent] = row
 
+                # submit the proof wit one unrevealed revealed attribute
+                revealed_flag = False
                 for referent in presentation_request["requested_attributes"]:
                     if referent in credentials_by_reft:
                         revealed[referent] = {
                             "cred_id": credentials_by_reft[referent]["cred_info"][
                                 "referent"
                             ],
-                            "revealed": True,
+                            "revealed": revealed_flag,
                         }
+                        revealed_flag = True
                     else:
                         self_attested[referent] = "my self-attested value"
 
@@ -332,7 +360,6 @@ class AriesAgent(DemoAgent):
                     "self_attested_attributes": self_attested,
                 }
 
-                log_status("Here before proof")
                 log_status("#26 Send the proof to X")
                 await self.admin_POST(
                     (
@@ -352,8 +379,12 @@ class AriesAgent(DemoAgent):
             )
             self.log("Proof =", proof["verified"])
 
+        elif state == "abandoned":
+            log_status("Presentation exchange abandoned")
+            self.log("Problem report message:", message.get("error_msg"))
+
     async def handle_present_proof_v2_0(self, message):
-        state = message["state"]
+        state = message.get("state")
         pres_ex_id = message["pres_ex_id"]
         self.log(f"Presentation: state = {state}, pres_ex_id = {pres_ex_id}")
 
@@ -364,7 +395,6 @@ class AriesAgent(DemoAgent):
             )
             pres_request_indy = message["by_format"].get("pres_request", {}).get("indy")
             pres_request_dif = message["by_format"].get("pres_request", {}).get("dif")
-            log_status("it is here handle_present_proof_v2_0")
 
             if pres_request_indy:
                 # include self-attested attributes (not included in credentials)
@@ -392,6 +422,8 @@ class AriesAgent(DemoAgent):
                                 if referent not in creds_by_reft:
                                     creds_by_reft[referent] = row
 
+                    # submit the proof wit one unrevealed revealed attribute
+                    revealed_flag = False
                     for referent in pres_request_indy["requested_attributes"]:
                         if referent in creds_by_reft:
                             revealed[referent] = {
@@ -399,7 +431,9 @@ class AriesAgent(DemoAgent):
                                     "referent"
                                 ],
                                 "revealed": True,
+                                #"revealed": revealed_flag, difference between versions resulting in diff proof result
                             }
+                            revealed_flag = True
                         else:
                             self_attested[referent] = "my self-attested value"
 
@@ -478,7 +512,7 @@ class AriesAgent(DemoAgent):
             else:
                 raise Exception("Invalid presentation request received")
 
-            log_status("#26 Send the proof to X: ")
+            log_status("#26 Send the proof to X: " + json.dumps(request))
             await self.admin_POST(
                 f"/present-proof-2.0/records/{pres_ex_id}/send-presentation",
                 request,
@@ -494,8 +528,15 @@ class AriesAgent(DemoAgent):
             self.log("Proof =", proof["verified"])
             self.last_proof_received = proof
 
+        elif state == "abandoned":
+            log_status("Presentation exchange abandoned")
+            self.log("Problem report message:", message.get("error_msg"))
+
+#    async def handle_basicmessages(self, message):
+#        self.log("Received message:", message["content"])
+
     async def handle_endorse_transaction(self, message):
-        self.log("Received transaction message:", message["state"])
+        self.log("Received transaction message:", message.get("state"))
 
     async def handle_revocation_notification(self, message):
         self.log("Received revocation notification message:", message)
@@ -505,15 +546,20 @@ class AriesAgent(DemoAgent):
         use_did_exchange: bool,
         auto_accept: bool = True,
         display_qr: bool = False,
+        reuse_connections: bool = False,
         wait: bool = False,
     ):
         self._connection_ready = asyncio.Future()
         with log_timer("Generate invitation duration:"):
             # Generate an invitation
             log_status(
-                "#7 Create a connection to bob and print out the invite details"
+                "#7 Create a connection to alice and print out the invite details"
             )
-            invi_rec = await self.get_invite(use_did_exchange, auto_accept)
+            invi_rec = await self.get_invite(
+                use_did_exchange,
+                auto_accept=auto_accept,
+                reuse_connections=reuse_connections,
+            )
 
         if display_qr:
             qr = QRCode(border=1)
@@ -572,6 +618,7 @@ class AgentContainer:
         self,
         ident: str,
         start_port: int,
+        prefix: str = None,
         no_auto: bool = False,
         revocation: bool = False,
         genesis_txns: str = None,
@@ -588,12 +635,15 @@ class AgentContainer:
         aip: int = 20,
         arg_file: str = None,
         endorser_role: str = None,
+        reuse_connections: bool = False,
+        taa_accept: bool = False,
     ):
         # configuration parameters
         self.genesis_txns = genesis_txns
         self.genesis_txn_list = genesis_txn_list
         self.ident = ident
         self.start_port = start_port
+        self.prefix = prefix or ident
         self.no_auto = no_auto
         self.revocation = revocation
         self.tails_server_base_url = tails_server_base_url
@@ -602,7 +652,6 @@ class AgentContainer:
         self.multitenant = multitenant
         self.mediation = mediation
         self.use_did_exchange = use_did_exchange
-        print("Setting use_did_exchange:", self.use_did_exchange)
         self.wallet_type = wallet_type
         self.public_did = public_did
         self.seed = seed
@@ -615,11 +664,13 @@ class AgentContainer:
                 self.public_did = True
                 self.cred_type = CRED_FORMAT_INDY
 
+        self.reuse_connections = reuse_connections
         self.exchange_tracing = False
 
         # local agent(s)
         self.agent = None
         self.mediator_agent = None
+        self.taa_accept = taa_accept
 
     async def initialize(
         self,
@@ -639,6 +690,7 @@ class AgentContainer:
                 self.ident,
                 self.start_port,
                 self.start_port + 1,
+                prefix=self.prefix,
                 genesis_data=self.genesis_txns,
                 genesis_txn_list=self.genesis_txn_list,
                 no_auto=self.no_auto,
@@ -706,11 +758,15 @@ class AgentContainer:
                 webhook_port=None,
                 mediator_agent=self.mediator_agent,
                 endorser_agent=self.endorser_agent,
+                taa_accept=self.taa_accept,
             )
         elif self.mediation:
             # we need to pre-connect the agent to its mediator
             if not await connect_wallet_to_mediator(self.agent, self.mediator_agent):
                 raise Exception("Mediation setup FAILED :-(")
+        else:
+            if self.taa_accept:
+                await self.agent.taa_accept()
 
         if self.public_did and self.cred_type == CRED_FORMAT_JSON_LD:
             # create did of appropriate type
@@ -804,17 +860,14 @@ class AgentContainer:
         for cred_attr in cred_attrs:
             if cred_attr["name"] in wallet_attrs:
                 if wallet_attrs[cred_attr["name"]] != cred_attr["value"]:
-                    print("Value doesn't match for:", cred_attr["name"])
                     matched = False
             else:
-                print("Attribute not found for:", cred_attr["name"])
                 matched = False
 
-        print("Matching credential received")
         return matched
 
     async def request_proof(self, proof_request):
-        log_status("#20 Request proof of credential from agent")
+        log_status("#20 Request proof of degree from alice")
 
         if self.cred_type == CRED_FORMAT_INDY:
             indy_proof_request = {
@@ -829,7 +882,42 @@ class AgentContainer:
             }
 
             if self.revocation:
-                indy_proof_request["non_revoked"] = {"to": int(time.time())}
+                non_revoked_supplied = False
+                # plug in revocation where requested in the supplied proof request
+                non_revoked = {"to": int(time.time())}
+                if "non_revoked" in proof_request:
+                    indy_proof_request["non_revoked"] = non_revoked
+                    non_revoked_supplied = True
+                for attr in proof_request["requested_attributes"]:
+                    if "non_revoked" in proof_request["requested_attributes"][attr]:
+                        indy_proof_request["requested_attributes"][attr][
+                            "non_revoked"
+                        ] = non_revoked
+                        non_revoked_supplied = True
+                for pred in proof_request["requested_predicates"]:
+                    if "non_revoked" in proof_request["requested_predicates"][pred]:
+                        indy_proof_request["requested_predicates"][pred][
+                            "non_revoked"
+                        ] = non_revoked
+                        non_revoked_supplied = True
+
+                if not non_revoked_supplied:
+                    # else just make it global
+                    indy_proof_request["non_revoked"] = non_revoked
+
+            else:
+                # make sure we are not leaking non-revoc requests
+                if "non_revoked" in proof_request:
+                    del proof_request["non_revoked"]
+                for attr in proof_request["requested_attributes"]:
+                    if "non_revoked" in proof_request["requested_attributes"][attr]:
+                        del proof_request["requested_attributes"][attr]["non_revoked"]
+                for pred in proof_request["requested_predicates"]:
+                    if "non_revoked" in proof_request["requested_predicates"][pred]:
+                        del proof_request["requested_predicates"][pred]["non_revoked"]
+
+            log_status(f"  >>> asking for proof for request: {indy_proof_request}")
+
             proof_request_web_request = {
                 "connection_id": self.agent.connection_id,
                 "presentation_request": {
@@ -862,12 +950,10 @@ class AgentContainer:
 
         if self.cred_type == CRED_FORMAT_INDY:
             # return verified status
-            print("Received proof:", self.agent.last_proof_received["verified"])
             return self.agent.last_proof_received["verified"]
 
         elif self.cred_type == CRED_FORMAT_JSON_LD:
             # return verified status
-            print("Received proof:", self.agent.last_proof_received["verified"])
             return self.agent.last_proof_received["verified"]
 
         else:
@@ -896,10 +982,18 @@ class AgentContainer:
         return terminated
 
     async def generate_invitation(
-        self, auto_accept: bool = True, display_qr: bool = False, wait: bool = False
+        self,
+        auto_accept: bool = True,
+        display_qr: bool = False,
+        reuse_connections: bool = False,
+        wait: bool = False,
     ):
         return await self.agent.generate_invitation(
-            self.use_did_exchange, auto_accept, display_qr, wait
+            self.use_did_exchange,
+            auto_accept=auto_accept,
+            display_qr=display_qr,
+            reuse_connections=reuse_connections,
+            wait=wait,
         )
 
     async def input_invitation(self, invite_details: dict, wait: bool = False):
@@ -988,7 +1082,7 @@ def arg_parser(ident: str = None, port: int = 8020):
     """
     Standard command-line arguements.
 
-    "ident", if specified, refers to one of the standard demo personas - bob, faber, acme or performance.
+    "ident", if specified, refers to one of the standard demo personas - alice, faber, acme or performance.
     """
     parser = argparse.ArgumentParser(
         description="Runs a " + (ident or "aries") + " demo agent."
@@ -1018,7 +1112,7 @@ def arg_parser(ident: str = None, port: int = 8020):
         metavar=("<port>"),
         help="Choose the starting port number to listen on",
     )
-    if (not ident) or (ident != "bob"):
+    if (not ident) or (ident != "alice"):
         parser.add_argument(
             "--did-exchange",
             action="store_true",
@@ -1033,7 +1127,7 @@ def arg_parser(ident: str = None, port: int = 8020):
         metavar=("<tails-server-base-url>"),
         help="Tails server base url",
     )
-    if (not ident) or (ident != "bob"):
+    if (not ident) or (ident != "alice"):
         parser.add_argument(
             "--cred-type",
             type=str,
@@ -1086,11 +1180,25 @@ def arg_parser(ident: str = None, port: int = 8020):
             "directly."
         ),
     )
+    if (not ident) or (ident != "alice"):
+        parser.add_argument(
+            "--reuse-connections",
+            action="store_true",
+            help=(
+                "Reuse connections by using Faber public key in the invite. "
+                "Only applicable for AIP 2.0 (OOB) connections."
+            ),
+        )
     parser.add_argument(
         "--arg-file",
         type=str,
         metavar="<arg-file>",
         help="Specify a file containing additional aca-py parameters",
+    )
+    parser.add_argument(
+        "--taa-accept",
+        action="store_true",
+        help="Accept the ledger's TAA, if required",
     )
     return parser
 
@@ -1168,6 +1276,10 @@ async def create_agent_with_args(args, ident: str = None):
         f"Initializing demo agent {agent_ident} with AIP {aip} and credential type {cred_type}"
     )
 
+    reuse_connections = "reuse_connections" in args and args.reuse_connections
+    if reuse_connections and aip != 20:
+        raise Exception("Can only specify `--reuse-connections` with AIP 2.0")
+
     agent = AgentContainer(
         genesis_txns=genesis,
         genesis_txn_list=multi_ledger_config_path,
@@ -1187,6 +1299,8 @@ async def create_agent_with_args(args, ident: str = None):
         arg_file=arg_file,
         aip=aip,
         endorser_role=args.endorser_role,
+        reuse_connections=reuse_connections,
+        taa_accept=args.taa_accept,
     )
 
     return agent
@@ -1208,7 +1322,7 @@ async def test_main(
     """Test to startup a couple of agents."""
 
     faber_container = None
-    bob_container = None
+    alice_container = None
     try:
         # initialize the containers
         faber_container = AgentContainer(
@@ -1228,9 +1342,9 @@ async def test_main(
             cred_type=cred_type,
             aip=aip,
         )
-        bob_container = AgentContainer(
+        alice_container = AgentContainer(
             genesis_txns=genesis,
-            ident="Bob.agent",
+            ident="Alice.agent",
             start_port=start_port + 10,
             no_auto=no_auto,
             revocation=False,
@@ -1241,7 +1355,6 @@ async def test_main(
             wallet_type=wallet_type,
             public_did=False,
             seed=None,
-            cred_type=cred_type,
             aip=aip,
         )
 
@@ -1255,21 +1368,21 @@ async def test_main(
                 "grade",
             ],
         )
-        await bob_container.initialize()
+        await alice_container.initialize()
 
         # faber create invitation
         invite = await faber_container.generate_invitation()
 
-        # bob accept invitation
+        # alice accept invitation
         invite_details = invite["invitation"]
-        connection = await bob_container.input_invitation(invite_details)
+        connection = await alice_container.input_invitation(invite_details)
 
         # wait for faber connection to activate
         await faber_container.detect_connection()
-        await bob_container.detect_connection()
+        await alice_container.detect_connection()
 
-        # TODO faber issue credential to bob
-        # TODO bob check for received credential
+        # TODO faber issue credential to alice
+        # TODO alice check for received credential
 
         log_msg("Sleeping ...")
         await asyncio.sleep(3.0)
@@ -1282,9 +1395,9 @@ async def test_main(
         terminated = True
         try:
             # shut down containers at the end of the test
-            if bob_container:
-                log_msg("Shutting down bob agent ...")
-                await bob_container.terminate()
+            if alice_container:
+                log_msg("Shutting down alice agent ...")
+                await alice_container.terminate()
             if faber_container:
                 log_msg("Shutting down faber agent ...")
                 await faber_container.terminate()

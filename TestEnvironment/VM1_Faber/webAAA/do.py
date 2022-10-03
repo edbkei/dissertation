@@ -4,7 +4,7 @@
 
 import sys
 sys.path.insert(0, '/home/ubuntu/go/src/github.com/edbkei/fabric-samples/asset-transfer-basic/application-javascript')
-from token_manager import t_exists, t_create, t_read, t_update, t_delete, t_exists, t_all, t_transfer
+from token_manager import t_exists, t_create, t_read, t_update, t_delete, t_exists, t_all, t_transfer, t_reado, t_transfero, t_transferp, t_transferb
 
 def main():
     arg1=sys.argv[1]
@@ -17,9 +17,10 @@ def main():
      
     if arg1 == "h":
        print("help")
-       print("arg1: commands c(create), r(read), u(update), d(delete), e(exists), a(read all), t(transfer) a token")
+       print("arg1: commands c(create), r(read), u(update), d(delete), e(exists), a(read all), t(transfer), uo(update for owner), to(transfer for owner) a token")
        print("arg2: file to option c and u, and asset id for option r, d, and t. Not needed for a. ")
        print("arg3: the transferee in case of t")
+       print("arg4: the owner in case of to")
     elif arg1 == "c":  # token_create option
        file=open(arg2, "r")
        content=file.read()
@@ -63,17 +64,37 @@ def main():
        a=content.split(",")
        result=t_update(sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8])
        print(result)
+    elif arg1 == "uo":  # token_update option, only for owner
+       content=arg2
+       print("arg2= ", arg2)
+       content=content.rstrip()
+       print(content)
+       a=content.split(",")
+       result=t_update(sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8])
+       print(result)
     elif arg1 == "d":  # token_delete option
        result=t_delete(arg2)
        print(result)
     elif arg1 == "e":  # token_exists option
        result=t_exists(arg2)
        print(result)
-    elif arg1 == "a":  # token_exists option
+    elif arg1 == "a":  # list all tokens option
        result=t_all()
+       print(result)
+    elif arg1 == "ro":  # read tokens of an onwer option
+       result=t_reado(arg2)
        print(result)
     elif arg1 == "t":  # token_exists option
        result=t_transfer(arg2,arg3)
+       print(result)
+    elif arg1 == "to":  # transfer a token arg2 to another owner arg3 from owner arg4
+       result=t_transfero(arg2,sys.argv[3],sys.argv[4])
+       print(result)
+    elif arg1 == "tp":  # transfer a token arg2 to operator arg3 from owner arg4
+       result=t_transferp(arg2,sys.argv[3],sys.argv[4])
+       print(result)
+    elif arg1 == "tb":  # transfer back a token to charge arg2 for owner arg3
+       result=t_transferb(arg2,sys.argv[3])
        print(result)
 
     else:

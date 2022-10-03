@@ -47,6 +47,10 @@ def run_command(command):
        print("reading ...")
        flag=1
        command="./do.py r "+array[0][1]
+    elif option=="ro":
+       flag=1
+       print("reading for specific user ...")
+       command="./do.py ro "+array[0][1]
     elif (option=="u" and user=="operator"):
        print("updating ...")
        flag=1
@@ -55,6 +59,10 @@ def run_command(command):
        print("updating...")
        flag=1
        command="./do.py uu "+array[0][1]+" "+array[0][2]+" "+array[0][3]+" "+array[0][4]+" "+array[0][5]+" "+array[0][6]+" "+array[0][7]
+    elif (option=="uo"):
+       print("updating for owner...")
+       flag=1
+       command="./do.py uo "+array[0][1]+" "+array[0][2]+" "+array[0][3]+" "+array[0][4]+" "+array[0][5]+" "+array[0][6]+" "+array[0][7]
     elif (option=="d" and user=="operator"):
        flag=1
        print("deleting ...")
@@ -70,6 +78,25 @@ def run_command(command):
        print(aux)
        command="./do.py t "+array[0][1]+" "+aux
        print(command)
+    elif option=="to":
+       print("transferring for owner ...")
+       flag=1
+       aux=array[0][2]
+       print(aux)
+       command="./do.py to "+array[0][1]+" "+aux+" "+array[0][3]
+       print(command)
+    elif option=="tp":
+       print("transferring to operator ...")
+       flag=1
+       aux1="Faber_id"
+       command="./do.py tp "+array[0][1]+" "+aux1+" "+array[0][2]
+       print(command)
+    elif option=="tb":
+       print("transferring back to owner ...")
+       flag=1
+       command="./do.py tb "+array[0][1]+" "+array[0][2]
+       print(command)
+
     else:
       print("wrong input data")
     if (flag==1):

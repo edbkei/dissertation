@@ -25,7 +25,6 @@ from runners.support.agent import (  # noqa:E402
     CRED_FORMAT_INDY,
     CRED_FORMAT_JSON_LD,
     SIG_TYPE_BLS,
-    DEFAULT_EXTERNAL_HOST,
 )
 
 
@@ -126,8 +125,8 @@ class BobAgent(AriesAgent):
         elif aip == 20:
             if cred_type == CRED_FORMAT_INDY:  # HERE, CRED_FORMAT_INDY
 
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/credentials"
-                #URL='http://34.134.152.190:8031/credentials'
+                #URL=DEFAULT_EXTERNAL_HOST+"/credentials"
+                URL='http://34.134.152.190:8031/credentials'
                 r=requests.get(URL)
                 response_dict=json.loads(r.text)
                 serviceurl= ""
@@ -295,13 +294,12 @@ async def main(args):
         cred_type=CRED_FORMAT_INDY
 
 
-        options = "    (1) Issue Credential\n" "    (3) Send Message \n" "    (4) Input New Invitation\n" "    (5) Generate New Invitation\n" "    (6a) Request Credential Proof\n"
-        options += "    (6b) Energy Token Management \n"
+        options = "    (1) Issue Credential\n" "    (3) Send Message (also, included Request Credential Proof by typing ZKP)\n" "    (4) Input New Invitation\n" "    (5) Generate New Invitation\n" "    (6) Energy Token Management\n"
         if bob_agent.endorser_role and bob_agent.endorser_role == "author":
             options += "    (D) Set Endorser's DID\n"
         if bob_agent.multitenant:
             options += "    (W) Create and/or Enable Wallet\n"
-        options += "    (X) Exit?\n[1/3/4/5/6a/6b/{}X] ".format(
+        options += "    (X) Exit?\n[1/3/4/5/6{}X] ".format(
             "W/" if bob_agent.multitenant else "",
         )
         async for option in prompt_loop(options):
@@ -393,30 +391,23 @@ async def main(args):
                     "Creating a new invitation, please receive "
                     "and accept this invitation using X agent"
                 )
-                await bob_agent.generate_invitation(display_qr=True, wait=True)
+                await alice_agent.generate_invitation(display_qr=True, wait=True)
 
-            elif option == "6a":
-                msg = "ZKP"
-                if msg:
-                    await bob_agent.agent.admin_POST(
-                        f"/connections/{bob_agent.agent.connection_id}/send-message",
-                        {"content": msg},
-                    )
 
-            elif option == "6b": 
+            elif option == "6": 
                 # handle hyperledger fabric
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/credentials"
-                #URL='http://34.134.152.190:8031/credentials'
+                #URL=DEFAULT_EXTERNAL_HOST+"/credentials"
+                URL='http://34.134.152.190:8031/credentials'
                 r=requests.get(URL)
                 response_dict=json.loads(r.text)
-                #log_msg("bob_agent.agent.proved=",bob_agent.agent.proved) # HERE, COME HERE
+                log_msg("bob_agent.agent.proved=",bob_agent.agent.proved) # HERE, COME HERE
                 if(bob_agent.agent.proved):
                 #if(len(response_dict['results'])!=0):
-                   bob_credential=response_dict['results'][0]
-                   serviceurl= bob_credential['attrs']['serviceurl']
-                   accesstoken=bob_credential['attrs']['accesstoken']
-                   customerid=bob_credential['attrs']['customerid'] 
-                   operator=bob_credential['attrs']['operator']        
+                   alice_credential=response_dict['results'][0]
+                   serviceurl= alice_credential['attrs']['serviceurl']
+                   accesstoken=alice_credential['attrs']['accesstoken']
+                   customerid=alice_credential['attrs']['customerid'] 
+                   operator=alice_credential['attrs']['operator']        
 
                    #url = "http://"+serviceurl+"/r,asset1"
                    url = "http://"+serviceurl
@@ -425,55 +416,53 @@ async def main(args):
                    headers["Accept"] = "application/json"
                    headers["Authorization"] = "Bearer "+accesstoken
 
-                   option = input('Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-Transfer back from charge, 5-quit: ')
+                   option = input('Select option: 1-list your tokens, 2-transfer token, 3-Order to charge token, 4-quit: ')
                    if option=="1":
-                      url=url+"/ro,"+customerid
+                      url=url+"/a"
                       resp = requests.get(url, headers=headers)
-                      #log_msg("url: ",url)
-                      log_msg(resp.text)
-                      #input_dict=json.loads(resp.text)
-                      #log_msg(input_dict)
+                      input_dict=json.loads(resp.text)
+                      log_msg(input_dict)
                       #x=list(filter(lambda x:x["Owner"]==customerid,input_dict))
                       #log_msg(x)
 
                    elif option=="2":
                       asset=input('Type your asset (e.g. asset1): ')
                       towhom=input('Type to whom you want to transfer your asset (e.g. Tom_id)')
-                      url=url+"/to,"+asset+","+towhom+","+customerid
+                      url=url+"/t,"+asset+","+towhom
                       resp = requests.get(url, headers=headers)
                       log_msg(resp.text)
                       text="token "+asset+" has successfully transferred to "+towhom
                       log_msg(text)
                    elif option=="3":
                       asset=input('Type your asset (e.g. asset1): ')
-                      url=url+"/tp,"+asset+","+customerid
-                      resp = requests.get(url, headers=headers)
-                      log_msg(resp.text)
-                      text="token "+asset+" has successfully sent to charge for "+customerid
-                      log_msg(text)
-                      answer="False"
+                      url1=url+"/e,"+asset
+                      resp = requests.get(url1, headers=headers)
                       if "True" in resp.text:
-                         answer="True"
+                         url2=url+"/r,"+asset
+                         resp = requests.get(url2, headers=headers)
+                         attributes=json.loads(resp.text)
+                         appraisedValue=attributes['AppraisedValue']
+                         energyKWH=attributes['EnergyKWH']
+                         id=attributes['ID']
+                         finalConsumer=attributes['Owner']
+                         owner=operator
+                         status="CHARGE"
+                         docType=attributes['DocType']
+                         updated=asset+","+finalConsumer+","+energyKWH+","+status+","+owner+","+appraisedValue+","+docType
+                         url3=url+"/uu,"+updated
+                         updating="token updated: "+updated
+                         log_msg(updating)
+                         resp = requests.get(url3, headers=headers)
+                         answer="False"
+                         if "True" in resp.text:
+                            answer="True"
                          log_msg(answer)
                    elif option=="4":
-                      asset=input('Type your asset (e.g. asset1): ')
-                      url=url+"/tb,"+asset+","+customerid
-                      resp = requests.get(url, headers=headers)
-                      log_msg(resp.text)
-                      text="token "+asset+" has successfully received from charge for "+customerid
-                      log_msg(text)
-                      answer="False"
-                      if "True" in resp.text:
-                         answer="True"
-                         log_msg(answer)
-                   elif option=="5":
-                      bob_agent.agent.proved=False
                       log_msg("quitting...")
                    else:
                       log_msg("wrong option!")
                 else:
-                   log_msg("credential not verified! (credential not proved or no credential)")
-                bob_agent.agent.proved=False
+                   log_msg("credential not verified!")
 
 
         if bob_agent.show_timing:

@@ -113,32 +113,6 @@ class AssetTransfer extends Contract {
         return ctx.stub.putState(id, Buffer.from(JSON.stringify(updatedAsset)));
     }
 
-    // UpdateAsset updates an existing asset in the world state with provided parameters, only for owner
-    async UpdateAssetForOwner(ctx, id, finalConsumer, energykwh, status, owner, appraisedValue,docType) {
-        const exists = await this.AssetExists(ctx, id);
-        if (!exists) {
-            throw new Error(`The asset ${id} does not exist`);
-        }
-
-        const assetString = await this.ReadAsset(ctx, id);
-        const asset = JSON.parse(assetString);
-
-        if (asset.Owner==owner) {
-           // overwriting original asset with new asset
-           const updatedAsset = {
-              ID: id,
-              FinalConsumer: finalConsumer,
-              EnergyKWH: energykwh,
-              Status: status,
-              Owner: owner,
-              AppraisedValue: appraisedValue,
-              DocType: docType
-           };
-           return ctx.stub.putState(id, Buffer.from(JSON.stringify(updatedAsset)));
-        }
-        throw new Error(`The asset ${id} cannot be updated, owner ${owner} not authorized to!`);
-    }
-
     // DeleteAsset deletes an given asset from the world state.
     async DeleteAsset(ctx, id) {
         const exists = await this.AssetExists(ctx, id);
@@ -161,59 +135,6 @@ class AssetTransfer extends Contract {
         asset.Owner = newOwner;
         return ctx.stub.putState(id, Buffer.from(JSON.stringify(asset)));
     }
-
-
-    // TransferAssetForOwner updates the owner field of asset with given id in the world state, only for owner
-    async TransferAssetForOwner(ctx, id, newOwner, owner) {
-        const exists = await this.AssetExists(ctx, id);
-        if (!exists) {
-            throw new Error(`The asset ${id} does not exist`);
-        }
-        const assetString = await this.ReadAsset(ctx, id);
-        const asset = JSON.parse(assetString);
-        if (asset.Owner==owner) {
-           asset.Owner = newOwner;
-           return ctx.stub.putState(id, Buffer.from(JSON.stringify(asset)));
-        }
-        throw new Error(`The asset ${id} cannot be transferred, owner ${owner} not authorized to!`);
-    }
-
-
-    // TransferAssetToOperator updates the owner field of asset with given id in the world state, only for owner
-    async TransferAssetToOperator(ctx, id, operator, owner) {
-        const exists = await this.AssetExists(ctx, id);
-        if (!exists) {
-            throw new Error(`The asset ${id} does not exist`);
-        }
-        const assetString = await this.ReadAsset(ctx, id);
-        const asset = JSON.parse(assetString);
-        if (asset.Owner==owner) {
-           asset.Status = "charge";
-           asset.FinalConsumer = owner;
-           asset.Owner = operator;
-           return ctx.stub.putState(id, Buffer.from(JSON.stringify(asset)));
-        }
-        throw new Error(`The asset ${id} cannot be transferred to operator ${operator}, owner ${owner} not authorized to!`);
-    }
-
-
-    // TransferBackToOwner updates the owner field of asset with given id in the world state, only for owner
-    async TransferBackToOwner(ctx, id, owner) {
-        const exists = await this.AssetExists(ctx, id);
-        if (!exists) {
-            throw new Error(`The asset ${id} does not exist`);
-        }
-        const assetString = await this.ReadAsset(ctx, id);
-        const asset = JSON.parse(assetString);
-        if (asset.FinalConsumer==owner) {
-           asset.Status = "onchain";
-           asset.FinalConsumer = "None";
-           asset.Owner = owner;
-           return ctx.stub.putState(id, Buffer.from(JSON.stringify(asset)));
-        }
-        throw new Error(`The asset ${id} cannot be transferred to owner ${operator}, owner ${owner} not authorized to!`);
-    }
-
 
     // GetAllAssets returns all assets found in the world state.
     async GetAllAssets(ctx) {

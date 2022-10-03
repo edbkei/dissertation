@@ -2,6 +2,7 @@
  * Copyright IBM Corp. All Rights Reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
+ * modified by Eduardo Ito due to brazilian LGPD law
  */
 
                 // ------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -18,6 +19,9 @@
                 //            <Status>       <Owner>          <AppraisedValue>  <docType> Status, Owner, Appraised value, Doc Type                                       //
                 //  delete    <token>                                                     Delete asset token.                                                            //
                 //  transfer  <token>        <to>                                         Transfer token <asset> to <to>.                                                //
+                //  transfero <token>        <to>              <owner>                    Transfer token <asset> to <to>, only for owner                                 //
+                //  transferb <token>        <owner>                                      Transfer token <asset> back owner, only owner can do                           //
+                //  transferp <token>        <to operator>     <owner>                    Transfer token <asset> to <to operator>, only for owner                        //
                 //  exists    <token>                                                     Check if <token> exists                                                        //
                 //  update    <token>        <FinalConsumer>  <EnergyKWH>                 Update asset token. Token ID, Final Consumer, energy (KWH)                     //
                 //            <Status>       <Owner>          <AppraisedValue>  <docType> Status, Owner, Appraised value, Doc Type                                       //
@@ -27,13 +31,19 @@
                 //  node tokenapp.js create assetx none 10 onchain Tom_id 1300                     assetx token with its attributes, created.          CreateAllAssets   //
                 //  node tokenapp.js read assetx                                                   assetx token attributes, read.                      ReadAsset         //
                 //  node tokenapp.js reado assetx owner                                            assetx token of owner, read.                        ReadAsset         //
-                //  node tokenapp.js update assetx none 10 onchain Tom_id 1300                     assetx token attributes, updated.                   UpdateAsset       //
+                //  node tokenapp.js update assetx none 10 onchain Tom_id 1300                     assetx token attributes, updated.                   UpdateAsset       //            
                 //  node tokenapp.js delete assetx                                                 assetx token, deleted.                              DeleteAsset       //
                 //                                                                                 -- OTHERS --                                                          //
                 //  node tokenapp.js all                                                           all tokens, listed.                                 GetAllAssets      //
                 //  node tokenapp.js exists assetx                                                 True/False. About token assetx existance.           AssetExists       //
                 //  node tokenapp.js init                                                          Initiate Ledger with a predefined list of tokens.   InitLedger        //
                 //  node tokenapp.js transfer assetx OwnerB                                        assetx token is transfered from Owner to OwnerB.    TransferAsset     //
+                //  node tokenapp.js transfero assetx OwnerB Owner                                 assetx token is transfered from Owner to OwnerB,    TransferAsset-    //
+                //                                                                                 allowed only if it the Owner                        ForOwner          //
+                //  node tokenapp.js transferb assetx Owner                                        assetx token is transfered back to Owner,           TransferBack-     //
+                //                                                                                 only Owner can do                                   ToOwner           //
+                //  node tokenapp.js transferp assetx operator Owner                               assetx token is transfered from Owner to Operator,  TransferAsset-    //
+                //                                                                                 allowed only if it the Owner                        ToOperator        //
                 // ------------------------------------------------------------------------------------------------------------------------------------------------------//
                 //                                                                                                                                                       //
                 // IMPORTANT:                                                                                                                                            //
@@ -195,9 +205,15 @@ async function main() {
 			          let result = await contract.evaluateTransaction('ReadAsset', args[1]);
 			          console.log(`*** Result: ${prettyJSONString(result.toString())}`);
                         } else if (args[0] === 'reado') {
-   			          console.log('\n--> Evaluate Transaction: ReadAsset, function returns args attributes');
-			          let result = await contract.evaluateTransaction('ReadAsset', args[1], args[2]);
+			          // Let's try a query type operation (function).
+			          // This will be sent to just one peer and the results will be shown.
+			          console.log('\n--> Evaluate Transaction: GetAllAssetsForOwner, function returns all the current assets on the ledger');
+			          let result = await contract.evaluateTransaction('GetAllAssetsForOwner', args[1]);
+                                  //let obj = JSON.parse(prettyJSONString(result.toString()));
+                                  //console.log(obj.Owner);
+                                  //console.log(typeof obj);
 			          console.log(`*** Result: ${prettyJSONString(result.toString())}`);
+
                         } else if (args[0] === 'delete') {
    			          console.log('\n--> Evaluate Transaction: DeleteAsset, function returns args attributes');
 			          let result = await contract.submitTransaction('DeleteAsset', args[1]);
@@ -205,6 +221,18 @@ async function main() {
                         } else if (args[0] === 'transfer') {
 			          console.log('\n--> Submit Transaction: TransferAsset asset from A to B');
 			          await contract.submitTransaction('TransferAsset', args[1], args[2]);
+			          console.log('*** Result: committed');
+                       } else if (args[0] === 'transferb') {
+			          console.log('\n--> Submit Transaction: TransferBackToOwner asset from operator to owner');
+			          await contract.submitTransaction('TransferBackToOwner', args[1], args[2]);
+			          console.log('*** Result: committed');
+                       } else if (args[0] === 'transfero') {
+			          console.log('\n--> Submit Transaction: TransferAssetForOwner asset from A to B');
+			          await contract.submitTransaction('TransferAssetForOwner', args[1], args[2], args[3]);
+			          console.log('*** Result: committed');
+                       } else if (args[0] === 'transferp') {
+			          console.log('\n--> Submit Transaction: TransferAssetToOperator asset from A to operator');
+			          await contract.submitTransaction('TransferAssetToOperator', args[1], args[2], args[3]);
 			          console.log('*** Result: committed');
                         } else if (args[0] == 'exists') {        
 			          console.log('\n--> Evaluate Transaction: AssetExists, function returns "true" if an asset with given assetID exist');
@@ -219,6 +247,10 @@ async function main() {
                         } else if (args[0] === 'update') {
 			          console.log('\n--> Submit Transaction: UpdateAsset asset1, change the appraisedValue to 350');
 			          await contract.submitTransaction('UpdateAsset', args[1], args[2], args[3],args[4], args[5], args[6], args[7]);
+			          console.log('*** Result: committed');
+                        } else if (args[0] === 'updateo') {
+			          console.log('\n--> Submit Transaction: UpdateAssetForOwner asset1, change the appraisedValue to 350');
+			          await contract.submitTransaction('UpdateAssetForOwner', args[1], args[2], args[3],args[4], args[5], args[6], args[7]);
 			          console.log('*** Result: committed');
                         }
 
