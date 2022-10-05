@@ -87,7 +87,7 @@ class BobAgent(AriesAgent):
         self.proved=False
         if (message["content"]=="OK1"):
            self.proved=True
-        self.log("proved= ",self.proved)
+        #self.log("proved= ",self.proved)
 
 
     def generate_credential_offer(self, aip, cred_type, cred_def_id, exchange_tracing):
@@ -396,12 +396,25 @@ async def main(args):
                 await bob_agent.generate_invitation(display_qr=True, wait=True)
 
             elif option == "6a":
-                msg = "ZKP"
-                if msg:
-                    await bob_agent.agent.admin_POST(
+                # Check if credential is revoked
+                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/credentials"
+                r=requests.get(URL)
+                response_dict=json.loads(r.text)
+                credential_id=response_dict['results'][0]['referent'] 
+                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/credential/revoked/"+credential_id
+                r=requests.get(URL)
+                response_dict=json.loads(r.text)
+                revoked=response_dict['revoked']
+                log_msg("Credential: ",credential_id," is revoked: ",revoked)
+                if(not revoked):
+                  msg = "ZKP"
+                  if msg:
+                     await bob_agent.agent.admin_POST(
                         f"/connections/{bob_agent.agent.connection_id}/send-message",
                         {"content": msg},
-                    )
+                     )
+                else:
+                    log_msg("Credential proof cannot be performed, credential revoked")
 
             elif option == "6b": 
                 # handle hyperledger fabric

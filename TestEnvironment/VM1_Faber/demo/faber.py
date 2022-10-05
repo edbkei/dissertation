@@ -27,6 +27,7 @@ from runners.support.agent import (  # noqa:E402
     CRED_FORMAT_INDY,
     CRED_FORMAT_JSON_LD,
     SIG_TYPE_BLS,
+    DEFAULT_EXTERNAL_HOST
 )
 from runners.support.utils import (  # noqa:E402
     log_msg,
@@ -72,6 +73,7 @@ class FaberAgent(AriesAgent):
         admin_port: int,
         no_auto: bool = False,
         endorser_role: str = None,
+        _zkpthreshold: int = 0, # Here
         **kwargs,
     ):
         super().__init__(
@@ -86,11 +88,16 @@ class FaberAgent(AriesAgent):
         self.connection_id = None
         self._connection_ready = None
         self.cred_state = {}
+        self._zkpthreshold= 0 # Here
+
         # TODO define a dict to hold credential attributes
         # based on cred_def_id
         self.cred_attrs = {}
 
-    
+    def get_x(self):
+        return self._zkpthreshold
+    def set_x(self,value):
+        self._zkpthreshold=value
 
     async def detect_connection(self):
         await self._connection_ready
@@ -137,12 +144,13 @@ class FaberAgent(AriesAgent):
                 customer=input("Type customer name (e.g. Alice Smith): ")
                 customerid=input("Type customer id (e.g. Alice_id): ")
                 evaluation=input("Type evaluation value (e.g. 123): ")
+                #evaluation=agent.get_x()
                 self.cred_attrs[cred_def_id] = {
                     "customer": customer,
                     "customerid": customerid,
                     "operator": "Faber_id",
                     "serviceurl": "143.106.73.51:5000",
-                    "accesstoken": "secret-token-1",
+                    "accesstoken": "secret-token-2",
                     "eval": evaluation,
                     "timestamp": str(int(time.time())),
                 }
@@ -205,7 +213,9 @@ class FaberAgent(AriesAgent):
     def generate_proof_request_web_request(
         self, aip, cred_type, revocation, exchange_tracing, connectionless=False
     ):
-        evaluation = input('Type evaluation value for ZPK (e.g. 123): ')
+        #evaluation = input('Type evaluation value for ZPK (e.g. 123): ')
+        evaluation = self.get_x()
+        log_msg("generate proof self.x or evaluation=",evaluation)
         eval_int=int(evaluation)
         age = 18
         d = datetime.date.today()
@@ -466,12 +476,14 @@ async def main(args):
             "    (1) Issue Credential\n"
             "    (2) Send Proof Request\n"
             "    (2a) Send *Connectionless* Proof Request (requires a Mobile client)\n"
+            "    (2b) Set up new threshold for ZKP\n"
+            "    (2c) Read ZKP threshold\n"
             "    (3) Send Message\n"
             "    (4) Create New Invitation\n"
             "    (7) Energy Token Management\n"
         )
         if faber_agent.revocation:
-            options += "    (5) Revoke Credential\n" "    (6) Publish Revocations\n"
+            options += "    (5) Revoke Credential Manually\n" "    (5a) Revoke Credential Automatically\n" "    (6) Publish Revocations\n"
         if faber_agent.endorser_role and faber_agent.endorser_role == "author":
             options += "    (D) Set Endorser's DID\n"
         if faber_agent.multitenant:
@@ -576,7 +588,7 @@ async def main(args):
                     raise Exception(f"Error invalid AIP level: {faber_agent.aip}")
 
             elif option == "2":
-                log_status("#20 Request proof of degree from alice")
+                log_status("#20 Request proof of degree from x")
                 if faber_agent.aip == 10:
                     proof_request_web_request = (
                         faber_agent.agent.generate_proof_request_web_request(
@@ -706,12 +718,21 @@ async def main(args):
                 else:
                     raise Exception(f"Error invalid AIP level: {faber_agent.aip}")
 
+            elif option == "2b":
+                x = await prompt("Enter message new threshold for ZKP (0..): ")
+                agent.set_x(x)
+                log_msg("ZKP threshold - eval parameter", x)
+ 
+            elif option == "2c":
+                log_msg("ZKP threshold - eval parameter", agent.get_x())
+
             elif option == "3":
                 msg = await prompt("Enter message: ")
                 await faber_agent.agent.admin_POST(
                     f"/connections/{faber_agent.agent.connection_id}/send-message",
                     {"content": msg},
                 )
+
 
             elif option == "4":
                 log_msg(
@@ -738,6 +759,42 @@ async def main(args):
                 except ClientError:
                     pass
 
+            elif option == "5a" and faber_agent.revocation: # here, revocation study
+                publish="N"
+                resp = await faber_agent.agent.admin_GET(f"/connections")
+                #log_msg(resp['results'][0])
+                #response_dict=json.loads(resp)
+                connectionid1=resp['results'][0]['connection_id']
+                #resp = await faber_agent.admin_GET(f"/issue-credential-2.0/records/{connectionid1}")
+                URL1="http://"+DEFAULT_EXTERNAL_HOST+":8021"+"/issue-credential-2.0/records?connection_id="+connectionid1
+                #log_msg(URL1)
+                r=requests.get(URL1)
+                response_dict=json.loads(r.text)
+                cred_ex_id1=response_dict['results'][0]['indy']['cred_ex_id']
+                cred_rev_id1=response_dict['results'][0]['indy']['cred_rev_id']
+                rev_reg_id1=response_dict['results'][0]['indy']['rev_reg_id']
+                #log_msg("from GET/connections connection_id: ", connectionid1)
+                log_msg("faber_agent.agent.connection_id: ", faber_agent.agent.connection_id)
+                log_msg("rev_reg_id: ", rev_reg_id1)
+                log_msg("cred_ex_id: ", cred_ex_id1)
+                log_msg("cred_rev_id: ", cred_rev_id1)
+                log_msg("publish: ", publish)
+                publish = (
+                    await prompt("Publish now? [Y/N]: ", default="N")
+                ).strip() in "yY"
+                try:
+                    await faber_agent.agent.admin_POST(
+                        "/revocation/revoke",
+                        {
+                            "rev_reg_id": rev_reg_id1,
+                            "cred_rev_id": cred_rev_id1,
+                            "publish": publish,
+                        },
+                    )
+                except ClientError:
+                    pass
+
+
             elif option == "6" and faber_agent.revocation:
                 try:
                     resp = await faber_agent.agent.admin_POST(
@@ -761,7 +818,7 @@ async def main(args):
                 headers["Accept"] = "application/json"
                 headers["Authorization"] = "Bearer secret-token-1"
 
-                option = input('Select option: 1-list all, 2-transfer, 3-create token, 4-quit ')
+                option = input('Select option: 1-list all, 2-transfer, 3-create token, 4-delete token, 5-quit ')
                 if option=="1":
                    url=url+"/a"
                    resp = requests.get(url, headers=headers)
@@ -794,8 +851,15 @@ async def main(args):
                    if "True" in resp.text:
                       log_msg("True")
                    log_msg(creating)
-
                 elif option=="4":
+                   asset=input('Type your asset (e.g. asset1) to delete: ')
+                   url=url+"/d,"+asset
+                   resp = requests.get(url, headers=headers)
+                   log_msg(resp.text)
+                   text="token "+asset+" has been successfully deleted "
+                   log_msg(text)
+
+                elif option=="5":
                    log_msg("quitting...")
                 else: 
                    log_msg("wrong option!")
