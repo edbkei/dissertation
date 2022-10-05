@@ -24,7 +24,8 @@ apps.py contains execution command module of Hyperledger Fabric. Binding to 0.0.
 ### 3.1.1 Nodes
 VM1. IC (Instituto de Computação) Cloud - 2 vCPU - disk 79GB - OS Ubuntu 20.04.3 LTS - Codename Focal.\
 VM2. Google Cloud - 2 vCPU - disk 42GB - OS Ubuntu 20.04.3 LTS - Codename Focal. \
-VM3. Google Cloud - 2 vCPU - disk 39GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
+VM3. Google Cloud - 2 vCPU - disk 39GB - OS Ubuntu 20.04.3 LTS - Codename Focal. \
+VM4. Azure Cloud - 2 vCPU - disk 8GB - OS Ubuntu 20.04.3 LTS - Codename Focal.
 
 VM Node configurations and scripts are stored at directory ../dissertation/tree/main/TestEnvironment, where there are subdirectories VM1_Faber, VM2_Alice, and VM3_Bob.
 The most important is VM1_Faber that represents the Faber Energy Operator, and VM2_Alice is the energy prossumer, and VM3_Bob is the energy consumer. Each one has specific ways to perform tests. These are:
@@ -69,7 +70,7 @@ VM3_Bob has the following scripts:
 
 In terminal 1: ./startfabric.sh\
 In terminal 2: ./startweb.sh\
-In terminal 3: ./startaries.sh\
+In terminal 3: ./startariesnew.sh\
 In terminal 3, with ledger that supports revocation: ./startariesrevoke.sh
 
 * To Stop full Use Case
@@ -82,11 +83,12 @@ In terminal 1: ./stopfabric.sh
 
 In terminal 1: edit database LevelDB/couchDB: ./editcouchdb.sh \
 In terminal 1: ./start2nodes.sh\
-In terminal 2: ./startcaliper.sh\
+In terminal 2: ./startcaliper.sh
 
 * To stop test performance with 2 nodes
 
-In terminal 2: ./stop2nodes.sh
+In terminal 2: ./stop2nodes.sh\
+In terminal 3, ./stopariesrevoke.sh, if revoke tails server is used.
 
 * To start test performance with 3 nodes
 
