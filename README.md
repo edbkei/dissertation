@@ -44,6 +44,9 @@ VM1_Faber has the following scripts:
 * stop2nodes.sh. Stop Hyperledger Fabric that uses 2 nodes.
 * stop3nodes.sh. Stop Hyperledger Fabric that uses 3 nodes.
 * stopfabric.sh. Same as stop2nodes.sh.
+*
+* startariesrevoke.sh. Start tails server before starting hyperledger ledger agent Faber. It is used to revoke credential.
+* stopariesrevoke.sh.  Stop tails server.
 
 VM2_Alice has the following scripts:
 * agent.py. Same as existing in Hyperledger Aries design base with only change in external IP address, and timer.
