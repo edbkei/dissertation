@@ -42,6 +42,17 @@ def t_update(asset,finalConsumer,energykwh,status,owner,appraisalvalue,docType):
     else:
        return False
 
+def t_updateo(asset,finalConsumer,energykwh,status,owner,appraisalvalue,docType):
+    p = check_output(['node', apps,'updateo',asset,finalConsumer,energykwh,status,owner,appraisalvalue,docType])
+    my_json=p.decode('utf8').replace("'", '"') # decode  from bytes to string
+    start = my_json.find("Result: ") + len("Result: ")
+    end = start+15
+    substring = my_json[start:end]
+    if substring.find("committed")!=-1:
+       return True
+    else:
+       return False
+
 def t_delete(asset):
     check=t_exists(asset)
     if(check):
@@ -86,5 +97,21 @@ def t_transfer(asset,transferee):
     #print(my_json)
     return True
 
+def t_transfero(asset,transferee,owner):
+    p = check_output(['node', apps,'transfero',asset,transferee,owner])
+    #my_json=p.decode('utf8').replace("'", '"') # decode  from bytes to string
+    #print(my_json)
+    return True
 
+def t_transferp(asset,operator,owner):
+    p = check_output(['node', apps,'transferp',asset,operator,owner])
+    #my_json=p.decode('utf8').replace("'", '"') # decode  from bytes to string
+    #print(my_json)
+    return True
+
+def t_transferb(asset,owner):
+    p = check_output(['node', apps,'transferb',asset,owner])
+    #my_json=p.decode('utf8').replace("'", '"') # decode  from bytes to string
+    #print(my_json)
+    return True
 
