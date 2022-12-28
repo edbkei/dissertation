@@ -23,7 +23,9 @@ from runners.support.agent import (  # noqa:E402
     CRED_FORMAT_INDY,
     CRED_FORMAT_JSON_LD,
     DID_METHOD_KEY,
+    DID_METHOD_SOV, # here, new
     KEY_TYPE_BLS,
+    KEY_TYPE_ED255, # here, new
 )
 from runners.support.utils import (  # noqa:E402
     check_requires,
@@ -383,157 +385,11 @@ class AriesAgent(DemoAgent):
             log_status("Presentation exchange abandoned")
             self.log("Problem report message:", message.get("error_msg"))
 
-    async def handle_present_proof_v2_0(self, message):
-        state = message.get("state")
-        pres_ex_id = message["pres_ex_id"]
-        self.log(f"Presentation: state = {state}, pres_ex_id = {pres_ex_id}")
+    # async def handle_present_proof_v2_0(self, message):
 
-        if state == "request-received":
-            # prover role
-            log_status(
-                "#24 Query for credentials in the wallet that satisfy the proof request"
-            )
-            pres_request_indy = message["by_format"].get("pres_request", {}).get("indy")
-            pres_request_dif = message["by_format"].get("pres_request", {}).get("dif")
+    #async def handle_basicmessages(self, message):
+        #self.log("Received message:", message["content"])
 
-            if pres_request_indy:
-                # include self-attested attributes (not included in credentials)
-                creds_by_reft = {}
-                revealed = {}
-                self_attested = {}
-                predicates = {}
-
-                try:
-                    # select credentials to provide for the proof
-                    creds = await self.admin_GET(
-                        f"/present-proof-2.0/records/{pres_ex_id}/credentials"
-                    )
-                    if creds:
-                        if "timestamp" in creds[0]["cred_info"]["attrs"]:
-                            sorted_creds = sorted(
-                                creds,
-                                key=lambda c: int(c["cred_info"]["attrs"]["timestamp"]),
-                                reverse=True,
-                            )
-                        else:
-                            sorted_creds = creds
-                        for row in sorted_creds:
-                            for referent in row["presentation_referents"]:
-                                if referent not in creds_by_reft:
-                                    creds_by_reft[referent] = row
-
-                    # submit the proof wit one unrevealed revealed attribute
-                    revealed_flag = False
-                    for referent in pres_request_indy["requested_attributes"]:
-                        if referent in creds_by_reft:
-                            revealed[referent] = {
-                                "cred_id": creds_by_reft[referent]["cred_info"][
-                                    "referent"
-                                ],
-                                "revealed": True,
-                                #"revealed": revealed_flag, difference between versions resulting in diff proof result
-                            }
-                            revealed_flag = True
-                        else:
-                            self_attested[referent] = "my self-attested value"
-
-                    for referent in pres_request_indy["requested_predicates"]:
-                        if referent in creds_by_reft:
-                            predicates[referent] = {
-                                "cred_id": creds_by_reft[referent]["cred_info"][
-                                    "referent"
-                                ]
-                            }
-
-                    log_status("#25 Generate the proof")
-                    request = {
-                        "indy": {
-                            "requested_predicates": predicates,
-                            "requested_attributes": revealed,
-                            "self_attested_attributes": self_attested,
-                        }
-                    }
-                except ClientError:
-                    pass
-
-            elif pres_request_dif:
-                try:
-                    # select credentials to provide for the proof
-                    creds = await self.admin_GET(
-                        f"/present-proof-2.0/records/{pres_ex_id}/credentials"
-                    )
-                    if creds and 0 < len(creds):
-                        creds = sorted(
-                            creds,
-                            key=lambda c: c["issuanceDate"],
-                            reverse=True,
-                        )
-                        record_id = creds[0]["record_id"]
-                    else:
-                        record_id = None
-
-                    log_status("#25 Generate the proof")
-                    request = {
-                        "dif": {},
-                    }
-                    # specify the record id for each input_descriptor id:
-                    request["dif"]["record_ids"] = {}
-                    for input_descriptor in pres_request_dif["presentation_definition"][
-                        "input_descriptors"
-                    ]:
-                        request["dif"]["record_ids"][input_descriptor["id"]] = [
-                            record_id,
-                        ]
-                    log_msg("presenting ld-presentation:", request)
-
-                    # NOTE that the holder/prover can also/or specify constraints by including the whole proof request
-                    # and constraining the presented credentials by adding filters, for example:
-                    #
-                    # request = {
-                    #     "dif": pres_request_dif,
-                    # }
-                    # request["dif"]["presentation_definition"]["input_descriptors"]["constraints"]["fields"].append(
-                    #      {
-                    #          "path": [
-                    #              "$.id"
-                    #          ],
-                    #          "purpose": "Specify the id of the credential to present",
-                    #          "filter": {
-                    #              "const": "https://credential.example.com/residents/1234567890"
-                    #          }
-                    #      }
-                    # )
-                    #
-                    # (NOTE the above assumes the credential contains an "id", which is an optional field)
-
-                except ClientError:
-                    pass
-
-            else:
-                raise Exception("Invalid presentation request received")
-
-            log_status("#26 Send the proof to X: " + json.dumps(request))
-            await self.admin_POST(
-                f"/present-proof-2.0/records/{pres_ex_id}/send-presentation",
-                request,
-            )
-
-        elif state == "presentation-received":
-            # verifier role
-            log_status("#27 Process the proof provided by X")
-            log_status("#28 Check if proof is valid")
-            proof = await self.admin_POST(
-                f"/present-proof-2.0/records/{pres_ex_id}/verify-presentation"
-            )
-            self.log("Proof =", proof["verified"])
-            self.last_proof_received = proof
-
-        elif state == "abandoned":
-            log_status("Presentation exchange abandoned")
-            self.log("Problem report message:", message.get("error_msg"))
-
-#    async def handle_basicmessages(self, message):
-#        self.log("Received message:", message["content"])
 
     async def handle_endorse_transaction(self, message):
         self.log("Received transaction message:", message.get("state"))
@@ -560,6 +416,10 @@ class AriesAgent(DemoAgent):
                 auto_accept=auto_accept,
                 reuse_connections=reuse_connections,
             )
+
+        #log_msg("invi_rec= ",invi_rec,", type=",type(invi_rec)) # here
+        #log_msg(" ") # here
+        #log_msg("invi_rec['invitation']['services'][0]['recipientKeys'][0]= ",invi_rec['invitation']['services'][0]['recipientKeys'][0]) #here
 
         if display_qr:
             qr = QRCode(border=1)
@@ -624,7 +484,7 @@ class AgentContainer:
         genesis_txns: str = None,
         genesis_txn_list: str = None,
         tails_server_base_url: str = None,
-        cred_type: str = CRED_FORMAT_INDY,
+        cred_type: str = CRED_FORMAT_INDY, # here, before CRED_FORMAT_INDY
         show_timing: bool = False,
         multitenant: bool = False,
         mediation: bool = False,
@@ -662,7 +522,7 @@ class AgentContainer:
             # endorsers and authors need public DIDs (assume cred_type is Indy)
             if endorser_role == "author" or endorser_role == "endorser":
                 self.public_did = True
-                self.cred_type = CRED_FORMAT_INDY
+                self.cred_type = CRED_FORMAT_INDY # here, before CRED_FORMAT_INDY
 
         self.reuse_connections = reuse_connections
         self.exchange_tracing = False
@@ -707,8 +567,11 @@ class AgentContainer:
             )
         else:
             self.agent = the_agent
+            #elf.cred_type = CRED_FORMAT_JSON_LD  #HERE, cred_type
 
         await self.agent.listen_webhooks(self.start_port + 2)
+        
+        print("self.public_did=",self.agent.register_did,", cred_type: ",self.cred_type) # here  <==========================
 
         if self.public_did and self.cred_type != CRED_FORMAT_JSON_LD:
             await self.agent.register_did(cred_type=CRED_FORMAT_INDY)
@@ -770,8 +633,9 @@ class AgentContainer:
 
         if self.public_did and self.cred_type == CRED_FORMAT_JSON_LD:
             # create did of appropriate type
-            data = {"method": DID_METHOD_KEY, "options": {"key_type": KEY_TYPE_BLS}}
-            new_did = await self.agent.admin_POST("/wallet/did/create", data=data)
+            data = {"method": DID_METHOD_KEY, "options": {"key_type": KEY_TYPE_BLS}} # here, before DID_METHOD_SOV, KEY_TYPE_ED255
+            log_msg("agent_container.py class AgentContainer public_did: ",self.public_did," data: ",data) # here,
+            new_did = await self.agent.admin_POST("/wallet/did/create", data=data) # here, before local did creation by /did/public does not work. assumption did already registered.
             self.agent.did = new_did["result"]["did"]
             log_msg("Created DID key")
 
@@ -1127,7 +991,8 @@ def arg_parser(ident: str = None, port: int = 8020):
         metavar=("<tails-server-base-url>"),
         help="Tails server base url",
     )
-    if (not ident) or (ident != "alice"):
+    #if (not ident) or (ident != "alice" and "bob"): #here,
+    if (ident == "alice" or "bob" or "faber"): #here,
         parser.add_argument(
             "--cred-type",
             type=str,
@@ -1135,6 +1000,7 @@ def arg_parser(ident: str = None, port: int = 8020):
             metavar=("<cred-type>"),
             help="Credential type (indy, json-ld)",
         )
+    #log_msg("ident=",ident," parser=",parser) # here
     parser.add_argument(
         "--aip",
         type=str,
@@ -1271,7 +1137,7 @@ async def create_agent_with_args(args, ident: str = None):
     else:
         public_did = args.public_did if "public_did" in args else None
 
-    cred_type = args.cred_type if "cred_type" in args else None
+    cred_type = args.cred_type if "cred_type" in args else None #Here, before None, now it is CRED_FORMAT_JSON_LD
     log_msg(
         f"Initializing demo agent {agent_ident} with AIP {aip} and credential type {cred_type}"
     )
@@ -1357,6 +1223,23 @@ async def test_main(
             seed=None,
             aip=aip,
         )
+        bob_container = AgentContainer(
+            genesis_txns=genesis,
+            ident="Bob.agent",
+            start_port=start_port + 10,
+            no_auto=no_auto,
+            revocation=False,
+            show_timing=show_timing,
+            multitenant=multitenant,
+            mediation=mediation,
+            use_did_exchange=use_did_exchange,
+            wallet_type=wallet_type,
+            public_did=False,
+            seed=None,
+            aip=aip,
+        )
+
+
 
         # start the agents - faber gets a public DID and schema/cred def
         await faber_container.initialize(

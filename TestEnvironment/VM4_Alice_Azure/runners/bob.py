@@ -39,7 +39,7 @@ from runners.support.agent import (  # noqa:E402
     DEFAULT_EXTERNAL_HOST,
 )
 
-class AliceAgent(AriesAgent):
+class BobAgent(AriesAgent):
     def __init__(
         self,
         ident: str,
@@ -55,7 +55,7 @@ class AliceAgent(AriesAgent):
             ident,
             http_port,
             admin_port,
-            prefix="Alice",
+            prefix="Bob",
             no_auto=no_auto,
             seed=None,
             aip=aip,
@@ -222,30 +222,25 @@ class AliceAgent(AriesAgent):
             log_status("Presentation exchange abandoned")
             self.log("Problem report message:", message.get("error_msg"))
 
-
     @property
     def connection_ready(self):
         return self._connection_ready.done() and self._connection_ready.result()
 
     async def handle_basicmessages(self, message):
-        #self.log("Alice received message")
+        #self.log("Bob received message")
         self.log("Received message:", message["content"])
- 
+
 
     def generate_credential_offer(self, aip, cred_type, cred_def_id, exchange_tracing):
         age = 24
         d = datetime.date.today()
         birth_date = datetime.date(d.year - age, d.month, d.day)
         birth_date_format = "%Y%m%d"        
-        log_msg("cred_type: ",cred_type) # here, cred_type
-        did_invitation=""
-        if cred_type == CRED_FORMAT_JSON_LD: #here
-           did_invitation=cred_def_id
-           log_msg("did_invitation= ",did_invitation)
+        print("cred_type=",cred_type) 
         if aip == 10:
             # define attributes to send for credential
             self.cred_attrs[cred_def_id] = {
-                "name": "Alice Smith",
+                "name": "Bob Marley",
                 "date": "2018-05-28",
                 "degree": "Maths",
                 "birthdate_dateint": birth_date.strftime(birth_date_format),
@@ -285,15 +280,15 @@ class AliceAgent(AriesAgent):
                 evaluation=""
 
                 if(len(response_dict['results'])!=0):
-                   alice_credential=response_dict['results'][0]
-                   cred_def_id=alice_credential['cred_def_id']
-                   serviceurl=alice_credential['attrs']['serviceurl']
-                   accesstoken=alice_credential['attrs']['accesstoken']
-                   customer=alice_credential['attrs']['customer'] 
-                   customerid=alice_credential['attrs']['customerid']
-                   operator=alice_credential['attrs']['operator']    
-                   timestamp=alice_credential['attrs']['timestamp']  
-                   evaluation=alice_credential['attrs']['eval'] 
+                   bob_credential=response_dict['results'][0]
+                   cred_def_id=bob_credential['cred_def_id']
+                   serviceurl=bob_credential['attrs']['serviceurl']
+                   accesstoken=bob_credential['attrs']['accesstoken']
+                   customer=bob_credential['attrs']['customer'] 
+                   customerid=bob_credential['attrs']['customerid']
+                   operator=bob_credential['attrs']['operator']    
+                   timestamp=bob_credential['attrs']['timestamp']  
+                   evaluation=bob_credential['attrs']['eval'] 
 
 
                 self.cred_attrs[cred_def_id] = {
@@ -324,7 +319,6 @@ class AliceAgent(AriesAgent):
                 return offer_request
 
             elif cred_type == CRED_FORMAT_JSON_LD:
-                #self.did="did:key:zUC722Vf2Prn2xaGCiNrH1F6EoBa8gZUToMdxvbkmAxJ61QqoTURuKj56qTmxkCv78G5o6b1GukRTxKveCf8KaasCeBuTTcUbt9dxK1Ur1EHx1axcs1TomF4zcUVF5yBNZXRaeh"
                 offer_request = {
                     "connection_id": self.connection_id,
                     "filter": {
@@ -340,13 +334,13 @@ class AliceAgent(AriesAgent):
                                     "PermanentResident",
                                 ],
                                 "id": "https://credential.example.com/residents/1234567890",
-                                "issuer": did_invitation,  #here, before self.did
+                                "issuer": self.did,
                                 "issuanceDate": "2020-01-01T12:00:00Z",
                                 "credentialSubject": {
                                     "type": ["PermanentResident"],
-                                    "givenName": "ALICE",
-                                    "familyName": "SMITH",
-                                    "gender": "Female",
+                                    "givenName": "BOB",
+                                    "familyName": "MARLEY",
+                                    "gender": "Male",
                                     "birthCountry": "Bahamas",
                                     "birthDate": "1958-07-17",
                                 },
@@ -363,157 +357,6 @@ class AliceAgent(AriesAgent):
         else:
             raise Exception(f"Error invalid AIP level: {self.aip}")
 
-    def generate_credential_transfer(self, aip, cred_type, cred_def_id, exchange_tracing): # here, new
-        age = 24
-        d = datetime.date.today()
-        birth_date = datetime.date(d.year - age, d.month, d.day)
-        birth_date_format = "%Y%m%d"        
-        log_msg("cred_type: ",cred_type) # here, cred_type
-        did_invitation=""
-        if cred_type == CRED_FORMAT_JSON_LD: #here
-           did_invitation=cred_def_id
-           log_msg("did_invitation= ",did_invitation)
-        if aip == 10:
-            # define attributes to send for credential
-            self.cred_attrs[cred_def_id] = {
-                "name": "Alice Smith",
-                "date": "2018-05-28",
-                "degree": "Maths",
-                "birthdate_dateint": birth_date.strftime(birth_date_format),
-                "timestamp": str(int(time.time())),
-            }
-
-            cred_preview = {
-                "@type": CRED_PREVIEW_TYPE,
-                "attributes": [
-                    {"name": n, "value": v}
-                    for (n, v) in self.cred_attrs[cred_def_id].items()
-                ],
-            }
-            offer_request = {
-                "connection_id": self.connection_id,
-                "cred_def_id": cred_def_id,
-                "comment": f"Offer on cred def id {cred_def_id}",
-                "auto_remove": False,
-                "credential_preview": cred_preview,
-                "trace": exchange_tracing,
-            }
-            return offer_request
-
-        elif aip == 20:
-            if cred_type == CRED_FORMAT_INDY:  # HERE, CRED_FORMAT_INDY
-
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/credentials"
-                #URL='http://20.206.89.102:8031/credentials'
-                r=requests.get(URL)
-                response_dict=json.loads(r.text)
-                serviceurl= ""
-                accesstoken=""
-                customer=""
-                customerid=""
-                operator=""
-                timestamp=""
-                evaluation=""
-
-                if(len(response_dict['results'])!=0):
-                   alice_credential=response_dict['results'][0]
-                   cred_def_id=alice_credential['cred_def_id']
-                   serviceurl=alice_credential['attrs']['serviceurl']
-                   accesstoken=alice_credential['attrs']['accesstoken']
-                   customer=alice_credential['attrs']['customer'] 
-                   customerid=alice_credential['attrs']['customerid']
-                   operator=alice_credential['attrs']['operator']    
-                   timestamp=alice_credential['attrs']['timestamp']  
-                   evaluation=alice_credential['attrs']['eval'] 
-
-
-                self.cred_attrs[cred_def_id] = {
-  			"customer": customer,
-			"customerid": customerid,
-			"operator": operator,
-			"serviceurl": serviceurl,
-			"accesstoken": accesstoken,
-			"eval": evaluation,
-			"timestamp": timestamp,
-                }
-
-                cred_preview = {
-                    "@type": CRED_PREVIEW_TYPE,
-                    "attributes": [
-                        {"name": n, "value": v}
-                        for (n, v) in self.cred_attrs[cred_def_id].items()
-                    ],
-                }
-                offer_request = {
-                    "connection_id": self.connection_id,
-                    "comment": f"Offer on cred def id {cred_def_id}",
-                    "auto_remove": False,
-                    "credential_preview": cred_preview,
-                    "filter": {"indy": {"cred_def_id": cred_def_id}},
-                    "trace": exchange_tracing,
-                }
-                return offer_request
-
-            elif cred_type == CRED_FORMAT_JSON_LD:
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/connections"
-                r=requests.get(URL)
-                resp=json.loads(r.text)
-                #alice_credential=response_dict['results'][0]
-                #cred_def_id=alice_credential['cred_def_id']
-                #serviceurl=alice_credential['attrs']['serviceurl']
-                #resp = await self.agent.admin_GET(f"/connections") # here
-                resp2=list(resp['results'])
-                issuer_connection_id=''
-                connectee_connection_id=''
-                cred_ex_id=""
-                for i in resp2:
-                    if i['their_label'] == "faber.agent":
-                       issuer_connection_id = i['connection_id']
-                       #print("issuer_connection_id=",i['connection_id'], " their_label=",i['their_label'])
-                       # http://ip:ownport/issue-credential-2.0/records?connection=id=<connection-id-faber>
-                    if i['their_label'] == "bob.agent":
-                       connectee_connection_id = i['connection_id']
-                       #print("connectee_connection_id=",i['connection_id'], " their_label=",i['their_label'])
-                       # http://ip:ownport/issue-credential-2.0/records?connection=id=<connection-id-faber>
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/issue-credential-2.0/records?connection_id="+issuer_connection_id
-                r=requests.get(URL)
-                resp=json.loads(r.text)
-                #resp = await self.agent.admin_GET(f"/issue-credential-2.0/records?connection_id="+issuer_connection_id) # here
-                resp2=list(resp['results'])
-                        #print("resp=",resp)
-                        #print("type of resp=",type(resp))
-                        #print("resp['results']=",resp['results'])
-                        #resp2=list(resp['results'])
-                ld_proof=resp2[0]['cred_ex_record']['by_format']['cred_offer']['ld_proof']
-                cred_ex_id=resp2[0]['cred_ex_record']['cred_ex_id']
-                #print('ld_proof=',ld_proof)
-                # HERE, offer_request as requirement of /issue-credential-2.0/send-proposal", offer_request
-                offer_request = {
-                    "auto_remove": True,
-                    "comment": "string",
-                    "connection_id": connectee_connection_id, # here, before self.connection_id
-                    "filter": {
-                        "ld_proof": ld_proof
-                    },
-                }
-
-                offer_request2 = {
-                    "connection_id": connectee_connection_id, # here, before self.connection_id
-                    "filter": {
-                        "ld_proof": ld_proof
-                    },
-                }
-
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/issue-credential-2.0/records/"+cred_ex_id
-                #r=requests.delete(URL)  # here, just in case it is needed to delete credential
-            
-                return offer_request2
-
-            else:
-                raise Exception(f"Error invalid credential type: {self.cred_type}")
-
-        else:
-            raise Exception(f"Error invalid AIP level: {self.aip}")
 
 
 async def input_invitation(agent_container):
@@ -558,51 +401,51 @@ async def input_invitation(agent_container):
 
 
 async def main(args):
-    alice_agent = await create_agent_with_args(args, ident="alice")
+    bob_agent = await create_agent_with_args(args, ident="bob")
 
     try:
         log_status(
             "#7 Provision an agent and wallet, get back configuration details"
             + (
-                f" (Wallet type: {alice_agent.wallet_type})"
-                if alice_agent.wallet_type
+                f" (Wallet type: {bob_agent.wallet_type})"
+                if bob_agent.wallet_type
                 else ""
             )
         )
-        agent = AliceAgent(
-            "alice.agent",
-            alice_agent.start_port,
-            alice_agent.start_port + 1,
-            genesis_data=alice_agent.genesis_txns,
-            genesis_txn_list=alice_agent.genesis_txn_list,
-            no_auto=alice_agent.no_auto,
-            tails_server_base_url=alice_agent.tails_server_base_url,
-            revocation=alice_agent.revocation,
-            timing=alice_agent.show_timing,
-            multitenant=alice_agent.multitenant,
-            mediation=alice_agent.mediation,
-            wallet_type=alice_agent.wallet_type,
-            aip=alice_agent.aip,
-            #cred_type=alice_agent.cred_type
-            endorser_role=alice_agent.endorser_role,
+        agent = BobAgent(
+            "bob.agent",
+            bob_agent.start_port,
+            bob_agent.start_port + 1,
+            genesis_data=bob_agent.genesis_txns,
+            genesis_txn_list=bob_agent.genesis_txn_list,
+            no_auto=bob_agent.no_auto,
+            tails_server_base_url=bob_agent.tails_server_base_url,
+            revocation=bob_agent.revocation,
+            timing=bob_agent.show_timing,
+            multitenant=bob_agent.multitenant,
+            mediation=bob_agent.mediation,
+            wallet_type=bob_agent.wallet_type,
+            aip=bob_agent.aip,
+            endorser_role=bob_agent.endorser_role,
         )
 
-        await alice_agent.initialize(the_agent=agent)
+        await bob_agent.initialize(the_agent=agent)
 
         #log_status("#9 Input faber.py invitation details")
-        #await input_invitation(alice_agent)
+        #await input_invitation(bob_agent)
         exchange_tracing = False # Here
-        did_invitation="" #here
-        #cred_type=CRED_FORMAT_JSON_LD # Here before, CRED_FORMAT_INDY
+        cred_type=CRED_FORMAT_INDY
 
-        options = "    (1) Issue Credential\n" "    (1a) Issue Credential JSON-LD\n" "    (3) Send Message \n" "    (4) Input New Invitation\n" "    (5) Generate New Invitation\n" "    (6a) Request Credential Proof\n"
+
+
+        options = "    (1) Issue Credential\n" "    (3) Send Message \n" "    (4) Input New Invitation\n" "    (5) Generate New Invitation\n" "    (6a) Request Credential Proof\n"
         options += "    (6b) Energy Token Management\n"
-        if alice_agent.endorser_role and alice_agent.endorser_role == "author":
+        if bob_agent.endorser_role and bob_agent.endorser_role == "author":
             options += "    (D) Set Endorser's DID\n"
-        if alice_agent.multitenant:
+        if bob_agent.multitenant:
             options += "    (W) Create and/or Enable Wallet\n"
         options += "    (X) Exit?\n[3/4/5/6a/6b{}X] ".format(
-            "W/" if alice_agent.multitenant else "",
+            "W/" if bob_agent.multitenant else "",
         )
         async for option in prompt_loop(options):
             if option is not None:
@@ -611,127 +454,75 @@ async def main(args):
             if option is None or option in "xX":
                 break
 
-            elif option in "dD" and alice_agent.endorser_role:
+            elif option in "dD" and bob_agent.endorser_role:
                 endorser_did = await prompt("Enter Endorser's DID: ")
-                await alice_agent.agent.admin_POST(
-                    f"/transactions/{alice_agent.agent.connection_id}/set-endorser-info",
+                await bob_agent.agent.admin_POST(
+                    f"/transactions/{bob_agent.agent.connection_id}/set-endorser-info",
                     params={"endorser_did": endorser_did, "endorser_name": "endorser"},
                 )
 
-            elif option in "wW" and alice_agent.multitenant:
+            elif option in "wW" and bob_agent.multitenant:
                 target_wallet_name = await prompt("Enter wallet name: ")
                 include_subwallet_webhook = await prompt(
                     "(Y/N) Create sub-wallet webhook target: "
                 )
                 if include_subwallet_webhook.lower() == "y":
-                    await alice_agent.agent.register_or_switch_wallet(
+                    await bob_agent.agent.register_or_switch_wallet(
                         target_wallet_name,
-                        webhook_port=alice_agent.agent.get_new_webhook_port(),
-                        mediator_agent=alice_agent.mediator_agent,
-                        taa_accept=alice_agent.taa_accept,
+                        webhook_port=bob_agent.agent.get_new_webhook_port(),
+                        mediator_agent=bob_agent.mediator_agent,
+                        taa_accept=bob_agent.taa_accept,
                     )
                 else:
-                    await alice_agent.agent.register_or_switch_wallet(
+                    await bob_agent.agent.register_or_switch_wallet(
                         target_wallet_name,
-                        mediator_agent=alice_agent.mediator_agent,
-                        taa_accept=alice_agent.taa_accept,
+                        mediator_agent=bob_agent.mediator_agent,
+                        taa_accept=bob_agent.taa_accept,
                     )
             elif option == "1":
                 aip = 20
-                log_msg("alice_agent.cred_type= ",alice_agent.cred_type)                  # here
-                #log_msg("alice_agent.agent.cred_type= ",alice_agent.agent.cred_type)      # here
                 log_status("#13 Issue credential offer to X: ")
                 if aip == 10:
-                    offer_request = alice_agent.agent.generate_credential_offer(
-                        aip, alice_agent.cred_type, alice_agent.cred_def_id, exchange_tracing
+                    offer_request = bob_agent.agent.generate_credential_offer(
+                        aip, None, bob_agent.cred_def_id, exchange_tracing
                     )
-                    await alice_agent.agent.admin_POST(
+                    await bob_agent.agent.admin_POST(
                         "/issue-credential/send-offer", offer_request
                     )
 
                 elif aip == 20:
-                    if alice_agent.cred_type == CRED_FORMAT_INDY: # here before, cred_type only
-                        offer_request = alice_agent.agent.generate_credential_offer(
+                    if cred_type == CRED_FORMAT_INDY:
+                        offer_request = bob_agent.agent.generate_credential_offer(
                             aip,
                             cred_type,
                             None,
                             exchange_tracing,
                         )
 
-                    elif alice_agent.cred_type == CRED_FORMAT_JSON_LD: # here before, cred_type only
-                        offer_request = alice_agent.agent.generate_credential_offer(
+                    elif cred_type == CRED_FORMAT_JSON_LD:
+                        offer_request = bob_agent.agent.generate_credential_offer(
                             aip,
-                            alice_agent.cred_type, #here
-                            did_invitation, #here, before None
+                            cred_type,
+                            None,
                             exchange_tracing,
                         )
 
                     else:
                         raise Exception(
-                            f"Error invalid credential type: {alice_agent.cred_type}" # here before, cred_type only
+                            f"Error invalid credential type: {cred_type}"
                         )
 
-                    await alice_agent.agent.admin_POST(
+                    await bob_agent.agent.admin_POST(
                         "/issue-credential-2.0/send-offer", offer_request
                     )
 
                 else:
                     raise Exception(f"Error invalid AIP level: {aip}")
 
-            elif option == "1a":
-                aip = 20
-                log_msg("alice_agent.cred_type= ",alice_agent.cred_type)                  # here
-                #log_msg("alice_agent.agent.cred_type= ",alice_agent.agent.cred_type)      # here
-                log_status("#13 Issue credential offer to X: ")
-                if aip == 10:
-                    offer_request = alice_agent.agent.generate_credential_offer(
-                        aip, alice_agent.cred_type, alice_agent.cred_def_id, exchange_tracing
-                    )
-                    await alice_agent.agent.admin_POST(
-                        "/issue-credential/send-offer", offer_request
-                    )
-
-                elif aip == 20:
-                    if alice_agent.cred_type == CRED_FORMAT_INDY: # here before, cred_type only
-                        offer_request = alice_agent.agent.generate_credential_offer(
-                            aip,
-                            cred_type,
-                            None,
-                            exchange_tracing,
-                        )
-
-                    elif alice_agent.cred_type == CRED_FORMAT_JSON_LD: # here before, cred_type only
-                        offer_request = alice_agent.agent.generate_credential_transfer(
-                            aip,
-                            alice_agent.cred_type, #here
-                            did_invitation, #here, before None
-                            exchange_tracing,
-                        )
-
-                        print("offer_request=",offer_request)
-
-                    else:
-                        raise Exception(
-                            f"Error invalid credential type: {alice_agent.cred_type}" # here before, cred_type only
-                        )
-
-                    await alice_agent.agent.admin_POST(
-                        "/issue-credential-2.0/send-proposal", offer_request  # here before and testing, send-proposal
-                    )
-
-                    #await alice_agent.agent.admin_DELETE(
-                    #    "/issue-credential-2.0/records/"+cred_ex_id
-                    #)
-
-
-                else:
-                    raise Exception(f"Error invalid AIP level: {aip}")
-
-
             elif option == "3":
-                msg = await prompt("Enter message: (ex: Hi Bob or Hi Faber or Faber, do ZKP) ")
+                msg = await prompt("Enter message: (ex: Hi Alice or Hi Faber or Faber, do ZKP) ")
 
-                URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/connections"
+                URL="http://"+DEFAULT_EXTERNAL_HOST+":8071/connections"
                 r=requests.get(URL)
                 resp=json.loads(r.text)
                 resp2=list(resp['results'])
@@ -741,18 +532,18 @@ async def main(args):
                 for i in resp2:
                     if i['their_label'] == "faber.agent":
                        issuer_connection_id = i['connection_id']
-                    if i['their_label'] == "bob.agent":
+                    if i['their_label'] == "alice.agent":
                        connectee_connection_id = i['connection_id']
                 
-                if "Bob" in msg:
+                if "Alice" in msg:
                    connectionid=connectee_connection_id
                 elif "Faber" in msg:
                    connectionid=issuer_connection_id
                 else:
-                   connectionid=alice_agent.agent.connection_id          
+                   connectionid=bob_agent.agent.connection_id          
 
                 if msg:
-                    await alice_agent.agent.admin_POST(
+                    await bob_agent.agent.admin_POST(
                         f"/connections/{connectionid}/send-message",
                         {"content": msg},
                     )
@@ -760,16 +551,14 @@ async def main(args):
             elif option == "4":
                 # handle new invitation
                 log_status("Input new invitation details")
-                await input_invitation(alice_agent)
+                await input_invitation(bob_agent)
 
             elif option == "5":
                 log_msg(
                     "Creating a new invitation, please receive "
                     "and accept this invitation using X agent"
                 )
-                resp=await alice_agent.generate_invitation(display_qr=True, wait=True)
-                did_invitation=resp['invitation']['services'][0]['recipientKeys'][0]
-                #log_msg("did_invitation=",did_invitation) #here
+                await bob_agent.generate_invitation(display_qr=True, wait=True)
 
             elif option == "6a":
                 # Check if credential is revoked
@@ -788,8 +577,8 @@ async def main(args):
                 if(not revoked):
                   msg = "ZKP"
                   if msg:
-                     await alice_agent.agent.admin_POST(
-                        f"/connections/{alice_agent.agent.connection_id}/send-message",
+                     await bob_agent.agent.admin_POST(
+                        f"/connections/{bob_agent.agent.connection_id}/send-message",
                         {"content": msg},
                      )
                 else:
@@ -800,14 +589,14 @@ async def main(args):
                 URL="http://"+DEFAULT_EXTERNAL_HOST+":8031/credentials"
                 r=requests.get(URL)
                 response_dict=json.loads(r.text)
-                #log_msg("alice_agent.agent.proved=",alice_agent.agent.proved) # HERE, COME HERE
-                if(alice_agent.agent.proved):
+                #log_msg("bob_agent.agent.proved=",bob_agent.agent.proved) # HERE, COME HERE
+                if(bob_agent.agent.proved):
                 #if(len(response_dict['results'])!=0):
-                   alice_credential=response_dict['results'][0]
-                   serviceurl= alice_credential['attrs']['serviceurl']
-                   accesstoken=alice_credential['attrs']['accesstoken']
-                   customerid=alice_credential['attrs']['customerid'] 
-                   operator=alice_credential['attrs']['operator']        
+                   bob_credential=response_dict['results'][0]
+                   serviceurl= bob_credential['attrs']['serviceurl']
+                   accesstoken=bob_credential['attrs']['accesstoken']
+                   customerid=bob_credential['attrs']['customerid'] 
+                   operator=bob_credential['attrs']['operator']        
 
                    #url = "http://"+serviceurl+"/r,asset1"
                    url = "http://"+serviceurl
@@ -863,16 +652,16 @@ async def main(args):
                       log_msg("wrong option!")
                 else:
                    log_msg("credential not verified! (credential not proved or no credential)")
-                alice_agent.agent.proved=False
+                bob_agent.agent.proved=False
 
-        if alice_agent.show_timing:
-            timing = await alice_agent.agent.fetch_timing()
+        if bob_agent.show_timing:
+            timing = await bob_agent.agent.fetch_timing()
             if timing:
-                for line in alice_agent.agent.format_timing(timing):
+                for line in bob_agent.agent.format_timing(timing):
                     log_msg(line)
 
     finally:
-        terminated = await alice_agent.terminate()
+        terminated = await bob_agent.terminate()
 
     await asyncio.sleep(0.1)
 
@@ -881,7 +670,7 @@ async def main(args):
 
 
 if __name__ == "__main__":
-    parser = arg_parser(ident="alice", port=8030)
+    parser = arg_parser(ident="bob", port=8070)
     args = parser.parse_args()
 
     ENABLE_PYDEVD_PYCHARM = os.getenv("ENABLE_PYDEVD_PYCHARM", "").lower()
@@ -899,7 +688,7 @@ if __name__ == "__main__":
             import pydevd_pycharm
 
             print(
-                "Alice remote debugging to "
+                "Bob remote debugging to "
                 f"{PYDEVD_PYCHARM_HOST}:{PYDEVD_PYCHARM_CONTROLLER_PORT}"
             )
             pydevd_pycharm.settrace(
